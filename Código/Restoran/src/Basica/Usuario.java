@@ -9,24 +9,121 @@ import javax.persistence.Id;
 
 @Entity
 public class Usuario {
+	
 	@Id @GeneratedValue
-	private int id;
-	@Column(nullable = false)
+	private int id_usuario;
+	
+	@Column(length=50, nullable = false)
 	private String nome;
-	@Column(nullable = false)
+	
+	@Column(length=15, nullable = false)
 	private String login;
-	@Column(nullable = false)
+	
+	@Column(length=6, nullable = false)
 	private String senha;
-	@Column(nullable = false)
+	
+	@Column(length=30, nullable = false)
 	private String email;
-	@Column(nullable = false)
+	
+	@Column(length=14, nullable = false)
 	private String cpf;
-	@Column(nullable = false)
+	
+	@Column(length=1, nullable = false)
 	private String sexo;
-	@Column(nullable = false)
+	
+	@Column(length=8, nullable = false)
 	private String tipo;
-	@Column(nullable = false)
-	private long telefone;
+	
+	@Column(length=10, nullable = false)
+	private String telefone;
+	
 	@Column(nullable = false)
 	private Date dataNas;
+
+	
+	
+	//Gets & Sets
+	public int getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Date getDataNas() {
+		return dataNas;
+	}
+
+	public void setDataNas(Date dataNas) {
+		this.dataNas = dataNas;
+	}
+		
+	
+	
+	
 }
