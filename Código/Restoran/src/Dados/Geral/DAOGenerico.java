@@ -1,4 +1,4 @@
-package Dados;
+package Dados.Geral;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
