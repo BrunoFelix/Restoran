@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class ItemComposicaoProduto {
 	
 	@Id @GeneratedValue
 	private int id_itemComposicaoProduto;
