@@ -1,11 +1,11 @@
-package dados;
+package Dados.Geral;
 
 
 import javax.persistence.EntityManagerFactory;
 
-import dados.geral.DAOGenerico;
+import Dados.Geral.DAOGenerico;
 
-import basicas.Pedido;
+import Basica.Pedido;
 
 public class PedidoDAO extends DAOGenerico<Pedido> {
 

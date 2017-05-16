@@ -1,11 +1,11 @@
-package dados;
+package Dados.Geral;
 
 
 import javax.persistence.EntityManagerFactory;
 
-import dados.geral.DAOGenerico;
+import Dados.Geral.DAOGenerico;
 
-import basicas.Historico;
+import Basica.Historico;
 
 public class HistoricoDAO extends DAOGenerico<Historico> {
 
