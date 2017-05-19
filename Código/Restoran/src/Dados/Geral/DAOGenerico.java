@@ -14,7 +14,7 @@ import javax.persistence.PersistenceException;
 public abstract class DAOGenerico<Entity> {
 
 	
-	private EntityManagerFactory entityManagerFactory;
+	protected EntityManagerFactory entityManagerFactory;
 	private Class<Entity> persistentClass;
 
 	@SuppressWarnings("unchecked")	
@@ -38,7 +38,6 @@ public abstract class DAOGenerico<Entity> {
 
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
 		objeto = em.merge(objeto);
 		
 		tx.commit();

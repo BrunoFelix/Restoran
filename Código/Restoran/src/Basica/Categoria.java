@@ -11,18 +11,18 @@ import javax.persistence.Id;
 public class Categoria {
 	
 	@Id @GeneratedValue
-	private int id_categoria;
+	private int id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
 	
 	//Gets & Sets
 	public int getId_categoria() {
-		return id_categoria;
+		return id;
 	}
 
 	public void setId_categoria(int id_categoria) {
-		this.id_categoria = id_categoria;
+		this.id = id_categoria;
 	}
 
 	public String getNome() {

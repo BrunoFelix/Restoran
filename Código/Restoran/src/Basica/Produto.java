@@ -17,7 +17,7 @@ import org.hibernate.annotations.FetchMode;
 public class Produto {
 
 	@Id @GeneratedValue
-	private int id_produto;
+	private int id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -38,17 +38,14 @@ public class Produto {
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Pedido pedido;
 
-
-	
-	
 	//Gets & Sets
 	public int getId_produto() {
-		return id_produto;
+		return id;
 	}
 
 
 	public void setId_produto(int id_produto) {
-		this.id_produto = id_produto;
+		this.id = id_produto;
 	}
 
 

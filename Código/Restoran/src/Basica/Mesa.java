@@ -33,9 +33,6 @@ public class Mesa {
 	@Cascade(CascadeType.ALL)
 	private Collection<Pedido> pedidos;
 	
-	
-	
-	
 	//Gets & Sets
 	public int getId() {
 		return id;

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Usuario {
 	
 	@Id @GeneratedValue
-	private int id_usuario;
+	private int id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -44,11 +44,11 @@ public class Usuario {
 	
 	//Gets & Sets
 	public int getId_usuario() {
-		return id_usuario;
+		return id;
 	}
 
 	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+		this.id = id_usuario;
 	}
 
 	public String getNome() {

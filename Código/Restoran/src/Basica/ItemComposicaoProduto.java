@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class ItemComposicaoProduto {
 	
 	@Id @GeneratedValue
-	private int id_itemComposicaoProduto;
+	private int id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -27,11 +27,11 @@ public class ItemComposicaoProduto {
 	
 	//Gets & Sets
 	public int getId_itemComposicaoProduto() {
-		return id_itemComposicaoProduto;
+		return id;
 	}
 
 	public void setId_itemComposicaoProduto(int id_itemComposicaoProduto) {
-		this.id_itemComposicaoProduto = id_itemComposicaoProduto;
+		this.id = id_itemComposicaoProduto;
 	}
 
   public String getNome() {

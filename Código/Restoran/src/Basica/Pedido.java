@@ -22,7 +22,7 @@ public class Pedido{
 	
 	@Id @GeneratedValue
 	@Column()
-	private int id_pedido;
+	private int id;
 	
 	@Column(nullable=false)
 	private double totalPedido;
@@ -34,7 +34,7 @@ public class Pedido{
 	private Date data;
 	
 	@Column(nullable=false)
-	private Usuario garçom;
+	private Usuario garcom;
 	
 	@OneToMany(mappedBy="pedido", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
@@ -47,16 +47,13 @@ public class Pedido{
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Mesa mesa;
 	
-	
-	
-	
 	//Gets & Sets
 	public int getId_pedido() {
-		return id_pedido;
+		return id;
 	}
 
 	public void setId_pedido(int id_pedido) {
-		this.id_pedido = id_pedido;
+		this.id = id_pedido;
 	}
 
 	public double getTotalPedido() {
@@ -83,12 +80,12 @@ public class Pedido{
 		this.data = data;
 	}
 
-	public Usuario getGarçom() {
-		return garçom;
+	public Usuario getGarcom() {
+		return garcom;
 	}
 
-	public void setGarçom(Usuario garçom) {
-		this.garçom = garçom;
+	public void setGarçom(Usuario garcom) {
+		this.garcom = garcom;
 	}
 
 	public Collection<Produto> getProdutos() {

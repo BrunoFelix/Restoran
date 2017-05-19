@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Historico {
 	
 	@Id @GeneratedValue
-	private int id_historico;
+	private int id;
 	
 	@Column(length=15, nullable = false)
 	private String statusAntigo;
@@ -21,11 +21,11 @@ public class Historico {
 	
 	//Gets & Sets
 	public int getId_historico() {
-		return id_historico;
+		return id;
 	}
 
 	public void setId_historico(int id_historico) {
-		this.id_historico = id_historico;
+		this.id = id_historico;
 	}
 
 	public String getStatusAntigo() {
