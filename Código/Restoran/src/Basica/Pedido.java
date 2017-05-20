@@ -9,8 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -33,19 +36,26 @@ public class Pedido{
 	@Column(nullable=false)
 	private Date data;
 	
-	@Column(nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_usuario", insertable=true, updatable=true) //Chave Estrangeira
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
 	private Usuario garcom;
 	
-	@OneToMany(mappedBy="pedido", fetch = FetchType.LAZY)
-	@Cascade(CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="pedido_produto", joinColumns=@JoinColumn(name="id_pedido"), inverseJoinColumns=@JoinColumn(name="id_produto"))
 	private Collection<Produto> produtos;
-	
+
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_mesa", insertable=true, updatable=true) //Chave Estrangeira
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Mesa mesa;
+	
+	@OneToOne(mappedBy="pedido", targetEntity = Historico.class, fetch = FetchType.LAZY)
+	@JoinColumn(name="id_historico")
+	private Historico historico;
 	
 	//Gets & Sets
 	public int getId_pedido() {
@@ -84,7 +94,7 @@ public class Pedido{
 		return garcom;
 	}
 
-	public void setGarçom(Usuario garcom) {
+	public void setGarcom(Usuario garcom) {
 		this.garcom = garcom;
 	}
 
@@ -103,8 +113,13 @@ public class Pedido{
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-	
 
-	
+	public Historico getHistorico() {
+		return historico;
+	}
+
+	public void setHistorico(Historico historico) {
+		this.historico = historico;
+	}
 	
 }
