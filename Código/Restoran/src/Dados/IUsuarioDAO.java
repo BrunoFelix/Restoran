@@ -14,5 +14,6 @@ public interface IUsuarioDAO {
 	public List<Usuario> PesquisarPorEmail(String email) throws DadosException;
 	public List<Usuario> PesquisarPorSexo(String sexo) throws DadosException;
 	public List<Usuario> PesquisarPorDataNasc(Date dataNasc) throws DadosException;
+	public List<Usuario> PesquisarPorLogin(String login) throws DadosException;
 
 }

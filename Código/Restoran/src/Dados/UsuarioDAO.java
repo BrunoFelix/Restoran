@@ -158,5 +158,19 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 			throw new DadosException(e);
 		}
 	}
+	
+	public List<Usuario> PesquisarPorLogin(String login) throws DadosException{
+		try{
+			String queryString = "SELECT U FROM USUARIO U WHERE U.nome =(:login)";
+			
+			EntityManager em = this.entityManagerFactory.createEntityManager();
+					
+			Query query = em.createQuery(queryString);
+			query.setParameter("nome", login);
+		    return query.getResultList();
+		} catch (Exception e) {
+			throw new DadosException(e);
+		}
+	}
 
 }
