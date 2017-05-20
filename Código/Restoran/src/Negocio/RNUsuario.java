@@ -40,7 +40,7 @@ public class RNUsuario {
 	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
-		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 5)
+		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 10)
 			throw new NegocioException("Nome Inválido");
 		if ((u.getCpf().isEmpty() == true) || (u.getCpf().length() < 10))
 			throw new NegocioException("Cpf Inválido");
