@@ -1,29 +1,29 @@
 package Negocio;
 
 import Basica.Usuario;
-import Utils.NegocioException;
+import Utils.ControladorException;
 
 public class RNUsuario {
 	   
-	private void ValidarPreenchimentoDados(Usuario u) throws NegocioException {
-           if (u.getNome() == null || u.getNome() == "")
-           {
-               throw new NegocioException("O campo \"Nome\" precisa ser preenchido!");
-           }
-           if (u.getCpf() == null || u.getCpf() == "")
-           {
-               throw new NegocioException("O campo \"CPF\" precisa ser preenchido!");
-           }
-           if (u.getLogin() == null || u.getLogin() == "")
-           {
-               throw new NegocioException("O campo \"Login\" precisa ser preenchido!");
-           }
-           if (u.getSenha()== null || u.getSenha() == "")
-           {
-               throw new NegocioException("O campo \"Senha\" precisa ser preenchido!");
-           }
-           
-       }
+    private void verificarPrenchimento(Usuario u) throws ControladorException {
+        
+    	
+    	if(u == null)
+             throw new ControladorException("Objeto Usuario não preenchido");
+    }
+
+    private void validarCampos(Usuario u) throws ControladorException {
+        if((u.getNome().isEmpty()== true) || (u.getNome()).length() < 5)
+            throw new ControladorException("Nome Inválido");
+        if((u.getCpf().isEmpty()== true) || (u.getCpf().length() < 10))
+            throw new ControladorException("Cpf Inválido");
+        if((u.getTelefone().isEmpty()== true) || (u.getTelefone().length() < 8))
+            throw new ControladorException("Telefone Inválido");
+        if((u.getLogin().isEmpty())== true || u.getLogin()== "")
+            throw new ControladorException("Login inválido");
+        if(u.getSenha().isEmpty()== true || u.getSenha() == "")
+            throw new ControladorException("senha inválida");
+    }
    
 }
 
