@@ -18,6 +18,16 @@
 	<classpathentry kind="lib" path="lib/jboss-logging-3.1.0.GA.jar"/>
 	<classpathentry kind="lib" path="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.21-bin.jar"/>
+	<classpathentry kind="lib" path="lib/javax.faces-api-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsf-api-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jsf-api.jar"/>
+	<classpathentry kind="lib" path="lib/jsf-facelets-1.1.14-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jsf-impl-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/login.xhtml"/>
+	<classpathentry kind="lib" path="lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.faces-2.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/primefaces-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/javax.faces-2.1.7-01.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
