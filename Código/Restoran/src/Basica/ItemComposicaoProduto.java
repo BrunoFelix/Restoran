@@ -1,11 +1,16 @@
 package Basica;
 
 import java.sql.Date;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class ItemComposicaoProduto {
@@ -16,14 +21,18 @@ public class ItemComposicaoProduto {
 	@Column(length=50, nullable = false)
 	private String nome;
   
-  @Column(nullable = false)
+	@Column(nullable = false)
 	private int quantidade;
   
-  @Column(length=5, nullable = false)
+	@Column(length=5, nullable = false)
 	private String unidadeMedida;
   
-  @Column(nullable = false)
+	@Column(nullable = false)
 	private double precoCusto;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="produto_item", joinColumns=@JoinColumn(name="id_item"), inverseJoinColumns=@JoinColumn(name="id_produto"))
+	private Collection<Produto> produtos;
 	
 	//Gets & Sets
 	public int getId_itemComposicaoProduto() {
@@ -64,6 +73,14 @@ public class ItemComposicaoProduto {
 
 	public void setPrecoCusto(int precoCusto) {
 		this.precoCusto = precoCusto;
+	}
+
+	public Collection<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Collection<Produto> produtos) {
+		this.produtos = produtos;
 	}
 	
 }

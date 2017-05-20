@@ -1,11 +1,19 @@
 package Basica;
 
 import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Usuario {
@@ -39,8 +47,10 @@ public class Usuario {
 	
 	@Column(nullable = false)
 	private Date dataNas;
-
 	
+	@OneToMany(mappedBy="garcom", fetch = FetchType.LAZY)
+	@Cascade(CascadeType.ALL)
+	private Collection<Pedido> pedidos;
 	
 	//Gets & Sets
 	public int getId_usuario() {
@@ -121,6 +131,14 @@ public class Usuario {
 
 	public void setDataNas(Date dataNas) {
 		this.dataNas = dataNas;
+	}
+
+	public Collection<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 		
 	
