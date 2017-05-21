@@ -2,6 +2,7 @@ package Dados;
 
 
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
@@ -22,16 +23,25 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public Usuario logar(String login, String senha) throws DadosException{
 		try {
-			String queryString = "SELECT U FROM USUARIO U WHERE U.login =(:login) and U.senha =(:senha)";
+			
+			System.out.println("chegou aqui1");	
+			String queryString = "SELECT U FROM Usuario U";
+			System.out.println("chegou aqui2");	
 			
 			EntityManager em = this.entityManagerFactory.createEntityManager();
 					
+			System.out.println("chegou aqui3");	
+			
 			Query query = em.createQuery(queryString);
-			query.setParameter("login", login);
-			query.setParameter("senha", senha);
+			/*query.setParameter("login", login);
+			query.setParameter("senha", senha);*/
+			System.out.println("chegou aqui4");	
+			Usuario usuario = (Usuario) query.getSingleResult();
+			System.out.println(usuario.getId_usuario());	
 			return (Usuario) query.getSingleResult();
+			
 		} catch (Exception e) {
-			throw new DadosException(e);
+			throw new DadosException("erro na hora de pesquisar");
 		}
 	}
 	
