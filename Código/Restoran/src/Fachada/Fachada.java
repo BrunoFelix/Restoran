@@ -40,6 +40,10 @@ public class Fachada {
 		return null;
 	}
 	
+	public List<Usuario> UsuarioListar(){
+		return usuariodao.getAll();
+	}
+	
 	
 	public String mensagem(String mensagem){
 		return mensagem;
