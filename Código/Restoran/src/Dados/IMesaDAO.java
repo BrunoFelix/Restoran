@@ -9,6 +9,6 @@ public interface IMesaDAO {
 	
 	public List<Mesa> PesquisarPorStatus(String status) throws DadosException;
 	public List<Mesa> PesquisarPorCapacidade(int capacidade) throws DadosException;
-	public List<Mesa> PesquisarPorNumero(int numeromesa) throws DadosException;
+	public List<Mesa> PesquisarPorNumeroMesa(int numeromesa) throws DadosException;
 
 }
