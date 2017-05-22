@@ -9,19 +9,20 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
+import Utils.HibernateUtil;
 import Basica.ItemComposicaoProduto;
 
 public class ItemComposicaoProdutoDAO extends DAOGenerico<ItemComposicaoProduto> implements IItemComposicaoProdutoDAO {
 
-	public ItemComposicaoProdutoDAO(EntityManagerFactory emf) {
-		super(emf);
+	public ItemComposicaoProdutoDAO() {
+		super();
 	}
 
 	public List<ItemComposicaoProduto> PesquisarPorNome(String nome) throws DadosException{
 		try{
 			String queryString = "SELECT ICP FROM ITEMCOMPOSICAOPRODUTO ICP WHERE ICP.nome =(:nome)";
 			
-			EntityManager em = this.entityManagerFactory.createEntityManager();
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("nome", nome);
@@ -35,7 +36,7 @@ public class ItemComposicaoProdutoDAO extends DAOGenerico<ItemComposicaoProduto>
 		try{
 			String queryString = "SELECT ICP FROM ITEMCOMPOSICAOPRODUTO ICP WHERE ICP.quantidade =(:quantidade)";
 			
-			EntityManager em = this.entityManagerFactory.createEntityManager();
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("quantidade", quantidade);

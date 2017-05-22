@@ -13,7 +13,7 @@ public class RNUsuario {
 
 	public RNUsuario() {
 
-		usuarioDAO = new UsuarioDAO(null);
+		usuarioDAO = new UsuarioDAO();
 	}
 
     public void salvar(Usuario u) throws NegocioException, DadosException{

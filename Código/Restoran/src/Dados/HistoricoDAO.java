@@ -9,8 +9,8 @@ import Basica.Historico;
 
 public class HistoricoDAO extends DAOGenerico<Historico> implements IHistoricoDAO {
 
-	public HistoricoDAO(EntityManagerFactory emf) {
-		super(emf);
+	public HistoricoDAO() {
+		super();
 	}
 
 }

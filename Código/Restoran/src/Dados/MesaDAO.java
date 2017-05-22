@@ -9,19 +9,20 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
+import Utils.HibernateUtil;
 import Basica.Mesa;
 
 public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 
-	public MesaDAO(EntityManagerFactory emf) {
-		super(emf);
+	public MesaDAO() {
+		super();
 	}
 	
 	public List<Mesa> PesquisarPorStatus(String status) throws DadosException{
 		try{
 			String queryString = "SELECT M FROM MESA M WHERE M.status =(:status)";
 			
-			EntityManager em = this.entityManagerFactory.createEntityManager();
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("status", status);
@@ -35,7 +36,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 		try{
 			String queryString = "SELECT M FROM MESA M WHERE M.capacidade =(:capacidade)";
 			
-			EntityManager em = this.entityManagerFactory.createEntityManager();
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("capacidade", capacidade);

@@ -1,0 +1,26 @@
+#index{
+	width: 900px;
+	border: 1px solid black;
+	margin: 0px auto;
+	margin-top: 50px;
+}
+
+#index input{
+
+    font-weight: bold;
+	font-family: arial;
+	font-size: 10px;
+	width: 900px;
+	height: 50px;
+	margin: auto;
+
+}
+
+/************************** login **********************/
+
+#login{
+	width: 900px;
+	border: 1px solid black;
+	margin: 0px auto;
+	margin-top: 50px;
+}

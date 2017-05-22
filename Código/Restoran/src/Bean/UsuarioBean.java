@@ -2,10 +2,10 @@ package Bean;
 
 import java.io.IOException;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.servlet.http.HttpSession;
 
 import Basica.Usuario;
 import Fachada.Fachada; 
@@ -19,9 +19,13 @@ public class UsuarioBean {
 		fachada.getInstance();
 	}*/
 	
+	private static Usuario usuario;
+	
+	private Boolean usuarioLogado;
+	
 	private String login;
 	private String senha;
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -38,32 +42,62 @@ public class UsuarioBean {
 		this.senha = senha;
 	}
 
-	public String logar(){
+	FacesMessage msg;
+
+	public void logar(){
 		
 		try{
 
-		Fachada fachada = new Fachada();
+			Fachada fachada = new Fachada();
+				
+			usuario = new Usuario();
 			
-		Usuario usuario = new Usuario();
-		
-		usuario = fachada.Usuariologar(getLogin(), getSenha());
-		
-		
-		if (usuario.getId_usuario() > 0){
-			System.out.println("Encontrou usuário");
-		}else{
-			System.out.println("Usuário inválido");
-		}
-		
+			usuario = fachada.Usuariologar(getLogin(), getSenha());
+				
+			if (usuario != null){
+				/*HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession( true );
+				session.setAttribute( "nome", usuario.getNome());*/
+				usuarioLogado = true;
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");		
+			}else{
+				msg = new FacesMessage("Usuário ou senha inválido, tente novamente!");
+				FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
+			}
+			
 		}catch (Exception e) {
-			System.out.println(e);
+			msg = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
 		}
-		
-		return null;
-		//System.out.println("teste");
-		//return "/menu.faces?faces-redirect=true";  
-		/*FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
-		return null;*/
 	}
+	
+	public void logout()
+    {
+        this.usuario = null;
+        getNomeUsuario();
+        //FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
+	
+	public String getNomeUsuario()
+    {
+		if (usuario != null){
+            return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+    	}else{
+    		try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				return e.getMessage();
+			}
+    	}
+		return null;
+
+    }
+	
+    public Usuario getUser() {
+        return usuario;
+    }
+    public void setUser(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
 }

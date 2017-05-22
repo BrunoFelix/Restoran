@@ -1,16 +1,16 @@
 package Fachada;
 
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Utils.DadosException;
-import Utils.Hibernate;
 
 public class Fachada {
 	
-	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("projetorestoran"); 
 	
 	private static Fachada fachada;
 	
@@ -25,7 +25,7 @@ public class Fachada {
 	
 	public Fachada(){
 		
-		usuariodao = new UsuarioDAO(emf);
+		usuariodao = new UsuarioDAO();
 	}
 	
 	

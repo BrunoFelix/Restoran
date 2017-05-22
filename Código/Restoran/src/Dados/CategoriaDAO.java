@@ -9,19 +9,20 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
+import Utils.HibernateUtil;
 import Basica.Categoria;
 
 public class CategoriaDAO extends DAOGenerico<Categoria> implements ICategoriaDAO {
 
-	public CategoriaDAO(EntityManagerFactory emf) {
-		super(emf);
+	public CategoriaDAO() {
+		super();
 	}
 	
 	public List<Categoria> PesquisarPorNome(String nome) throws DadosException{
 		try{
 			String queryString = "SELECT C FROM CATEGORIA C WHERE C.nome =(:nome)";
 			
-			EntityManager em = this.entityManagerFactory.createEntityManager();
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("nome", nome);
