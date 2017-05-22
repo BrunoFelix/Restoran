@@ -45,7 +45,21 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 			throw new DadosException(e);
 		}
 	}
+	public List<Mesa> PesquisarPorNumeroMesa(int numeromesa) throws DadosException{
+		
+			try{
+			String queryString = "SELECT M FROM MESA M WHERE M.numeromesa =(:numeromesa)";
+			
+			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+					
+			Query query = em.createQuery(queryString);
+			query.setParameter("numeromesa", numeromesa);
+			return query.getResultList();
+		} catch (Exception e) {
+			throw new DadosException(e);
+		}
 	
+	}
 	
  
 }
