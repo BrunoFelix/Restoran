@@ -13,45 +13,58 @@ public class RNUsuario {
 
 	public RNUsuario() {
 
-		usuarioDAO = new UsuarioDAO();
+	  usuarioDAO = new UsuarioDAO();
 	}
-
+	
+    /*##################################
+              FUNCIONALIDADES
+    ##################################*/
+    
     public void salvar(Usuario u) throws NegocioException, DadosException{
-        
     	validarCampos(u); 
     	validarEmail(u);
     	validarDuplicidadeEmail(u);
     	validarDuplicidadeLogin(u);
-               
-        
+         salvar(u);
+       
     }
+    
+    public void alterar(Usuario u) throws ControladorException{
+    	validarCampos(u); 
+    	validarEmail(u);
+    	validarDuplicidadeEmail(u);
+    	validarDuplicidadeLogin(u);
+        alterar(u);
 
-	
-	
-	
-	/*
-	 * Validações Usuario
-	 */
-
+    }
+    
+    public void excluir(Usuario u) throws ControladorException{
+        validaExistencia(u);
+        excluir(u);
+    }
+    	
+    /*##################################
+              VALIDAÃ‡Ã•ES
+    ##################################*/
 	public void verificarObjeto(Usuario u) throws NegocioException {
 
 		if (u == null)
-			throw new NegocioException("Objeto Usuario não preenchido");
+			throw new NegocioException("Objeto Usuario nÃ£o preenchido");
 	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
 		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 10)
-			throw new NegocioException("Nome Inválido");
+			throw new NegocioException("Nome InvÃ¡lido");
 		if ((u.getCpf().isEmpty() == true) || (u.getCpf().length() < 10))
-			throw new NegocioException("Cpf Inválido");
+			throw new NegocioException("Cpf InvÃ¡lido");
 		if ((u.getTelefone().isEmpty() == true) || (u.getTelefone().length() < 8))
-			throw new NegocioException("Telefone Inválido");
+			throw new NegocioException("Telefone InvÃ¡lido");
 		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
-			throw new NegocioException("Login inválido");
+			throw new NegocioException("Login invÃ¡lido");
 		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
-			throw new NegocioException("senha inválida");
+			throw new NegocioException("senha invÃ¡lida");
 		if (u.getSenha().length() <= 4)
-			throw new NegocioException("senha inválida deve possuir no minimo quatro caracteres.");
+			throw new NegocioException("senha invÃ¡lida deve possuir no minimo quatro caracteres.");
 		if (u.getTipo().isEmpty() || u.getTipo() == null)
 			throw new NegocioException("Tipo de Usuario invalido");
 		if (u.getSexo().isEmpty() || u.getSexo() == null)
@@ -62,10 +75,10 @@ public class RNUsuario {
 
 		try {
 			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) != null) {
-				throw new NegocioException("Login já existe");
+				throw new NegocioException("Login jÃ¡ existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados nÃ£o disponÃ­vel");
 		}
 	}
 
@@ -78,7 +91,7 @@ public class RNUsuario {
 			throw new NegocioException("O E-mail " + u.getEmail() + " e valido");
 
 		} else {
-			throw new NegocioException("O E-mail " + u.getEmail() + " é inválido");
+			throw new NegocioException("O E-mail " + u.getEmail() + " Ã© invÃ¡lido");
 
 		}
 	}
@@ -87,11 +100,21 @@ public class RNUsuario {
 
 		try {
 			if (usuarioDAO.PesquisarPorEmail(u.getEmail()) != null) {
-				throw new NegocioException("Email já existe");
+				throw new NegocioException("Email jÃ¡ existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados nÃ£o disponÃ­vel");
 		}
 
+	}
+	public void validaExistencia(Usuario u){
+		
+		try {
+			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) == null) {
+				throw new NegocioException("Usuari que deseja excluir nÃ£o existe");
+			}
+		} catch (DadosException e) {
+			throw new DadosException("Banco de dados nÃ£o disponÃ­vel");
+		}
 	}
 }
