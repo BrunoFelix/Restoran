@@ -14,6 +14,10 @@ public class RNMesa {
 
 		mesaDAO = new MesaDAO();
 	}
+	
+   /*##################################
+              FUNCIONALIDADES
+    ##################################*/
   
     public void salvar(Mesa m) throws NegocioException, DadosException{
         
@@ -21,7 +25,29 @@ public class RNMesa {
       validarDuplicidadeNumeroMesa(m);
         
     }
+  	CategoriaDAO categoriaDAO;
+
+	public RNCategoria() {
+
+	  categoriaDAO = new CategoriaDAO();
+	}
+	
+    public void alterar(Mesa m) throws ControladorException{
+    	
+        alterar(m);
+	    
+    }
+    
+    public void excluir(Mesa m) throws ControladorException{
+       
+        excluir(m);
+    }
+	   
+   /*##################################
+              VALIDAÇÕES
+    ##################################*/
   
+	
   public void verificarObjeto(Mesa m) throws NegocioException {
 
 		if (m == null)
