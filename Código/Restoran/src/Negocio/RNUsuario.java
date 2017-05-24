@@ -83,7 +83,7 @@ public class RNUsuario {
 	}
 
 	public void validarEmail(Usuario u) throws NegocioException {
-		System.out.println("Metodo de validacao de email");
+		
 		Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
 		Matcher m = p.matcher(u.getEmail());
 		if (m.find()) {
@@ -111,7 +111,7 @@ public class RNUsuario {
 		
 		try {
 			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) == null) {
-				throw new NegocioException("Usuari que deseja excluir não existe");
+				throw new NegocioException("Usuario que deseja excluir não existe");
 			}
 		} catch (DadosException e) {
 			throw new DadosException("Banco de dados não disponível");
