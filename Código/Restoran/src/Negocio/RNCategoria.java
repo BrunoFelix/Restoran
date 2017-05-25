@@ -1,5 +1,11 @@
 package Negocio;
 
+import Basica.Categoria;
+import Dados.CategoriaDAO;
+import Utils.ControladorException;
+import Utils.DadosException;
+import Utils.NegocioException;
+
 public class RNCategoria {
 	
 	CategoriaDAO categoriaDAO;

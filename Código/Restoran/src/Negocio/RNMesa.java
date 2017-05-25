@@ -1,8 +1,10 @@
 package Negocio;
 
 import Basica.Mesa;
+import Dados.CategoriaDAO;
 import Dados.MesaDAO;
 import Utils.NegocioException;
+import Utils.ControladorException;
 import Utils.DadosException;
 
 public class RNMesa {
@@ -27,7 +29,7 @@ public class RNMesa {
     }
   	CategoriaDAO categoriaDAO;
 
-	public RNCategoria() {
+	public void RNCategoria() {
 
 	  categoriaDAO = new CategoriaDAO();
 	}
@@ -51,25 +53,25 @@ public class RNMesa {
   public void verificarObjeto(Mesa m) throws NegocioException {
 
 		if (m == null)
-			throw new NegocioException("Objeto Mesa não preenchido");
+			throw new NegocioException("Objeto Mesa nao preenchido");
 	}
   
   public void validarCampos(Mesa m) throws NegocioException {
-		if ((m.getNumeroMesa().isEmpty() == true) || (m.getNumeroMesa() == null))
-			throw new NegocioException("Numero de mesa Inválido");
-		if(m.getCapacidadeMesa().isEmpty() == true)||(m.getCapacidadeMesa()==null))
-      throw new NegocioException("Capacidade da mesa não informada");
-    if(m.getStatus().isEmpty()== true)||(m.getStatus()== null)
-      throw new NegocioException("Status da mesa Inválido");
+		if (m.getNumeroMesa() == 0)
+			throw new NegocioException("Numero de mesa Invalido");
+		if(m.getCapacidadeMesa()== 0)
+      throw new NegocioException("Capacidade da mesa nao informada");
+    if((m.getStatus().isEmpty()== true)||(m.getStatus()== ""))
+      throw new NegocioException("Status da mesa Invalido");
 	}
 public void validarDuplicidadeNumeroMesa(Mesa m) throws NegocioException, DadosException {
 
 		try {
 			if (mesaDAO.PesquisarPorNumeroMesa(m.getNumeroMesa()) != null) {
-				throw new NegocioException("Mesa com numero "+m.getNumeroMesa()+" já existe");
+				throw new NegocioException("Mesa com numero "+m.getNumeroMesa()+" ja existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados nao disponivel");
 		}
 	}
 

@@ -57,6 +57,14 @@ public class Mesa {
 	public void setCapacidadeMesa(int capacidadeMesa) {
 		CapacidadeMesa = capacidadeMesa;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public Collection<Pedido> getPedidos() {
 		return pedidos;

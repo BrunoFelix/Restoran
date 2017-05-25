@@ -7,6 +7,7 @@ import javax.persistence.Persistence;
 
 import Basica.Usuario;
 import Dados.UsuarioDAO;
+import Negocio.RNUsuario;
 import Utils.DadosException;
 
 public class Fachada {
@@ -15,6 +16,7 @@ public class Fachada {
 	private static Fachada fachada;
 	
 	UsuarioDAO usuariodao;
+	RNUsuario rnusuario;
 	
 	/*public static Fachada getInstance() {
         if(fachada == null ){
@@ -26,6 +28,7 @@ public class Fachada {
 	public Fachada(){
 		
 		usuariodao = new UsuarioDAO();
+		rnusuario = new RNUsuario();
 	}
 	
 	

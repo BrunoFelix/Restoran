@@ -5,6 +5,7 @@ import java.util.regex.*;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Utils.NegocioException;
+import Utils.ControladorException;
 import Utils.DadosException;
 
 public class RNUsuario {
@@ -29,7 +30,7 @@ public class RNUsuario {
        
     }
     
-    public void alterar(Usuario u) throws ControladorException{
+    public void alterar(Usuario u) throws ControladorException, NegocioException, DadosException{
     	validarCampos(u); 
     	validarEmail(u);
     	validarDuplicidadeEmail(u);
@@ -38,7 +39,7 @@ public class RNUsuario {
 
     }
     
-    public void excluir(Usuario u) throws ControladorException{
+    public void excluir(Usuario u) throws ControladorException, NegocioException, DadosException{
         validaExistencia(u);
         excluir(u);
     }
@@ -107,7 +108,7 @@ public class RNUsuario {
 		}
 
 	}
-	public void validaExistencia(Usuario u){
+	public void validaExistencia(Usuario u) throws NegocioException, DadosException{
 		
 		try {
 			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) == null) {
