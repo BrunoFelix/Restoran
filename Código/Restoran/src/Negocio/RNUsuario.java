@@ -14,58 +14,62 @@ public class RNUsuario {
 
 	public RNUsuario() {
 
-	  usuarioDAO = new UsuarioDAO();
+		usuarioDAO = new UsuarioDAO();
+	}
+
+	/*
+	 * ################################## 
+	 * 			FUNCIONALIDADES
+	 * ##################################
+	 */
+
+	public void salvar(Usuario u) throws NegocioException, DadosException {
+		validarCampos(u);
+		validarEmail(u);
+		validarDuplicidadeEmail(u);
+		validarDuplicidadeLogin(u);
+		usuarioDAO.insert(u);
+
+	}
+
+	public void alterar(Usuario u) throws ControladorException, NegocioException, DadosException {
+		validarCampos(u);
+		validarEmail(u);
+		validarDuplicidadeEmail(u);
+		validarDuplicidadeLogin(u);
+		usuarioDAO.update(u);
+	}
+
+	public void excluir(Usuario u) throws ControladorException, NegocioException, DadosException {
+		validaExistencia(u);
+		usuarioDAO.remove(u);
 	}
 	
-    /*##################################
-              FUNCIONALIDADES
-    ##################################*/
-    
-    public void salvar(Usuario u) throws NegocioException, DadosException{
-    	validarCampos(u); 
-    	validarEmail(u);
-    	validarDuplicidadeEmail(u);
-    	validarDuplicidadeLogin(u);
-         salvar(u);
-       
-    }
-    
-    public void alterar(Usuario u) throws ControladorException, NegocioException, DadosException{
-    	validarCampos(u); 
-    	validarEmail(u);
-    	validarDuplicidadeEmail(u);
-    	validarDuplicidadeLogin(u);
-        alterar(u);
-
-    }
-    
-    public void excluir(Usuario u) throws ControladorException, NegocioException, DadosException{
-        validaExistencia(u);
-        excluir(u);
-    }
-    	
-    /*##################################
-              VALIDAÇÕES
-    ##################################*/
+	
+	/*
+	 * ################################## 
+	 * 				VALIDACOES
+	 * ##################################
+	 */
 	public void verificarObjeto(Usuario u) throws NegocioException {
 
 		if (u == null)
-			throw new NegocioException("Objeto Usuario não preenchido");
+			throw new NegocioException("Objeto Usuario n�o preenchido");
 	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
 		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 10)
-			throw new NegocioException("Nome Inválido");
+			throw new NegocioException("Nome Invalido");
 		if ((u.getCpf().isEmpty() == true) || (u.getCpf().length() < 10))
-			throw new NegocioException("Cpf Inválido");
+			throw new NegocioException("Cpf Invalido");
 		if ((u.getTelefone().isEmpty() == true) || (u.getTelefone().length() < 8))
-			throw new NegocioException("Telefone Inválido");
+			throw new NegocioException("Telefone Invalido");
 		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
-			throw new NegocioException("Login inválido");
+			throw new NegocioException("Login Invalido");
 		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
 			throw new NegocioException("senha inválida");
 		if (u.getSenha().length() <= 4)
-			throw new NegocioException("senha inválida deve possuir no minimo quatro caracteres.");
+			throw new NegocioException("senha invalida deve possuir no minimo quatro caracteres.");
 		if (u.getTipo().isEmpty() || u.getTipo() == null)
 			throw new NegocioException("Tipo de Usuario invalido");
 		if (u.getSexo().isEmpty() || u.getSexo() == null)
@@ -76,15 +80,15 @@ public class RNUsuario {
 
 		try {
 			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) != null) {
-				throw new NegocioException("Login já existe");
+				throw new NegocioException("Login j� existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados n�o disponivel");
 		}
 	}
 
 	public void validarEmail(Usuario u) throws NegocioException {
-		
+
 		Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
 		Matcher m = p.matcher(u.getEmail());
 		if (m.find()) {
@@ -92,7 +96,7 @@ public class RNUsuario {
 			throw new NegocioException("O E-mail " + u.getEmail() + " e valido");
 
 		} else {
-			throw new NegocioException("O E-mail " + u.getEmail() + " é inválido");
+			throw new NegocioException("O E-mail " + u.getEmail() + " e Invalido");
 
 		}
 	}
@@ -101,21 +105,23 @@ public class RNUsuario {
 
 		try {
 			if (usuarioDAO.PesquisarPorEmail(u.getEmail()) != null) {
-				throw new NegocioException("Email já existe");
+				throw new NegocioException("Email j� existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados n�o disponivel");
 		}
 
 	}
-	public void validaExistencia(Usuario u) throws NegocioException, DadosException{
-		
+
+	public void validaExistencia(Usuario u) throws NegocioException, DadosException {
+
 		try {
 			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) == null) {
-				throw new NegocioException("Usuario que deseja excluir não existe");
+				throw new NegocioException("Usuario que deseja excluir n�o existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponível");
+			throw new DadosException("Banco de dados n�o disponivel");
 		}
 	}
+
 }
