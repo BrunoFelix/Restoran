@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -15,6 +16,7 @@ import Basica.Usuario;
 import Fachada.Fachada; 
 
 @ManagedBean(name="UsuarioBean")
+@SessionScoped
 public class UsuarioBean {
 		
 	
@@ -28,7 +30,7 @@ public class UsuarioBean {
 	private Boolean usuarioLogado;
 	
 	private Usuario usuarioparalistar;
-	private DataModel listausuario;
+	private List<Usuario> listarUsuario = new ArrayList<Usuario>();
 	
 	private String login;
 	private String senha;
@@ -51,9 +53,7 @@ public class UsuarioBean {
 
 	FacesMessage msg;
 	
-	public List<Usuario> usuarios = new ArrayList<Usuario>();
-
-	public void logar(){
+	public String logar(){
 		
 		try{
 
@@ -64,79 +64,48 @@ public class UsuarioBean {
 			usuario = fachada.Usuariologar(getLogin(), getSenha());
 				
 			if (usuario != null){
-				/*HttpSession session = ( HttpSession ) FacesContext.getCurrentInstance().getExternalContext().getSession( true );
-				session.setAttribute( "nome", usuario.getNome());*/
 				usuarioLogado = true;
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");		
+				return "index";	
 			}else{
 				msg = new FacesMessage("Usuário ou senha inválido, tente novamente!");
 				FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
 			}
-			
 		}catch (Exception e) {
 			msg = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
 		}
+		return null;
 	}
 	
-	public void logout()
+	public String logout()
     {
         this.usuario = null;
-        try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        //FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login";
+
     }
 		
 	public String getUsuarioGerente()
     {
 		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))){
-            return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
-    	}else{
-    		try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				return e.getMessage();
-			}
-    	}
-		return null;
-
-    }
-	
-	/*public List<Usuario> listarUsuarios() {
-		Fachada fachada = new Fachada();
-		
-		usuarios = fachada.UsuarioListar();
-		
-		System.out.println(usuarios.get(0).getNome());
-		
-		return usuarios;
-    }*/
-	
-	public DataModel getListarUsuarios() {
-		Fachada fachada = new Fachada();
-		List<Usuario> lista = fachada.UsuarioListar();
-		listausuario = new ListDataModel(lista);
-		return listausuario;
+	        return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+		}else{
+			return "login";
 		}
+    }
 	
 	public String getUsuarioNormal()
     {
 		if (usuario != null){
             return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
     	}else{
-    		try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				return e.getMessage();
-			}
+    		return "login";
     	}
-		return null;
-
     }
+	
+	public List<Usuario> getlistarUsuario() {
+		Fachada fachada = new Fachada();
+		listarUsuario = fachada.UsuarioListar();
+		return listarUsuario;
+	}
+	
 }

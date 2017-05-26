@@ -19,7 +19,7 @@ import org.hibernate.annotations.CascadeType;
 public class Usuario {
 	
 	@Id @GeneratedValue
-	private int id;
+	private int id_Usuario;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -54,11 +54,11 @@ public class Usuario {
 	
 	//Gets & Sets
 	public int getId_usuario() {
-		return id;
+		return id_Usuario;
 	}
 
 	public void setId_usuario(int id_usuario) {
-		this.id = id_usuario;
+		this.id_Usuario = id_usuario;
 	}
 
 	public String getNome() {
