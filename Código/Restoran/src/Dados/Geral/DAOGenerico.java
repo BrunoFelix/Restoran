@@ -53,7 +53,7 @@ public abstract class DAOGenerico<Entity> {
 		List<Entity> instance = null;
 		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
 		try {
-			instance = ((List<Entity>) em.createQuery("from " + getPersistentClass().getName()).getResultList());
+			instance = (List<Entity>) em.createQuery("from " + getPersistentClass().getName()).getResultList();
 		} catch (RuntimeException re) {
 			re.printStackTrace();
 		}

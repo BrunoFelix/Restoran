@@ -44,7 +44,10 @@ public class Fachada {
 	}
 	
 	public List<Usuario> UsuarioListar(){
+		
 		return usuariodao.getAll();
+		 //rnusuario.listar();
+		
 	}
 	
 	

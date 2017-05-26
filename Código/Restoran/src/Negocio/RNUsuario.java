@@ -1,5 +1,6 @@
 package Negocio;
 
+import java.util.List;
 import java.util.regex.*;
 
 import Basica.Usuario;
@@ -44,8 +45,13 @@ public class RNUsuario {
 		validaExistencia(u);
 		usuarioDAO.remove(u);
 	}
-	
-	
+	public List<Usuario> listar(){
+	 return usuarioDAO.getAll();
+   }
+	public void logar(Usuario u)  throws ControladorException, NegocioException, DadosException {
+		usuarioDAO.logar(u.getLogin(), u.getSenha());
+	}
+   
 	/*
 	 * ################################## 
 	 * 				VALIDACOES
