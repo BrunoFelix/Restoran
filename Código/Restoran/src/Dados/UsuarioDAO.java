@@ -1,20 +1,16 @@
 package Dados;
 
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import Dados.Geral.DAOGenerico;
-import Utils.DadosException;
-import Utils.HibernateUtil;
-import Basica.Produto;
-import Basica.Usuario;
-
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import Basica.Usuario;
+import Dados.Geral.DAOGenerico;
+import Utils.DadosException;
+import Utils.HibernateUtil;
 
 public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
