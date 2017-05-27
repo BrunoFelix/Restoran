@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import Basica.Produto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
+import Negocio.RNProduto;
 import Negocio.RNUsuario;
 import Utils.DadosException;
+import Utils.NegocioException;
 
 public class Fachada {
 	
@@ -16,7 +19,15 @@ public class Fachada {
 	private static Fachada fachada;
 	
 	UsuarioDAO usuariodao;
+	
+	/*
+	 * ################################## 
+	 * 	  VARIAVEIS REGRA DE NEGOCIO
+	 * ##################################
+	 */
 	RNUsuario rnusuario;
+	RNProduto  rnproduto;
+	
 	
 	/*public static Fachada getInstance() {
         if(fachada == null ){
@@ -29,10 +40,16 @@ public class Fachada {
 		
 		usuariodao = new UsuarioDAO();
 		rnusuario = new RNUsuario();
+		
+		rnproduto = new RNProduto();
 	}
 	
 	
-	/**************** usuário *******************/
+	/*
+	 * ################################## 
+	 * 				USUARIO
+	 * ##################################
+	 */
 	public Usuario Usuariologar(String login, String senha){
 		try {
 			return usuariodao.logar(login, senha);
@@ -54,6 +71,22 @@ public class Fachada {
 	public String mensagem(String mensagem){
 		return mensagem;
 	}
+	
+	/*
+	 * ################################## 
+	 * 				PRODUTO
+	 * ##################################
+	 */
+	  public void CadastrarProduto (Produto p) throws NegocioException, DadosException{
+		  
+		  rnproduto.salvar(p);
+	  }
+	
+	/*
+	 * ################################## 
+	 * 				PEDIDO
+	 * ##################################
+	 */
 	
 
 }

@@ -1,5 +1,6 @@
 package Negocio;
 
+import java.util.Date;
 import java.util.List;
 import java.util.regex.*;
 
@@ -50,6 +51,9 @@ public class RNUsuario {
    }
 	public Usuario logar (String login, String senha)  throws NegocioException, DadosException {
 		return usuarioDAO.logar(login,senha);
+	}
+	public List<Usuario> PesquisarUsandoObjeto(Usuario u) throws DadosException{
+		return usuarioDAO.PesquisarUsandoObjeto(u); 
 	}
    
 	/*
