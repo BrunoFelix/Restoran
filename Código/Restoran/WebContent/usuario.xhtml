@@ -9,12 +9,12 @@
   <h:head>
   </h:head>
   <h:body>
- 	<h1><h:outputText id="textotopo" value="Gerenciar usuários."/></h1>
+ 	<h1><h:outputText id="textotopo" value="Gerenciar usuários"/></h1>
  		 	
  	<h:form>                
         <h:dataTable styleClass="table table-striped"  var="usuario" value="#{usuarioBean.listarUsuario}" >
             <h:column>
-                <f:facet name="header"><h:outputText value="ID" />
+                <f:facet name="header"><h:outputText value="ID" /> 
                 	<h:outputText value="#{usuario.id_Usuario}" />
                 </f:facet>
             </h:column>

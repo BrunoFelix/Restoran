@@ -8,9 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import javax.servlet.http.HttpSession;
 
 import Basica.Usuario;
 import Fachada.Fachada; 
@@ -25,12 +22,16 @@ public class UsuarioBean {
 		fachada.getInstance();
 	}*/
 	
+	public void index() throws IOException{
+		FacesContext.getCurrentInstance().getExternalContext().redirect("usuario.xhtml");
+	}
+	
 	private static Usuario usuario;
 	
 	private Boolean usuarioLogado;
 	
 	private Usuario usuarioparalistar;
-	private List<Usuario> listarUsuario = new ArrayList<Usuario>();
+	private List<Usuario> listarUsuario; //= new ArrayList<Usuario>();
 	
 	private String login;
 	private String senha;

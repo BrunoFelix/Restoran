@@ -2,9 +2,6 @@ package Fachada;
 
 import java.util.List;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import Basica.Produto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;

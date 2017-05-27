@@ -5,10 +5,10 @@ import java.io.IOException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-@ManagedBean(name="ProdutoBean")
-public class ProdutoBean {
+@ManagedBean(name="CategoriaBean")
+public class CategoriaBean {
 
 	public void index() throws IOException{
-		FacesContext.getCurrentInstance().getExternalContext().redirect("produto.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("categoria.xhtml");
 	}
 }

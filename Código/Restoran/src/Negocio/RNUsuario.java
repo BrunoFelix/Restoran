@@ -1,14 +1,14 @@
 package Negocio;
 
-import java.util.Date;
 import java.util.List;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import Basica.Usuario;
 import Dados.UsuarioDAO;
-import Utils.NegocioException;
 import Utils.ControladorException;
 import Utils.DadosException;
+import Utils.NegocioException;
 
 public class RNUsuario {
 

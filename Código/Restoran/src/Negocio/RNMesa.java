@@ -3,12 +3,10 @@ package Negocio;
 import java.util.List;
 
 import Basica.Mesa;
-import Basica.Usuario;
-import Dados.CategoriaDAO;
 import Dados.MesaDAO;
-import Utils.NegocioException;
 import Utils.ControladorException;
 import Utils.DadosException;
+import Utils.NegocioException;
 
 public class RNMesa {
 

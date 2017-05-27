@@ -1,8 +1,6 @@
 package Negocio;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import Basica.Produto;
 import Dados.ProdutoDAO;

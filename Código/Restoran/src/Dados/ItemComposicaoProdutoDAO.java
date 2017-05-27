@@ -4,13 +4,12 @@ package Dados;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import Basica.ItemComposicaoProduto;
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
 import Utils.HibernateUtil;
-import Basica.ItemComposicaoProduto;
 
 public class ItemComposicaoProdutoDAO extends DAOGenerico<ItemComposicaoProduto> implements IItemComposicaoProdutoDAO {
 
