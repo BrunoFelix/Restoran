@@ -44,6 +44,15 @@ public class RNProduto {
 	public List<Produto> listar(){
 	 return produtoDAO.getAll();
    }
+	public List<Produto> PesquisarPorNome(String nome) throws DadosException{
+		
+		return produtoDAO.PesquisarPorNome(nome);
+	}
+	public List<Produto> PesquisarPorQuantidade(int quantidade) throws DadosException{
+		return produtoDAO.PesquisarPorQuantidade(quantidade);
+	}
+	
+
 	   
 	/*
 	 * ################################## 
@@ -57,8 +66,15 @@ public class RNProduto {
 	}
 
 	public void validarCampos(Produto p ) throws NegocioException {
-		if ((p.getNome().isEmpty() == true) || (p.getNome()).length() < 10)
+		if ((p.getNome().isEmpty() == true) || (p.getNome())== "")
 			throw new NegocioException("Nome Invalido");
+		if(p.getPrecoVenda() == 0)
+			throw new NegocioException("Preço de venda Invalido");
+		if(p.getPrecoCusto() == 0)
+			throw new NegocioException("Preço de custo Invalido");
+		if((p.getItensComposicao().isEmpty()) || p.getItensComposicao() == null)
+			throw new NegocioException("Quantidade Invalida");
+			
 	}
 
 	public void validarDuplicidade(Produto p ) throws NegocioException, DadosException {
@@ -75,7 +91,7 @@ public class RNProduto {
 
 		try {
 			if (produtoDAO.PesquisarPorNome(p.getNome()) == null) {
-				throw new NegocioException("Usuario que deseja excluir não existe");
+				throw new NegocioException("Produto que deseja excluir não existe");
 			}
 		} catch (DadosException e) {
 			throw new DadosException("Banco de dados não disponivel");

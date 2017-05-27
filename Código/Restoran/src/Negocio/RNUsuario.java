@@ -48,8 +48,8 @@ public class RNUsuario {
 	public List<Usuario> listar(){
 	 return usuarioDAO.getAll();
    }
-	public void logar(Usuario u)  throws ControladorException, NegocioException, DadosException {
-		usuarioDAO.logar(u.getLogin(), u.getSenha());
+	public Usuario logar (String login, String senha)  throws NegocioException, DadosException {
+		return usuarioDAO.logar(login,senha);
 	}
    
 	/*
