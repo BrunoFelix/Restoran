@@ -5,6 +5,9 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.junit.Test;
 
 import Basica.Categoria;
@@ -16,9 +19,10 @@ public class CategoriaTest {
 
 	@Test
 	public void TesteCategoriaInserir(){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projetorestoran");
 		Categoria categoria = new Categoria();
 		categoria.setNome("Bebida");
-		CategoriaDAO categoriadao = new CategoriaDAO();
+		CategoriaDAO categoriadao = new CategoriaDAO(emf);
 		categoriadao.insert(categoria);
 		
 		List<Categoria> listacategoria = categoriadao.getAll();

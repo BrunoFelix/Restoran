@@ -1,6 +1,5 @@
 package Dados;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,20 +8,19 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
-import Utils.HibernateUtil;
 import Basica.Mesa;
 
 public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 
-	public MesaDAO() {
-		super();
+	public MesaDAO(EntityManagerFactory emf) {
+		super(emf);
 	}
 	
 	public List<Mesa> PesquisarPorStatus(String status) throws DadosException{
 		try{
 			String queryString = "SELECT M FROM MESA M WHERE M.status =(:status)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("status", status);
@@ -36,7 +34,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 		try{
 			String queryString = "SELECT M FROM MESA M WHERE M.capacidade =(:capacidade)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("capacidade", capacidade);
@@ -50,7 +48,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 			try{
 			String queryString = "SELECT M FROM MESA M WHERE M.numeromesa =(:numeromesa)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("numeromesa", numeromesa);

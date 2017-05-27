@@ -1,6 +1,5 @@
 package Dados;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -10,21 +9,20 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
-import Utils.HibernateUtil;
 import Basica.ItemComposicaoProduto;
 import Basica.Pedido;
 
 public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 
-	public PedidoDAO() {
-		super();
+	public PedidoDAO(EntityManagerFactory emf) {
+		super(emf);
 	}
 
 	public List<Pedido> PesquisarPorStatus(String status) throws DadosException{
 		try{
 			String queryString = "SELECT P FROM PEDIDO P WHERE P.status =(:status)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("status", status);
@@ -38,7 +36,7 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		try{
 			String queryString = "SELECT P FROM PEDIDO P WHERE P.data =(:data)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("data", data);
@@ -52,7 +50,7 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		try{
 			String queryString = "SELECT P FROM PEDIDO P WHERE P.garcom.id =(:codigoGarcom)";
 
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("codigoGarcom", codigoGarcom);
@@ -66,7 +64,7 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		try{
 			String queryString = "SELECT P FROM PEDIDO P WHERE P.mesa.id =(:numeroMesa)";
 
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("numeroMesa", numeroMesa);
@@ -80,7 +78,7 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		try{
 			String queryString = "SELECT P FROM PEDIDO P WHERE P.produtos.id =(:codigoProduto)";
 
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("codigoProduto", codigoProduto);

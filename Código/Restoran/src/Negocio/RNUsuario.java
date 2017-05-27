@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.persistence.EntityManagerFactory;
+
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Utils.ControladorException;
@@ -14,9 +16,9 @@ public class RNUsuario {
 
 	UsuarioDAO usuarioDAO;
 
-	public RNUsuario() {
+	public RNUsuario(EntityManagerFactory emf) {
 
-		usuarioDAO = new UsuarioDAO();
+		usuarioDAO = new UsuarioDAO(emf);
 	}
 
 	/*
@@ -49,8 +51,9 @@ public class RNUsuario {
 	public List<Usuario> listar(){
 	 return usuarioDAO.getAll();
    }
-	public Usuario logar (String login, String senha)  throws NegocioException, DadosException {
-		return usuarioDAO.logar(login,senha);
+	public Usuario logar (Usuario u)  throws NegocioException, DadosException {
+		validaPreenchimentoUsuarioSenha(u);
+		return usuarioDAO.logar(u.getLogin(), u.getSenha());
 	}
 	public List<Usuario> PesquisarUsandoObjeto(Usuario u) throws DadosException{
 		return usuarioDAO.PesquisarUsandoObjeto(u); 
@@ -132,6 +135,13 @@ public class RNUsuario {
 		} catch (DadosException e) {
 			throw new DadosException("Banco de dados não disponivel");
 		}
+	}
+	
+	public void validaPreenchimentoUsuarioSenha(Usuario u) throws NegocioException, DadosException {
+		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
+			throw new NegocioException("Login precisa ser preenchido!");
+		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
+			throw new NegocioException("Senha precisa ser preenchida!");
 	}
 
 }

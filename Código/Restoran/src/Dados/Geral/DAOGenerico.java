@@ -6,21 +6,18 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
-import Utils.HibernateUtil;
-
-
 public abstract class DAOGenerico<Entity> {
 
-	//protected EntityManagerFactory entityManagerFactory = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+	private EntityManagerFactory entityManagerFactory; 
 	private Class<Entity> persistentClass;
 
 	@SuppressWarnings("unchecked")	
-	public DAOGenerico(){
-		//this.setEntityManagerFactory(Persistence.createEntityManagerFactory("projetorestoran"));
-		//this.entityManagerFactory = emf;
+	public DAOGenerico(EntityManagerFactory emf){
+		this.setEntityManagerFactory(emf);
 		ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();  
 	    persistentClass = (Class<Entity>) parameterizedType.getActualTypeArguments()[0];  
 	}
@@ -34,7 +31,7 @@ public abstract class DAOGenerico<Entity> {
 	 */
 	public Entity update(Entity objeto) {
 		
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -49,7 +46,7 @@ public abstract class DAOGenerico<Entity> {
 	
 	public final List<Entity> getAll() {
 		List<Entity> instance = null;
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
 			instance = (List<Entity>) em.createQuery("from " + getPersistentClass().getName()).getResultList();
 		} catch (RuntimeException re) {
@@ -67,7 +64,7 @@ public abstract class DAOGenerico<Entity> {
 	 * @param objeto a ser salvo
 	 */
 	public void insert(Entity objeto) {
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();		
 		try {
 			tx.begin();
@@ -86,7 +83,7 @@ public abstract class DAOGenerico<Entity> {
 	 *            a ser salvo
 	 */
 	public final void insertCollection(Collection<Entity> colecao) {
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
 			EntityTransaction tx = em.getTransaction();
 			tx.begin();
@@ -110,7 +107,7 @@ public abstract class DAOGenerico<Entity> {
 	 *            a ser removido
 	 */
 	public final void remove(Entity objeto) {
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
@@ -135,7 +132,7 @@ public abstract class DAOGenerico<Entity> {
 	 */
 	public final Entity searchByKey(Serializable chave) {
 		Entity instance = null;
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		try {
 			instance = (Entity) em.find(getPersistentClass(), chave);
 		} catch (RuntimeException re) {
@@ -152,7 +149,7 @@ public abstract class DAOGenerico<Entity> {
 	 *            objeto a ser atualizado
 	 */
 	public final void refresh(Entity object) {
-		EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
 		em.refresh(object);
 		em.close();
 	}
@@ -179,6 +176,14 @@ public abstract class DAOGenerico<Entity> {
 	 */
 	protected final Class<Entity> getPersistentClass() {
 		return persistentClass;
+	}
+
+	public EntityManagerFactory getEntityManagerFactory() {
+		return entityManagerFactory;
+	}
+
+	public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+		this.entityManagerFactory = entityManagerFactory;
 	}
 	
 }

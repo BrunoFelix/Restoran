@@ -1,5 +1,7 @@
 package Negocio;
 
+import javax.persistence.EntityManagerFactory;
+
 import Basica.Categoria;
 import Dados.CategoriaDAO;
 import Utils.ControladorException;
@@ -10,9 +12,9 @@ public class RNCategoria {
 	
 	CategoriaDAO categoriaDAO;
 
-	public RNCategoria() {
+	public RNCategoria(EntityManagerFactory emf) {
 
-		categoriaDAO = new CategoriaDAO();
+		categoriaDAO = new CategoriaDAO(emf);
 	}
 
 	/*

@@ -2,6 +2,8 @@ package Negocio;
 
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+
 import Basica.ItemComposicaoProduto;
 import Dados.ItemComposicaoProdutoDAO;
 import Utils.ControladorException;
@@ -12,9 +14,9 @@ public class RNItemComposicaoProduto {
 
 	ItemComposicaoProdutoDAO itemComposicaoProdutoDAO;
 
-	public RNItemComposicaoProduto() {
+	public RNItemComposicaoProduto(EntityManagerFactory emf) {
 
-		itemComposicaoProdutoDAO = new ItemComposicaoProdutoDAO();
+		itemComposicaoProdutoDAO = new ItemComposicaoProdutoDAO(emf);
 	}
 
 	/*

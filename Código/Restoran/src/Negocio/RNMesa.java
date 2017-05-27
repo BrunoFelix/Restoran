@@ -2,6 +2,8 @@ package Negocio;
 
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+
 import Basica.Mesa;
 import Dados.MesaDAO;
 import Utils.ControladorException;
@@ -12,9 +14,9 @@ public class RNMesa {
 
 	MesaDAO mesaDAO;
 
-	public RNMesa() {
+	public RNMesa(EntityManagerFactory emf) {
 
-		mesaDAO = new MesaDAO();
+		mesaDAO = new MesaDAO(emf);
 	}
 
 	/*

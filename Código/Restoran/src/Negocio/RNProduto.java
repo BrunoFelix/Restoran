@@ -2,6 +2,8 @@ package Negocio;
 
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+
 import Basica.Produto;
 import Dados.ProdutoDAO;
 import Utils.ControladorException;
@@ -13,9 +15,9 @@ public class RNProduto {
 	
 	ProdutoDAO produtoDAO;
 
-	public RNProduto() {
+	public RNProduto(EntityManagerFactory emf) {
 
-		produtoDAO = new ProdutoDAO();
+		produtoDAO = new ProdutoDAO(emf);
 	}
 
 	/*

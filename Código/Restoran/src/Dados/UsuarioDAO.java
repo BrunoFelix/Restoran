@@ -1,37 +1,40 @@
 package Dados;
 
-
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import Basica.Usuario;
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
-import Utils.HibernateUtil;
 
 public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
-
-	public UsuarioDAO() {
-		super();
+	
+	public UsuarioDAO(EntityManagerFactory emf) {
+		super(emf);
 	}
 	
 	public Usuario logar(String login, String senha) throws DadosException{
 		try {
 			String queryString = "select object(u) from Usuario as u where u.login=(:login) and u.senha=(:senha)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 			
 			Query query = em.createQuery(queryString);
 			query.setParameter("login", login);
 			query.setParameter("senha", senha);
 	
+			if (query.getResultList().size() <= 0){
+				throw new DadosException("Usuário inválido ou inexistente!");
+			}
+
 			return (Usuario) query.getSingleResult();
 			
 		} catch (Exception e) {
-			throw new DadosException("erro na hora de pesquisar");
+			throw new DadosException(e.getMessage());
 		}
 	}
 	
@@ -49,17 +52,12 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 				queryString += " and U.email =(:email)";
 			}
 			
-			if (u.getDataNas() != null)
-			{
-				queryString += " and U.dataNas =(:dataNas)";
-			}
-			
 			if (u.getSexo() != null && u.getSexo().trim().equals("") == false)
 			{
 				queryString += " and U.sexo =(:sexo)";
 			}
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			if (u.getCpf() != null && u.getCpf().trim().equals("") == false)
@@ -70,11 +68,6 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 			if (u.getEmail() != null && u.getEmail().trim().equals("") == false)
 			{
 				query.setParameter("email", u.getEmail());
-			}
-			
-			if (u.getDataNas() != null)
-			{
-				query.setParameter("dataNas", u.getDataNas());
 			}
 			
 			if (u.getSexo() != null && u.getSexo().trim().equals("") == false)
@@ -92,7 +85,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.cpf =(:cpf)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("cpf", cpf);
@@ -106,7 +99,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.nome =(:nome)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("nome", nome);
@@ -120,7 +113,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.email =(:email)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("email", email);
@@ -135,7 +128,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.sexo =(:sexo)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("sexo", sexo);
@@ -149,7 +142,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.dataNas =(:dataNas)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("dataNas", dataNasc);
@@ -163,7 +156,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "SELECT U FROM USUARIO U WHERE U.nome =(:login)";
 			
-			EntityManager em = HibernateUtil.geteEntityManagerFactory().createEntityManager();
+			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("nome", login);

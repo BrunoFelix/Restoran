@@ -18,7 +18,7 @@ import org.hibernate.annotations.CascadeType;
 public class Usuario {
 	
 	@Id @GeneratedValue
-	private int id_Usuario;
+	private int id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -44,20 +44,17 @@ public class Usuario {
 	@Column(length=10, nullable = false)
 	private String telefone;
 	
-	@Column(nullable = false)
-	private Date dataNas;
-	
 	@OneToMany(mappedBy="garcom", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	private Collection<Pedido> pedidos;
 	
 	//Gets & Sets
 	public int getId_Usuario() {
-		return id_Usuario;
+		return id;
 	}
 
 	public void setId_Usuario(int id_Usuario) {
-		this.id_Usuario = id_Usuario;
+		this.id = id_Usuario;
 	}
 
 	public String getNome() {
@@ -122,14 +119,6 @@ public class Usuario {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public Date getDataNas() {
-		return dataNas;
-	}
-
-	public void setDataNas(Date dataNas) {
-		this.dataNas = dataNas;
 	}
 
 	public Collection<Pedido> getPedidos() {
