@@ -158,7 +158,7 @@ public class UsuarioBean {
 
 		try {
 			fachada.UsuarioInserir(usuarioinserir);
-			return "usuario";
+			return "usuario/usuario";
 		} catch (Exception e) {
 			msg = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage("msgErro", msg);

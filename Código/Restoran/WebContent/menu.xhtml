@@ -13,33 +13,33 @@
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:submenu label="Produto">
-					<p:menuitem value="Visualizar Todos" url="produto.xhtml" />
-					<p:menuitem value="Visualizar Itens de composição" url="produto.xhtml" />
-					<p:menuitem value="Cadastrar" url="produtoCadastrar.xhtml" />
-					<p:menuitem value="Cadastrar Itens de composição" url="itemComposicaoProduto.xhtml" />
+					<p:menuitem value="Visualizar Todos" url="/produto/listar.xhtml" />
+					<p:menuitem value="Visualizar Itens de composição" url="/itemcomposicaoproduto/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/produto/cadastrar.xhtml" />
+					<p:menuitem value="Cadastrar Itens de composição" url="/itemcomposicaoproduto/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Usuarios">
-					<p:menuitem value="Visualizar todos" url="usuario.xhtml" />
-					<p:menuitem value="Cadastrar" url="usuarioCadastro.xhtml" />
+					<p:menuitem value="Visualizar todos" url="/usuario/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/usuario/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Mesas">
-					<p:menuitem value="Visualizar Todos" url="mesaCadastro.xhtml" />
-					<p:menuitem value="Cadastrar" url="mesaCadastro.xhtml" />
+					<p:menuitem value="Visualizar Todos" url="/mesa/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/mesa/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Pedidos">
-					<p:menuitem value="Visualizar Todos" url="pedido.xhtml" />
-					<p:menuitem value="Cadastrar" url="pedidoCadastro.xhtml" />
+					<p:menuitem value="Visualizar Todos" url="/pedido/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/pedido/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Categorias"> 
-					<p:menuitem value="Visualizar Todos" url="categoria.xhtml" />
-					<p:menuitem value="Cadastrar" url="categoriaCadastro.xhtml" />
+					<p:menuitem value="Visualizar Todos" url="/categoria/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/categoria/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Histórico">
-					<p:menuitem value="Visualizar Todos" url="historico.xhtml" />
-					<p:menuitem value="Cadastrar" url="historicoCadastro.xhtml" />
+					<p:menuitem value="Visualizar Todos" url="/historico/listar.xhtml" />
+					<p:menuitem value="Cadastrar" url="/historico/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Usuário: #{UsuarioBean.usuarioNormal}">
-					<p:menuitem value="Alterar Cadastro" url="historicoCadastro.xhtml" />
+					<p:menuitem value="Alterar Cadastro" url="/usuario/alterar.xhtml" />
 				</p:submenu>
 				<f:facet name="options">
 					<p:commandButton id="botaoLogout" type="button" value="Sair"
