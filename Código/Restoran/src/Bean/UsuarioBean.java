@@ -178,7 +178,7 @@ public class UsuarioBean {
 
 	public String getUsuarioGerente() {
 		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
-			return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
 		} else {
 			return "login";
 		}
@@ -186,7 +186,7 @@ public class UsuarioBean {
 
 	public String getUsuarioNormal() {
 		if (usuario != null) {
-			return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
 		} else {
 			return "login";
 		}

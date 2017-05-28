@@ -11,35 +11,10 @@
 	<title>Home</title>
 </h:head>
 <h:body>
-	<h:form id="formLogouttest">
-		<p:growl id="messages" />
-		<p:menubar>
-			<p:submenu label="Produto" icon="ui-icon-document" url="produto.xhtml">
-			<p:menuitem value="Produtos" url="produto.xhtml" />
-			</p:submenu>
-			<p:submenu label="Itens de Composição dos Produtos" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Usuarios" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Mesas" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Pedidos" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Categorias" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Historio" icon="ui-icon-document">
-			</p:submenu>
-			<p:submenu label="Seja Bem vindo:#{UsuarioBean.usuarioNormal}">
-			</p:submenu>
-			<f:facet name="options">
-			<p:commandButton id="botaoLogout" value="Sair" icon="ui-icon-close" actionListener="#{UsuarioBean.logout}"/>
-			</f:facet>
-		</p:menubar>
-	</h:form>
-	<h:form id="formLogout">
-		<h:commandButton id="botaoLogout" value="Sair"
-			action="#{UsuarioBean.logout}" />
-	</h:form>
+
+	<div id="topo">
+		<ui:include src="menu.xhtml" />
+	</div>
 
 	<div id="index">
 		<h:form id="formProduto">
