@@ -108,7 +108,7 @@ public class Fachada {
 		  rnProduto.excluir(p);
 	  }
 	  
-	  public List<Produto> ProdutoListar() throws NegocioException, DadosException, ControladorException{
+	  public List<Produto> ProdutoListar(){
 		  return rnProduto.listar();
 	  }
 	/*

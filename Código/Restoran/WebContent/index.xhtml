@@ -1,53 +1,83 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
 
-  <h:head>
-  	<link rel="StyleSheet" type="text/css" href="css/estilo.css" media="screen"/>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Home</title>
-  </h:head>
-  <h:body>
-  	
-  	Bem vindo: #{UsuarioBean.usuarioNormal}
-  	
-  	<h:form id="formLogout">
-	 	<h:commandButton id="botaoLogout" value="Sair" action="#{UsuarioBean.logout}"/>
-	 </h:form>
-  
-    <div id="index">
-	  	<h:form id="formProduto">
-	 		<h:commandButton id="botaoProduto" value="Gerenciar Produto" action="#{ProdutoBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formItemComp">
-	 		<h:commandButton id="botaoItemComp" value="Gerenciar Itens de Composição dos Produtos" action="#{ItemComposicaoProdutoBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formUsuario">
-	 		<h:commandButton id="botaoUsuario" value="Gerenciar Usuários" action="#{UsuarioBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formMesa">
-	 		<h:commandButton id="botaoMesa" value="Gerenciar Mesas" action="#{MesaBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formPedido">
-	 		<h:commandButton id="botaoPedido" value="Gerenciar Pedidos" action="#{PedidoBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formCategoria">
-	 		<h:commandButton id="botaoCategoria" value="Visualizar Categorias" action="#{CategoriaBean.index}"/>
-	 	</h:form>
-	 	
-	 	<h:form id="formHistorico">
-	 		<h:commandButton id="botaoPedido" value="Visualizar Histórico(s)" action="#{HistoricoBean.index}"/>
-	 	</h:form>
- 	</div>
- 
-  </h:body>
-  </html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<title>Home</title>
+</h:head>
+<h:body>
+	<h:form id="formLogouttest">
+		<p:growl id="messages" />
+		<p:menubar>
+			<p:submenu label="Produto" icon="ui-icon-document" url="produto.xhtml">
+			<p:menuitem value="Produtos" url="produto.xhtml" />
+			</p:submenu>
+			<p:submenu label="Itens de Composição dos Produtos" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Usuarios" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Mesas" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Pedidos" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Categorias" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Historio" icon="ui-icon-document">
+			</p:submenu>
+			<p:submenu label="Seja Bem vindo:#{UsuarioBean.usuarioNormal}">
+			</p:submenu>
+			<f:facet name="options">
+			<p:commandButton id="botaoLogout" value="Sair" icon="ui-icon-close" actionListener="#{UsuarioBean.logout}"/>
+			</f:facet>
+		</p:menubar>
+	</h:form>
+	<h:form id="formLogout">
+		<h:commandButton id="botaoLogout" value="Sair"
+			action="#{UsuarioBean.logout}" />
+	</h:form>
+
+	<div id="index">
+		<h:form id="formProduto">
+			<h:commandButton id="botaoProduto" value="Gerenciar Produto"
+				action="#{ProdutoBean.index}" />
+		</h:form>
+
+		<h:form id="formItemComp">
+			<h:commandButton id="botaoItemComp"
+				value="Gerenciar Itens de Composição dos Produtos"
+				action="#{ItemComposicaoProdutoBean.index}" />
+		</h:form>
+
+		<h:form id="formUsuario">
+			<h:commandButton id="botaoUsuario" value="Gerenciar Usuários"
+				action="#{UsuarioBean.index}" />
+		</h:form>
+
+		<h:form id="formMesa">
+			<h:commandButton id="botaoMesa" value="Gerenciar Mesas"
+				action="#{MesaBean.index}" />
+		</h:form>
+
+		<h:form id="formPedido">
+			<h:commandButton id="botaoPedido" value="Gerenciar Pedidos"
+				action="#{PedidoBean.index}" />
+		</h:form>
+
+		<h:form id="formCategoria">
+			<h:commandButton id="botaoCategoria" value="Visualizar Categorias"
+				action="#{CategoriaBean.index}" />
+		</h:form>
+
+		<h:form id="formHistorico">
+			<h:commandButton id="botaoPedido" value="Visualizar Histórico(s)"
+				action="#{HistoricoBean.index}" />
+		</h:form>
+	</div>
+
+</h:body>
+</html>

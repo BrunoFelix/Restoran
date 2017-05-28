@@ -14,23 +14,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import Basica.Usuario;
-import Fachada.Fachada; 
+import Fachada.Fachada;
 
-@ManagedBean(name="UsuarioBean")
+@ManagedBean(name = "UsuarioBean")
 @SessionScoped
 public class UsuarioBean {
-			
+
 	FacesMessage msg;
-	
+
 	Fachada fachada = Fachada.getInstance();
 
 	private static Usuario usuario;
 
 	private List<Usuario> listarUsuario = new ArrayList<Usuario>();
-	
+
 	private String login;
 	private String senha;
-	
+
 	private String nome;
 	private String email;
 	private String cpf;
@@ -63,7 +63,7 @@ public class UsuarioBean {
 	public void setListarUsuario(List<Usuario> listarUsuario) {
 		this.listarUsuario = listarUsuario;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -120,32 +120,32 @@ public class UsuarioBean {
 		this.dataNas = dataNas;
 	}
 
-	public String index(){
+	public String index() {
 		return "usuario";
 	}
-	
-	public String logar(){
-		
-		try{
+
+	public String logar() {
+
+		try {
 			usuario = new Usuario();
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario = fachada.Usuariologar(usuario);
-		
-			if (usuario != null){	
-				return "index";	
-			}else{
+
+			if (usuario != null) {
+				return "index";
+			} else {
 				msg = new FacesMessage("Usuário ou senha inválido, tente novamente!");
-				FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
+				FacesContext.getCurrentInstance().addMessage("msgErro", msg);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
+			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
 		}
 		return null;
 	}
-	
-	public String inserir(){
+
+	public String inserir() {
 		Usuario usuarioinserir = new Usuario();
 		usuarioinserir.setNome(nome);
 		usuarioinserir.setLogin(login);
@@ -155,43 +155,41 @@ public class UsuarioBean {
 		usuarioinserir.setTelefone(telefone);
 		usuarioinserir.setSexo(sexo);
 		usuarioinserir.setTipo(tipo);
-		
-		try{
+
+		try {
 			fachada.UsuarioInserir(usuarioinserir);
 			return "usuario";
-		}catch (Exception e) {
+		} catch (Exception e) {
 			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);	
+			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
 		}
 		return null;
 	}
-	
-	public String logout()
-    {
-        this.usuario = null;
-        return "login";
-    }
-	
-	public String getLogout(){
+
+	public String logout() {
+		UsuarioBean.usuario = null;
+		return "login";
+
+	}
+
+	public String getLogout() {
 		return logout();
 	}
-		
-	public String getUsuarioGerente()
-    {
-		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))){
-	        return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
-		}else{
+
+	public String getUsuarioGerente() {
+		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
+			return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+		} else {
 			return "login";
 		}
-    }
-	
-	public String getUsuarioNormal()
-    {
-		if (usuario != null){
-            return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
-    	}else{
-    		return "login";
-    	}
-    }
-	
+	}
+
+	public String getUsuarioNormal() {
+		if (usuario != null) {
+			return usuario.getNome() + "(" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+		} else {
+			return "login";
+		}
+	}
+
 }
