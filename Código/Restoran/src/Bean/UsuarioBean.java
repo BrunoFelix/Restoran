@@ -1,5 +1,6 @@
 package Bean;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +27,8 @@ public class UsuarioBean {
 	Fachada fachada = Fachada.getInstance();
 
 	private static Usuario usuario;
+	
+	private Usuario usuarioAlterar;
 
 	private List<Usuario> listarUsuario = new ArrayList<Usuario>();
 
@@ -37,7 +41,6 @@ public class UsuarioBean {
 	private String sexo;
 	private String tipo;
 	private String telefone;
-	private Date dataNas;
 
 	public String getLogin() {
 		return login;
@@ -112,12 +115,12 @@ public class UsuarioBean {
 		this.telefone = telefone;
 	}
 
-	public Date getDataNas() {
-		return dataNas;
+	public Usuario getUsuarioAlterar() {
+		return usuarioAlterar;
 	}
 
-	public void setDataNas(Date dataNas) {
-		this.dataNas = dataNas;
+	public void setUsuarioAlterar(Usuario usuarioAlterar) {
+		this.usuarioAlterar = usuarioAlterar;
 	}
 
 	public String index() {
@@ -145,7 +148,7 @@ public class UsuarioBean {
 		return null;
 	}
 
-	public String inserir() {
+	public String cadastrar() {
 		Usuario usuarioinserir = new Usuario();
 		usuarioinserir.setNome(nome);
 		usuarioinserir.setLogin(login);
@@ -158,7 +161,7 @@ public class UsuarioBean {
 
 		try {
 			fachada.UsuarioInserir(usuarioinserir);
-			return "usuario/usuario";
+			return "listar";
 		} catch (Exception e) {
 			msg = new FacesMessage(e.getMessage());
 			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
@@ -191,5 +194,23 @@ public class UsuarioBean {
 			return "login";
 		}
 	}
+	
+	public String chamadaAlterar(Integer id) {
+		usuarioAlterar = fachada.UsuarioBuscarPorId(id);
+        return "alterar";
+    }
+	
+	public String alterar() {
+
+
+		try {
+			fachada.UsuarioAlterar(usuarioAlterar);
+			return "listar";
+		} catch (Exception e) {
+			msg = new FacesMessage(e.getMessage());
+			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+		}
+		return null;
+    }
 
 }

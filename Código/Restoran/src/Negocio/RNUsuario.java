@@ -8,16 +8,17 @@ import javax.persistence.EntityManagerFactory;
 
 import Basica.Usuario;
 import Dados.UsuarioDAO;
+import Dados.Geral.DAOGenerico;
 import Utils.ControladorException;
 import Utils.DadosException;
 import Utils.NegocioException;
 
-public class RNUsuario {
+public class RNUsuario extends DAOGenerico<Usuario>{
 
 	UsuarioDAO usuarioDAO;
 
 	public RNUsuario(EntityManagerFactory emf) {
-
+		super(emf);
 		usuarioDAO = new UsuarioDAO(emf);
 	}
 
@@ -33,14 +34,13 @@ public class RNUsuario {
 		validarDuplicidadeEmail(u);
 		validarDuplicidadeLogin(u);
 		usuarioDAO.insert(u);
-
 	}
 
 	public void alterar(Usuario u) throws ControladorException, NegocioException, DadosException {
 		validarCampos(u);
-		validarEmail(u);
+		/*validarEmail(u);
 		validarDuplicidadeEmail(u);
-		validarDuplicidadeLogin(u);
+		validarDuplicidadeLogin(u);*/ //VALIDAR E VERIFICAR EMAIL DIFERENTES DO QUE ELE TINHA ANTES
 		usuarioDAO.update(u);
 	}
 
@@ -72,56 +72,56 @@ public class RNUsuario {
 
 	public void validarCampos(Usuario u) throws NegocioException {
 		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 10)
-			throw new NegocioException("Nome Invalido");
+			throw new NegocioException("Nome inválido!");
 		if ((u.getCpf().isEmpty() == true) || (u.getCpf().length() < 10))
-			throw new NegocioException("Cpf Invalido");
+			throw new NegocioException("Cpf inválido!");
 		if ((u.getTelefone().isEmpty() == true) || (u.getTelefone().length() < 8))
-			throw new NegocioException("Telefone Invalido");
+			throw new NegocioException("Telefone inválido!");
 		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
-			throw new NegocioException("Login Invalido");
+			throw new NegocioException("Login inválido!");
 		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
-			throw new NegocioException("senha invÃ¡lida");
+			throw new NegocioException("senha inválido!");
 		if (u.getSenha().length() <= 4)
-			throw new NegocioException("senha invalida deve possuir no minimo quatro caracteres.");
+			throw new NegocioException("Senha inválida deve possuir no minimo quatro caracteres!");
 		if (u.getTipo().isEmpty() || u.getTipo() == null)
-			throw new NegocioException("Tipo de Usuario invalido");
+			throw new NegocioException("Tipo de Usuario inválido!");
 		if (u.getSexo().isEmpty() || u.getSexo() == null)
-			throw new NegocioException("Sexo invalido");
+			throw new NegocioException("Sexo inválido!");
 	}
 
 	public void validarDuplicidadeLogin(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) != null) {
+			if (usuarioDAO.PesquisarPorLogin(u.getLogin()).size() > 0) {
 				throw new NegocioException("Login já existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponivel");
+			throw new DadosException("Erro ao pesquisar existência do login!");
 		}
 	}
 
 	public void validarEmail(Usuario u) throws NegocioException {
 
-		Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
+		/*Pattern p = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$");
 		Matcher m = p.matcher(u.getEmail());
 		if (m.find()) {
 
-			throw new NegocioException("O E-mail " + u.getEmail() + " e valido");
+			throw new NegocioException("O E-mail " + u.getEmail() + " e válido");
 
 		} else {
-			throw new NegocioException("O E-mail " + u.getEmail() + " e Invalido");
+			throw new NegocioException("O E-mail " + u.getEmail() + " e Inválido");
 
-		}
+		}*/
 	}
 
 	public void validarDuplicidadeEmail(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorEmail(u.getEmail()) != null) {
+			if (usuarioDAO.PesquisarPorEmail(u.getEmail()).size() > 0) {
 				throw new NegocioException("Email já existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponivel");
+			throw new DadosException("Erro ao pesquisar existência do e-mail!");
 		}
 
 	}
@@ -129,11 +129,11 @@ public class RNUsuario {
 	public void validaExistencia(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorLogin(u.getLogin()) == null) {
+			if (usuarioDAO.PesquisarPorLogin(u.getLogin()).size() <= 0) {
 				throw new NegocioException("Usuario que deseja excluir não existe");
 			}
 		} catch (DadosException e) {
-			throw new DadosException("Banco de dados não disponivel");
+			throw new DadosException("Erro ao pesquisar existência do usuário!");
 		}
 	}
 	

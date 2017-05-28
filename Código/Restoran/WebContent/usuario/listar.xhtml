@@ -16,72 +16,46 @@
   	
  	<h1><h:outputText id="textotopo" value="Gerenciar usuários"/></h1>
  	
- 	
+ 	 	
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
+
  	
- 	<h:form>
+ 	<h:form id="form-inserir-usuario">
  		<h:commandButton id="inserir-usuario-button" value="Inserir Usuário" action="#{UsuarioBean.inserir}"/>
  	</h:form>
- 	<div class="table">
-	 	<h:dataTable id="items" value="#{UsuarioBean.listarUsuario}" var="item">
-			<h:column >
-				<f:facet name="header">
-					<h:outputText value="Id" />
-				</f:facet>
-				<h:outputText value="#{item.id_Usuario}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Nome"/>
-				</f:facet>
-				<h:outputText value="#{item.nome}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Login"/>
-				</f:facet>
-				<h:outputText value="#{item.login}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Email"/>
-				</f:facet>
-				<h:outputText value="#{item.email}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Cpf"/>
-				</f:facet>
-				<h:outputText value="#{item.cpf}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Telefone"/>
-				</f:facet>
-				<h:outputText value="#{item.telefone}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Sexo"/>
-				</f:facet>
-				<h:outputText value="#{item.sexo}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Data Nascimento"/>
-				</f:facet>
-				<h:outputText value="#{item.dataNas}"/>
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Acão"/>
-				</f:facet>
-				<h:commandButton id="login-button" value="Alterar" action="#{UsuarioBean.logar}"/>
-				<h:commandButton id="login-button" value="Excluir" action="#{UsuarioBean.logar}"/>
-			</h:column>
-		</h:dataTable>
+ 	<div>
+ 	
+	 	<p:dataTable var="usuario" value="#{UsuarioBean.listarUsuario}">
+			<p:column headerText="id">
+				<h:outputText value="#{usuario.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{usuario.nome}" />
+			</p:column>
+			<p:column headerText="E-mail">
+				<h:outputText value="#{usuario.email}" />
+			</p:column>
+			<p:column headerText="login">
+				<h:outputText value="#{usuario.login}" />
+			</p:column>
+			<p:column headerText="CPF">
+				<h:outputText value="#{usuario.cpf}" />
+			</p:column>
+			<p:column headerText="Telefone">
+				<h:outputText value="#{usuario.telefone}" />
+			</p:column>
+			<p:column headerText="Sexo">
+				<h:outputText value="#{usuario.sexo}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<h:form>
+					<h:commandButton id="alterar-button" value="Alterar" action="#{UsuarioBean.chamadaAlterar(usuario.id)}"/>	
+					<h:commandButton id="excluir-button" value="Excluir" action="#{UsuarioBean.excluir}"/>	
+				</h:form>
+			</p:column>
+		</p:dataTable>
 	</div>
   </h:body>
   </html>

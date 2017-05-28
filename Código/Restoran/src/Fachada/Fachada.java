@@ -90,6 +90,10 @@ public class Fachada {
 		return rnUsuario.listar();
 	}
 	
+	public Usuario UsuarioBuscarPorId(Integer id){
+		return rnUsuario.searchByKey(id);
+	}
+	
 
 	/*
 	 * ################################## 

@@ -40,21 +40,21 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarUsandoObjeto(Usuario u) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.id > 0";
+			String queryString = "select object(u) from Usuario as u where u.id > 0";
 			
 			if (u.getCpf() != null && u.getCpf().trim().equals("") == false)
 			{
-				queryString += " and U.cpf =(:cpf)";
+				queryString += " and u.cpf =(:cpf)";
 			}
 			
 			if (u.getEmail() != null && u.getEmail().trim().equals("") == false)
 			{
-				queryString += " and U.email =(:email)";
+				queryString += " and u.email =(:email)";
 			}
 			
 			if (u.getSexo() != null && u.getSexo().trim().equals("") == false)
 			{
-				queryString += " and U.sexo =(:sexo)";
+				queryString += " and u.sexo =(:sexo)";
 			}
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
@@ -83,7 +83,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorCpf(String cpf) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.cpf =(:cpf)";
+			String queryString = "select object(u) from Usuario as u where u.cpf =(:cpf)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -97,7 +97,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorNome(String nome) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.nome =(:nome)";
+			String queryString = "select object(u) from Usuario as u where u.nome =(:nome)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -111,7 +111,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorEmail(String email) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.email =(:email)";
+			String queryString = "select object(u) from Usuario as u where u.email =(:email)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -126,7 +126,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorSexo(String sexo) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.sexo =(:sexo)";
+			String queryString = "select object(u) from Usuario as u where u.sexo =(:sexo)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -140,7 +140,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorDataNasc(Date dataNasc) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.dataNas =(:dataNas)";
+			String queryString = "select object(u) from Usuario as u where u.dataNas =(:dataNas)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -154,12 +154,12 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public List<Usuario> PesquisarPorLogin(String login) throws DadosException{
 		try{
-			String queryString = "SELECT U FROM USUARIO U WHERE U.nome =(:login)";
+			String queryString = "select object(u) from Usuario as u where u.login =(:login)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
-			query.setParameter("nome", login);
+			query.setParameter("login", login);
 		    return query.getResultList();
 		} catch (Exception e) {
 			throw new DadosException(e);

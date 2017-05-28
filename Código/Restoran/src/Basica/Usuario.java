@@ -29,7 +29,7 @@ public class Usuario {
 	@Column(length=6, nullable = false)
 	private String senha;
 	
-	@Column(length=30, nullable = false)
+	@Column(length=60, nullable = false)
 	private String email;
 	
 	@Column(length=14, nullable = false)
@@ -41,7 +41,7 @@ public class Usuario {
 	@Column(length=8, nullable = false)
 	private String tipo;
 	
-	@Column(length=10, nullable = false)
+	@Column(length=11, nullable = false)
 	private String telefone;
 	
 	@OneToMany(mappedBy="garcom", fetch = FetchType.LAZY)
@@ -49,11 +49,11 @@ public class Usuario {
 	private Collection<Pedido> pedidos;
 	
 	//Gets & Sets
-	public int getId_Usuario() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId_Usuario(int id_Usuario) {
+	public void setId(int id_Usuario) {
 		this.id = id_Usuario;
 	}
 
