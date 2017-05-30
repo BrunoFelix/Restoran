@@ -94,6 +94,10 @@ public class Fachada {
 		return rnUsuario.searchByKey(id);
 	}
 	
+	public List<Usuario> UsuarioPesquisarPorObjeto(Usuario u) throws DadosException{
+		return rnUsuario.PesquisarUsandoObjeto(u);
+	}
+	
 
 	/*
 	 * ################################## 

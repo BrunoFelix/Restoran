@@ -42,6 +42,21 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		try{
 			String queryString = "select object(u) from Usuario as u where u.id > 0";
 			
+			if (u.getNome() != null && u.getNome().trim().equals("") == false)
+			{
+				queryString += " and u.nome =(:nome)";
+			}
+			
+			if (u.getLogin() != null && u.getLogin().trim().equals("") == false)
+			{
+				queryString += " and u.login =(:login)";
+			}
+			
+			if (u.getSenha() != null && u.getSenha().trim().equals("") == false)
+			{
+				queryString += " and u.senha =(:senha)";
+			}
+			
 			if (u.getCpf() != null && u.getCpf().trim().equals("") == false)
 			{
 				queryString += " and u.cpf =(:cpf)";
@@ -60,6 +75,22 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
+			
+			if (u.getNome() != null && u.getNome().trim().equals("") == false)
+			{
+				query.setParameter("nome", u.getNome());
+			}
+			
+			if (u.getLogin() != null && u.getLogin().trim().equals("") == false)
+			{
+				query.setParameter("login", u.getLogin());
+			}
+			
+			if (u.getSenha() != null && u.getSenha().trim().equals("") == false)
+			{
+				query.setParameter("senha", u.getSenha());
+			}
+		
 			if (u.getCpf() != null && u.getCpf().trim().equals("") == false)
 			{
 				query.setParameter("cpf", u.getCpf());

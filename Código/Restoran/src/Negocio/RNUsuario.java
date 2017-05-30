@@ -29,6 +29,7 @@ public class RNUsuario extends DAOGenerico<Usuario>{
 	 */
 
 	public void salvar(Usuario u) throws NegocioException, DadosException {
+		preenchimentoCampos(u);
 		validarCampos(u);
 		validarEmail(u);
 		validarDuplicidadeEmail(u);
@@ -37,6 +38,7 @@ public class RNUsuario extends DAOGenerico<Usuario>{
 	}
 
 	public void alterar(Usuario u) throws ControladorException, NegocioException, DadosException {
+		preenchimentoCampos(u);
 		validarCampos(u);
 		/*validarEmail(u);
 		validarDuplicidadeEmail(u);
@@ -69,24 +71,41 @@ public class RNUsuario extends DAOGenerico<Usuario>{
 		if (u == null)
 			throw new NegocioException("Objeto Usuario não preenchido");
 	}
+	
+	public void preenchimentoCampos(Usuario u) throws NegocioException {
+		if (u.getNome() == null || u.getNome().trim().isEmpty() == true)
+			throw new NegocioException("Nome precisa ser preenchido!");
+		if (u.getCpf() == null || u.getCpf().trim().isEmpty() == true)
+			throw new NegocioException("CPF precisa ser preenchido!");
+		if (u.getTelefone() == null || u.getTelefone().trim().isEmpty() == true)
+			throw new NegocioException("Telefone precisa ser preenchido!");
+		if (u.getLogin() == null || u.getLogin().trim().isEmpty() == true)
+			throw new NegocioException("Login precisa ser preenchido!");
+		if (u.getSenha() == null || u.getSenha().trim().isEmpty() == true)
+			throw new NegocioException("Senha precisa ser preenchido!");
+		if (u.getTipo() == null || u.getTipo().trim().isEmpty() == true)
+			throw new NegocioException("Tipo do usuário precisa ser preenchido!");
+		if (u.getSexo() == null || u.getSexo().trim().isEmpty() == true)
+			throw new NegocioException("Sexo precisa ser preenchido!");
+	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
-		if ((u.getNome().isEmpty() == true) || (u.getNome()).length() < 10)
+		if (u.getNome().length() < 10 || u.getNome().length() > 50)
 			throw new NegocioException("Nome inválido!");
-		if ((u.getCpf().isEmpty() == true) || (u.getCpf().length() < 10))
+		if (u.getCpf().length() != 11)
 			throw new NegocioException("Cpf inválido!");
-		if ((u.getTelefone().isEmpty() == true) || (u.getTelefone().length() < 8))
+		if (u.getTelefone().length() < 10 || u.getTelefone().length() > 11)
 			throw new NegocioException("Telefone inválido!");
-		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
-			throw new NegocioException("Login inválido!");
-		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
-			throw new NegocioException("senha inválido!");
-		if (u.getSenha().length() <= 4)
-			throw new NegocioException("Senha inválida deve possuir no minimo quatro caracteres!");
-		if (u.getTipo().isEmpty() || u.getTipo() == null)
-			throw new NegocioException("Tipo de Usuario inválido!");
-		if (u.getSexo().isEmpty() || u.getSexo() == null)
-			throw new NegocioException("Sexo inválido!");
+		if (u.getLogin().length() < 4)
+			throw new NegocioException("Login com limite mínimo de 4 caracteres!");
+		if (u.getLogin().length() > 15)
+			throw new NegocioException("Login com limite máximo de 15 caracteres!");
+		if (u.getSenha().length() < 4)
+			throw new NegocioException("Senha com limite mínimo de 4 caracteres!");
+		if (u.getSenha().length() > 15)
+			throw new NegocioException("Senha com limite máximo de 15 caracteres!");
+		if (u.getSexo().length() > 1)
+			throw new NegocioException("Sexo deve ser preenchido somente com M = Masculino ou F = Feminino!");
 	}
 
 	public void validarDuplicidadeLogin(Usuario u) throws NegocioException, DadosException {
