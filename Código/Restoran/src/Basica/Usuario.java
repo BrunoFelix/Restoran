@@ -128,8 +128,5 @@ public class Usuario {
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-		
-	
-	
 	
 }
