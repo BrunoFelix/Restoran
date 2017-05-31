@@ -24,7 +24,7 @@ public class Mesa {
 	private int numeroMesa;
 	
 	@Column(nullable=false)
-	private int CapacidadeMesa;
+	private int capacidadeMesa;
 	
 	@Column(length=10, nullable=false)
 	private String status;
@@ -49,14 +49,6 @@ public class Mesa {
 	public void setNumeroMesa(int numeroMesa) {
 		this.numeroMesa = numeroMesa;
 	}
-
-	public int getCapacidadeMesa() {
-		return CapacidadeMesa;
-	}
-
-	public void setCapacidadeMesa(int capacidadeMesa) {
-		CapacidadeMesa = capacidadeMesa;
-	}
 	
 	public String getStatus() {
 		return status;
@@ -64,6 +56,14 @@ public class Mesa {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getCapacidadeMesa() {
+		return capacidadeMesa;
+	}
+
+	public void setCapacidadeMesa(int capacidadeMesa) {
+		this.capacidadeMesa = capacidadeMesa;
 	}
 
 	public Collection<Pedido> getPedidos() {

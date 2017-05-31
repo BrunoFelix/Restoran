@@ -7,15 +7,40 @@
          xmlns:pe="http://primefaces.org/ui/extensions">
    
   <h:head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>Gerenciar Mesas</title>
   </h:head>
-  <h:body>
- 	<h1><h:outputText id="textotopo" value="Gerenciar Mesas"/></h1>
- 	
- 	<div id="topo">
+  <h:body> 	
+ 	 	
+	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
-	
+
+ 	<h:form id="form-inserir-usuario">
+ 		<h:commandButton id="inserir-mesa-button" value="Inserir Mesa" action="cadastrar.xhtml"/>
+ 	</h:form>
+ 	<div>
+ 	
+	 	<p:dataTable var="mesa" value="#{MesaBean.listarMesa}">
+			<p:column headerText="id">
+				<h:outputText value="#{mesa.id}" />
+			</p:column>
+			<p:column headerText="Número">
+				<h:outputText value="#{mesa.numeroMesa}" />
+			</p:column>
+			<p:column headerText="Capacidade">
+				<h:outputText value="#{mesa.capacidadeMesa}" />
+			</p:column>
+			<p:column headerText="Status">
+				<h:outputText value="#{mesa.status}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<h:form>
+					<h:commandButton id="alterar-button" value="Alterar" action="#{MesaBean.chamadaAlterar(mesa.id)}"/>	
+					<h:commandButton id="excluir-button" value="Excluir" action="#{MesaBean.excluir}"/>	
+				</h:form>
+			</p:column>
+		</p:dataTable>
+	</div>
   </h:body>
   </html>

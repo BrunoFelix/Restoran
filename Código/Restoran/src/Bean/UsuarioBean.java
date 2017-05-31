@@ -174,10 +174,7 @@ public class UsuarioBean {
 		return "login";
 
 	}
-	
-	public void getLogout(){
-		logout();
-	}
+
 
 	public String getUsuarioGerente() {
 		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
@@ -201,7 +198,6 @@ public class UsuarioBean {
     }
 	
 	public String alterar() {
-
 
 		try {
 			fachada.UsuarioAlterar(usuarioAlterar);

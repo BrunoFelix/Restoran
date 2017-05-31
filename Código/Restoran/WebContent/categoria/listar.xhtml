@@ -8,14 +8,34 @@
    
   <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Gerenciar Categorias</title>
+            <title>Gerenciar Categoria</title>
   </h:head>
-  <h:body>
- 	<h1><h:outputText id="textotopo" value="Gerenciar Categorias"/></h1>
- 	
+  <h:body> 	
+ 	 	
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
-	
+
+ 	
+ 	<h:form id="form-inserir-categoria">
+ 		<h:commandButton id="inserir-categoria-button" value="Inserir Categoria" action="cadastrar.xhtml"/>
+ 	</h:form>
+ 	<div>
+ 	
+	 	<p:dataTable var="categoria" value="#{CategoriaBean.listarCategoria}">
+			<p:column headerText="id">
+				<h:outputText value="#{categoria.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{categoria.nome}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<h:form>
+					<h:commandButton id="alterar-button" value="Alterar" action="#{CategoriaBean.chamadaAlterar(categoria.id)}"/>	
+					<h:commandButton id="excluir-button" value="Excluir" action="#{CategoriaBean.excluir}"/>	
+				</h:form>
+			</p:column>
+		</p:dataTable>
+	</div>
   </h:body>
   </html>

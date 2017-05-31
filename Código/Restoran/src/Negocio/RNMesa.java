@@ -49,6 +49,10 @@ public class RNMesa {
 	public List<Mesa> listar() {
 		return mesaDAO.getAll();
 	}
+	
+	public Mesa MesaBuscarPorId(Integer id){
+		return mesaDAO.searchByKey(id);
+    }
 
 	/*
 	 * ##################################
@@ -74,7 +78,7 @@ public class RNMesa {
 	public void validarDuplicidadeNumeroMesa(Mesa m) throws NegocioException, DadosException {
 
 		try {
-			if (mesaDAO.PesquisarPorNumeroMesa(m.getNumeroMesa()) != null) {
+			if (mesaDAO.PesquisarPorNumeroMesa(m.getNumeroMesa()).size() > 0) {
 				throw new NegocioException("Mesa com numero " + m.getNumeroMesa() + " ja existe");
 			}
 		} catch (DadosException e) {

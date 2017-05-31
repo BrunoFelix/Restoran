@@ -25,11 +25,11 @@ public class Categoria {
 	private Collection<Produto> produtos;
 	
 	//Gets & Sets
-	public int getId_categoria() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId_categoria(int id_categoria) {
+	public void setId(int id_categoria) {
 		this.id = id_categoria;
 	}
 

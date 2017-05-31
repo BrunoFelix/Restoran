@@ -1,5 +1,7 @@
 package Negocio;
 
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 
 import Basica.Categoria;
@@ -41,6 +43,14 @@ public class RNCategoria {
 		categoriaDAO.remove(c);
 	}
 	
+	public List<Categoria> listar(){
+		return categoriaDAO.getAll();
+	}
+	
+	public Categoria CategoriaBuscarPorId(Integer id){
+		return categoriaDAO.searchByKey(id);
+	}
+	
 	
 	/*
 	 * ################################## 
@@ -62,7 +72,7 @@ public class RNCategoria {
 	public void validarDuplicidadeCategoria(Categoria c) throws NegocioException, DadosException {
 
 		try {
-			if (categoriaDAO.PesquisarPorNome(c.getNome()) != null) {
+			if (categoriaDAO.PesquisarPorNome(c.getNome()).size() > 0) {
 				throw new NegocioException("Categoria já existe");
 			}
 		} catch (DadosException e) {

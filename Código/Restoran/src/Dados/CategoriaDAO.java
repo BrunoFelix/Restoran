@@ -18,7 +18,7 @@ public class CategoriaDAO extends DAOGenerico<Categoria> implements ICategoriaDA
 	
 	public List<Categoria> PesquisarPorNome(String nome) throws DadosException{
 		try{
-			String queryString = "SELECT C FROM CATEGORIA C WHERE C.nome =(:nome)";
+			String queryString = "select object(u) from Categoria as u where u.nome =(:nome)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					

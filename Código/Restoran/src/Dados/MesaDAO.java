@@ -18,7 +18,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 	
 	public List<Mesa> PesquisarPorStatus(String status) throws DadosException{
 		try{
-			String queryString = "SELECT M FROM MESA M WHERE M.status =(:status)";
+			String queryString = "select object(m) from Mesa as m where m.status=(:status)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -32,7 +32,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 	
 	public List<Mesa> PesquisarPorCapacidade(int capacidade) throws DadosException{
 		try{
-			String queryString = "SELECT M FROM MESA M WHERE M.capacidade =(:capacidade)";
+			String queryString = "select object(m) from Mesa as m where m.capacidade=(:capacidade)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -46,7 +46,7 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 	public List<Mesa> PesquisarPorNumeroMesa(int numeromesa) throws DadosException{
 		
 			try{
-			String queryString = "SELECT M FROM MESA M WHERE M.numeromesa =(:numeromesa)";
+			String queryString = "select object(m) from Mesa as m where m.numeroMesa=(:numeromesa)";
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					

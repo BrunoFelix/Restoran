@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
+import Basica.Mesa;
 import Basica.Produto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
@@ -148,6 +150,56 @@ public class Fachada {
 	  
 	  public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
 			return rnItemComposicaoProduto.ItemComposicaoProdutoBuscarPorId(id);
+	  }
+	  
+	  /*
+		 * ################################## 
+		 * 				CATEGORIA
+		 * ##################################
+		 */
+	  public void CategoriaInserir(Categoria c) throws NegocioException, DadosException{
+		  rnCategoria.salvar(c);
+	  }
+	  
+	  public void CategoriaAlterar(Categoria c) throws NegocioException, DadosException, ControladorException{
+		  rnCategoria.alterar(c);
+	  }
+	  
+	  public void CategoriaExcluir(Categoria c) throws NegocioException, DadosException, ControladorException{
+		  rnCategoria.excluir(c);
+	  }
+	  
+	  public List<Categoria> CategoriaListar(){
+		  return rnCategoria.listar();
+	  }
+	  
+	  public Categoria CategoriaBuscarPorId(Integer id){
+			return rnCategoria.CategoriaBuscarPorId(id);
+	  }
+	  
+	  /*
+		 * ################################## 
+		 * 				 MESA
+		 * ##################################
+		 */
+	  public void MesaInserir(Mesa m) throws NegocioException, DadosException{
+		  rnMesa.salvar(m);
+	  }
+	  
+	  public void MesaAlterar(Mesa m) throws NegocioException, DadosException, ControladorException{
+		  rnMesa.alterar(m);
+	  }
+	  
+	  public void MesaExcluir(Mesa m) throws NegocioException, DadosException, ControladorException{
+		  rnMesa.excluir(m);
+	  }
+	  
+	  public List<Mesa> MesaListar(){
+		  return rnMesa.listar();
+	  }
+	  
+	  public Mesa MesaBuscarPorId(Integer id){
+			return rnMesa.MesaBuscarPorId(id);
 	  }
 
 }
