@@ -8,20 +8,15 @@
    
   <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Cadastrar Usuários</title>
+            <title>Alterar Usuários</title>
   </h:head>
   <h:body>
-  
-  
-  	
- 	<h1><h:outputText id="textotopo" value="Gerenciar usuários"/></h1>
- 	
  	
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
  	
- 	<h:form class="form-cadastro-usuario">
+ 	<h:form class="form-alterar-usuario">
  		<h:panelGrid columns="2" cellpadding="5">
  			<label>Nome:</label>
 	        <h:inputText id="nome" label="nome" value="#{UsuarioBean.usuarioAlterar.nome}"/>

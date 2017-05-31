@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import Basica.Produto;
+import Basica.Usuario;
 import Dados.ProdutoDAO;
 import Utils.ControladorException;
 import Utils.DadosException;
@@ -27,7 +28,7 @@ public class RNProduto {
 	 */
 
 	public void salvar(Produto p) throws NegocioException, DadosException {
-		validarCampos(p);
+		//validarCampos(p);
 		produtoDAO.insert(p);
 
 	}
@@ -51,9 +52,10 @@ public class RNProduto {
 	public List<Produto> PesquisarPorQuantidade(int quantidade) throws DadosException{
 		return produtoDAO.PesquisarPorQuantidade(quantidade);
 	}
-	
-
-	   
+	public Produto ProdutoBuscarPorId(Integer id){
+		return produtoDAO.searchByKey(id);
+	}
+		   
 	/*
 	 * ################################## 
 	 * 				VALIDACOES
@@ -72,8 +74,6 @@ public class RNProduto {
 			throw new NegocioException("Preço de venda Invalido");
 		if(p.getPrecoCusto() == 0)
 			throw new NegocioException("Preço de custo Invalido");
-		if((p.getItensComposicao().isEmpty()) || p.getItensComposicao() == null)
-			throw new NegocioException("Quantidade Invalida");
 			
 	}
 

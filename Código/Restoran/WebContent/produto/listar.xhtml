@@ -1,44 +1,53 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Gerenciar Produtos</title>
-</h:head>
-<h:body>
-	
-	<div id="topo">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:p="http://primefaces.org/ui"
+         xmlns:pe="http://primefaces.org/ui/extensions">
+   
+  <h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Gerenciar Produtos</title>
+  </h:head>
+  <h:body> 	
+ 	 	
+ 	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
-	
-	<p:dataTable var="produtos" value="#{ProdutoBean.listarProduto}">
-		<p:column headerText="Nome">
-			<h:outputText value="#{produtos.nome}" />
-		</p:column>
-		<p:column headerText="Quantidade">
-			<h:outputText value="#{produtos.quantidade}" />
-		</p:column>
-		<p:column headerText="Preço de Venda">
-			<h:outputText value="#{produtos.precoVenda}" />
-		</p:column>
-		<p:column headerText="Preço de Custo">
-			<h:outputText value="#{produtos.precoCusto}" />
-		</p:column>
-		<p:column headerText="Alterar">
-			<p:commandLink id="nonAjax">
-        <h:outputText value="Editar" />
-    </p:commandLink>
-		</p:column>
-		<p:column headerText="Excluir">
-			<p:commandLink id="nonAjax2">
-        <h:outputText value="Excluir" />
-    </p:commandLink>
-		</p:column>
-	</p:dataTable>
-</h:body>
-</html>
+
+ 	
+ 	<h:form id="form-inserir-produto">
+ 		<h:commandButton id="inserir-produto-button" value="Inserir Produto" action="cadastrar.xhtml"/>
+ 	</h:form>
+ 	<div>
+ 	
+	 	<p:dataTable var="produto" value="#{ProdutoBean.listarProduto}">
+			<p:column headerText="id">
+				<h:outputText value="#{produto.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{produto.nome}" />
+			</p:column>
+			<p:column headerText="Preço de Venda">
+				<h:outputText value="R$ #{produto.precoVenda}" />
+			</p:column>
+			<p:column headerText="Preço de Custo">
+				<h:outputText value="R$ #{produto.precoCusto}" />
+			</p:column>
+			<p:column headerText="Quantidade">
+				<h:outputText value="#{produto.quantidade}" />
+			</p:column>
+			<p:column headerText="Itens de Composição">
+				<h:outputText value="" />
+			</p:column>
+			<p:column headerText="Ações">
+				<h:form>
+					<h:commandButton id="alterar-button" value="Alterar" action="#{ProdutoBean.chamadaAlterar(produto.id)}"/>	
+					<h:commandButton id="excluir-button" value="Excluir" action="#{ProdutoBean.excluir}"/>	
+				</h:form>
+			</p:column>
+		</p:dataTable>
+	</div>
+  </h:body>
+  </html>

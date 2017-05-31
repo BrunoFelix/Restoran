@@ -13,12 +13,11 @@ import Utils.ControladorException;
 import Utils.DadosException;
 import Utils.NegocioException;
 
-public class RNUsuario extends DAOGenerico<Usuario>{
+public class RNUsuario{
 
 	UsuarioDAO usuarioDAO;
 
 	public RNUsuario(EntityManagerFactory emf) {
-		super(emf);
 		usuarioDAO = new UsuarioDAO(emf);
 	}
 
@@ -59,6 +58,10 @@ public class RNUsuario extends DAOGenerico<Usuario>{
 	}
 	public List<Usuario> PesquisarUsandoObjeto(Usuario u) throws DadosException{
 		return usuarioDAO.PesquisarUsandoObjeto(u); 
+	}
+	
+	public Usuario UsuarioBuscarPorId(Integer id){
+		return usuarioDAO.searchByKey(id);
 	}
    
 	/*

@@ -174,9 +174,9 @@ public class UsuarioBean {
 		return "login";
 
 	}
-
-	public String getLogout() {
-		return logout();
+	
+	public void getLogout(){
+		logout();
 	}
 
 	public String getUsuarioGerente() {

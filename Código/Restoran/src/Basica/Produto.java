@@ -42,12 +42,12 @@ public class Produto {
 	private Collection<Categoria> categoria;
 
 	//Gets & Sets
-	public int getId_produto() {
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId_produto(int id_produto) {
+	public void setId(int id_produto) {
 		this.id = id_produto;
 	}
 

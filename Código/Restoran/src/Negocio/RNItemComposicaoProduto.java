@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import Basica.ItemComposicaoProduto;
+import Basica.Usuario;
 import Dados.ItemComposicaoProdutoDAO;
 import Utils.ControladorException;
 import Utils.DadosException;
@@ -44,6 +45,10 @@ public class RNItemComposicaoProduto {
 	public List<ItemComposicaoProduto> listar(){
 		return itemComposicaoProdutoDAO.getAll();
    }
+	
+	public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
+		return itemComposicaoProdutoDAO.searchByKey(id);
+	}
 	   
 	/*
 	 * ################################## 
@@ -57,7 +62,7 @@ public class RNItemComposicaoProduto {
 	}
 
 	public void validarCampos(ItemComposicaoProduto i ) throws NegocioException {
-		if ((i.getNome().isEmpty() == true) || (i.getNome()).length() < 5)
+		if ((i.getNome().isEmpty() == true) || (i.getNome()).length() < 1)
 			throw new NegocioException("Nome Invalido");
 		if ((i.getUnidadeMedida().isEmpty() == true))
 			throw new NegocioException("Unidade de medida Inválida");

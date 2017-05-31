@@ -34,11 +34,11 @@ public class ItemComposicaoProduto {
 	private Collection<Produto> produtos;
 	
 	//Gets & Sets
-	public int getId_itemComposicaoProduto() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId_itemComposicaoProduto(int id_itemComposicaoProduto) {
+	public void setId(int id_itemComposicaoProduto) {
 		this.id = id_itemComposicaoProduto;
 	}
 
@@ -70,7 +70,7 @@ public class ItemComposicaoProduto {
 		return precoCusto;
 	}
 
-	public void setPrecoCusto(int precoCusto) {
+	public void setPrecoCusto(double precoCusto) {
 		this.precoCusto = precoCusto;
 	}
 

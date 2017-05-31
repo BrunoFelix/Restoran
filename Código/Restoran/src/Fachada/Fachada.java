@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import Basica.ItemComposicaoProduto;
 import Basica.Produto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
@@ -91,7 +92,7 @@ public class Fachada {
 	}
 	
 	public Usuario UsuarioBuscarPorId(Integer id){
-		return rnUsuario.searchByKey(id);
+		return rnUsuario.UsuarioBuscarPorId(id);
 	}
 	
 	public List<Usuario> UsuarioPesquisarPorObjeto(Usuario u) throws DadosException{
@@ -119,11 +120,34 @@ public class Fachada {
 	  public List<Produto> ProdutoListar(){
 		  return rnProduto.listar();
 	  }
+	  
+	  public Produto ProdutoBuscarPorId(Integer id){
+			return rnProduto.ProdutoBuscarPorId(id);
+	  }
 	/*
 	 * ################################## 
-	 * 				PEDIDO
+	 * 	 ITEM DE COMPOSICAO DO PRODUTO
 	 * ##################################
 	 */
-	
+	  
+	  public void ItemComposicaoProdutoInserir(ItemComposicaoProduto i) throws NegocioException, DadosException{
+		  rnItemComposicaoProduto.salvar(i);
+	  }
+	  
+	  public void ItemComposicaoProdutoAlterar(ItemComposicaoProduto i) throws NegocioException, DadosException, ControladorException{
+		  rnItemComposicaoProduto.alterar(i);
+	  }
+	  
+	  public void ItemComposicaoProdutoExcluir(ItemComposicaoProduto i) throws NegocioException, DadosException, ControladorException{
+		  rnItemComposicaoProduto.excluir(i);
+	  }
+	  
+	  public List<ItemComposicaoProduto> ItemComposicaoProdutoListar(){
+		  return rnItemComposicaoProduto.listar();
+	  }
+	  
+	  public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
+			return rnItemComposicaoProduto.ItemComposicaoProdutoBuscarPorId(id);
+	  }
 
 }

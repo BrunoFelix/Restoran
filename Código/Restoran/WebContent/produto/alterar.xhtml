@@ -1,0 +1,36 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:h="http://java.sun.com/jsf/html"
+         xmlns:f="http://java.sun.com/jsf/core"
+         xmlns:ui="http://java.sun.com/jsf/facelets"
+         xmlns:p="http://primefaces.org/ui"
+         xmlns:pe="http://primefaces.org/ui/extensions">
+   
+  <h:head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <title>Alterar Produtos</title>
+  </h:head>
+  <h:body>
+ 	
+ 	<div id="topo">
+		<ui:include src="../menu.xhtml" />
+	</div>
+ 	
+ 	<h:form class="form-alterar-produto">
+ 		<h:panelGrid columns="2" cellpadding="5">
+ 			<label>Id:</label>
+	        <h:inputText id="id" label="id" value="#{ProdutoBean.produtoAlterar.id}"/>
+ 			<label>Nome:</label>
+	        <h:inputText id="nome" label="nome" value="#{ProdutoBean.produtoAlterar.nome}"/>
+	        <label>Quantidade:</label>
+	        <h:inputText id="quantidade" label="quantidade" value="#{ProdutoBean.produtoAlterar.quantidade}"/>
+	        <label>Preço de Venda:</label>
+	        <h:inputText id="precoVenda" label="precoVenda" value="#{ProdutoBean.produtoAlterar.precoVenda}"/>
+	        <label>Preço de Custo:</label>
+	        <h:inputText id="PrecoCusto" label="precoCusto" value="#{ProdutoBean.produtoAlterar.precoCusto}"/> 
+	        <h:commandButton id="reset-button" type="reset" value="Limpar"/>
+			<h:commandButton id="insert-button" value="Salvar" action="#{ProdutoBean.alterar}"/>
+		</h:panelGrid>
+	</h:form>
+  </h:body>
+  </html>
