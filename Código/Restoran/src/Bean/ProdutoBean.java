@@ -30,7 +30,7 @@ public class ProdutoBean {
 	private Produto produtoAlterar;
 
 	private List<Produto> listarProduto = new ArrayList<Produto>();
-	
+	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
 	private int id;
 	private String nome;
 	private double precoVenda;
@@ -92,6 +92,15 @@ public class ProdutoBean {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public List<Categoria> getListarCategoria() {
+		setListarCategoria(fachada.CategoriaListar());
+		return listarCategoria;
+	}
+
+	public void setListarCategoria(List<Categoria> listarCategoria) {
+		this.listarCategoria = listarCategoria;
 	}
 
 	public String index(){
