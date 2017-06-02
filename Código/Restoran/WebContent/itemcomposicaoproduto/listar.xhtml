@@ -8,7 +8,7 @@
    
   <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Gerenciar Item de Composição do Produto</title>
+            <title>Restoran</title>
   </h:head>
   <h:body> 	
  	 	
@@ -16,12 +16,9 @@
 		<ui:include src="../menu.xhtml" />
 	</div>
 
- 	
- 	<h:form id="form-inserir-itemComp">
- 		<h:commandButton id="inserir-itemComp-button" value="Inserir Item de Composição" action="cadastrar.xhtml"/>
- 	</h:form>
+	<h1><h:outputText id="textotopo" value="Gerenciar Itens de Composição do Produto"/></h1>
+
  	<div>
- 	
 	 	<p:dataTable var="itemComposicao" value="#{ItemComposicaoProdutoBean.listarItemComposicaoProduto}">
 			<p:column headerText="id">
 				<h:outputText value="#{itemComposicao.id}" />

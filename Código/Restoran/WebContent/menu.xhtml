@@ -6,6 +6,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran</title>
 </h:head>
 <h:body>
 	<ui:composition>
@@ -13,13 +15,13 @@
 			<p:growl id="messages" />
 			<p:menubar>
 				<p:submenu label="Produto">
-					<p:menuitem value="Visualizar Todos" url="/produto/listar.xhtml" />
-					<p:menuitem value="Visualizar Itens de composição" url="/itemcomposicaoproduto/listar.xhtml" />
+					<p:menuitem value="Gerenciar Produtos" url="/produto/listar.xhtml" />
+					<p:menuitem value="Gerenciar Itens de composição" url="/itemcomposicaoproduto/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/produto/cadastrar.xhtml" />
 					<p:menuitem value="Cadastrar Itens de composição" url="/itemcomposicaoproduto/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Usuarios">
-					<p:menuitem value="Visualizar todos" url="/usuario/listar.xhtml" />
+					<p:menuitem value="Gerenciar Usuários" url="/usuario/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/usuario/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Mesas">
@@ -27,19 +29,19 @@
 					<p:menuitem value="Cadastrar" url="/mesa/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Pedidos">
-					<p:menuitem value="Visualizar Todos" url="/pedido/listar.xhtml" />
+					<p:menuitem value="Gerenciar Pedidos" url="/pedido/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/pedido/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Categorias"> 
-					<p:menuitem value="Visualizar Todos" url="/categoria/listar.xhtml" />
+					<p:menuitem value="Gerenciar Categorias" url="/categoria/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/categoria/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Histórico">
-					<p:menuitem value="Visualizar Todos" url="/historico/listar.xhtml" />
+					<p:menuitem value="Gerenciar Histórico" url="/historico/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/historico/cadastrar.xhtml" />
 				</p:submenu>
 				<p:submenu label="Usuário: #{UsuarioBean.usuarioNormal}">
-					<p:menuitem value="Alterar Cadastro" url="/usuario/alterar.xhtml" />
+					<p:menuitem value="Alterar Usuário" url="/usuario/alterar.xhtml" />
 				</p:submenu>
 				<f:facet name="options">
 					<p:commandButton id="botaoLogout" type="button" value="Sair" action="#{UsuarioBean.logout}" />

@@ -8,18 +8,16 @@
    
   <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Gerenciar Categoria</title>
+            <title>Restoran</title>
   </h:head>
   <h:body> 	
  	 	
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
-
- 	
- 	<h:form id="form-inserir-categoria">
- 		<h:commandButton id="inserir-categoria-button" value="Inserir Categoria" action="cadastrar.xhtml"/>
- 	</h:form>
+	
+	<h1><h:outputText id="textotopo" value="Gerenciar Categoria"/></h1>
+	
  	<div>
  	
 	 	<p:dataTable var="categoria" value="#{CategoriaBean.listarCategoria}">

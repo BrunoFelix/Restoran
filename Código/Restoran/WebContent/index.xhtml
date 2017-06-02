@@ -8,50 +8,18 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
-	<title>Home</title>
+	<title>Restoran</title>
 </h:head>
 <h:body>
 
 	<div id="topo">
 		<ui:include src="menu.xhtml" />
 	</div>
+	
+	<h1><h:outputText id="textotopo" value="Home"/></h1>
 
 	 <div id="index">
-		<h:form id="formProduto">
-			<h:commandButton id="botaoProduto" value="Gerenciar Produto"
-				action="#{ProdutoBean.index}" />
-		</h:form>
-
-		<h:form id="formItemComp">
-			<h:commandButton id="botaoItemComp"
-				value="Gerenciar Itens de Composição dos Produtos"
-				action="#{ItemComposicaoProdutoBean.index}" />
-		</h:form>
-
-		<h:form id="formUsuario">
-			<h:commandButton id="botaoUsuario" value="Gerenciar Usuários"
-				action="#{UsuarioBean.index}" />
-		</h:form>
-
-		<h:form id="formMesa">
-			<h:commandButton id="botaoMesa" value="Gerenciar Mesas"
-				action="#{MesaBean.index}" />
-		</h:form>
-
-		<h:form id="formPedido">
-			<h:commandButton id="botaoPedido" value="Gerenciar Pedidos"
-				action="#{PedidoBean.index}" />
-		</h:form>
-
-		<h:form id="formCategoria">
-			<h:commandButton id="botaoCategoria" value="Visualizar Categorias"
-				action="#{CategoriaBean.index}" />
-		</h:form>
-
-		<h:form id="formHistorico">
-			<h:commandButton id="botaoPedido" value="Visualizar Histórico(s)"
-				action="#{HistoricoBean.index}" />
-		</h:form> 
+	 
 	</div> 
 
 </h:body>
