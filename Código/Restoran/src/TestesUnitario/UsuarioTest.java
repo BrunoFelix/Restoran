@@ -1,4 +1,4 @@
-package Testes;
+package TestesUnitario;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +14,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import Basica.ItemComposicaoProduto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Fachada.Fachada;
@@ -169,6 +170,16 @@ public class UsuarioTest {
 	}
 	
 	@Test(expected=NegocioException.class)
+	public void TesteLoginVazio2() throws NegocioException{
+		usuario = new Usuario();
+		usuario.setNome("Bruno Felix");
+		usuario.setCpf("10357897808");
+		usuario.setTelefone("81995782171");
+		usuario.setLogin("");
+		rnUsuario.validaPreenchimentoUsuarioSenha(usuario);
+	}
+	
+	@Test(expected=NegocioException.class)
 	public void TesteLoginNull() throws NegocioException{	
 		usuario = new Usuario();
 		usuario.setNome("Bruno Felix");
@@ -176,6 +187,16 @@ public class UsuarioTest {
 		usuario.setTelefone("81995782171");
 		usuario.setLogin(null);
 		rnUsuario.preenchimentoCampos(usuario);
+	}
+	
+	@Test(expected=NegocioException.class)
+	public void TesteLoginNull2() throws NegocioException{	
+		usuario = new Usuario();
+		usuario.setNome("Bruno Felix");
+		usuario.setCpf("10357897808");
+		usuario.setTelefone("81995782171");
+		usuario.setLogin(null);
+		rnUsuario.validaPreenchimentoUsuarioSenha(usuario);
 	}
 	
 	@Test(expected=NegocioException.class)
@@ -197,7 +218,7 @@ public class UsuarioTest {
 		usuario.setLogin("a");
 		rnUsuario.validarCampos(usuario);
 	}
-	
+		
 	/***********************************
 	 * 
 	 * Testes da regra de negocio com relação ao campo SENHA
@@ -216,6 +237,17 @@ public class UsuarioTest {
 	}
 	
 	@Test(expected=NegocioException.class)
+	public void TesteSenhaVazio2() throws NegocioException{
+		usuario = new Usuario();
+		usuario.setNome("Bruno Felix");
+		usuario.setCpf("10357897808");
+		usuario.setTelefone("81995782171");
+		usuario.setLogin("ADMIN");
+		usuario.setSenha("");
+		rnUsuario.validaPreenchimentoUsuarioSenha(usuario);
+	}
+	
+	@Test(expected=NegocioException.class)
 	public void TesteSenhaNull() throws NegocioException{	
 		usuario = new Usuario();
 		usuario.setNome("Bruno Felix");
@@ -227,6 +259,18 @@ public class UsuarioTest {
 	}
 	
 	@Test(expected=NegocioException.class)
+	public void TesteSenhaNull2() throws NegocioException{	
+		usuario = new Usuario();
+		usuario.setNome("Bruno Felix");
+		usuario.setCpf("10357897808");
+		usuario.setTelefone("81995782171");
+		usuario.setLogin("ADMIN");
+		usuario.setSenha(null);
+		rnUsuario.validaPreenchimentoUsuarioSenha(usuario);
+	}
+	
+	
+	@Test(expected=NegocioException.class)
 	public void TesteSenhaMaiorQueOPermitido() throws NegocioException{	
 		usuario = new Usuario();
 		usuario.setNome("Bruno Felix");
@@ -236,7 +280,7 @@ public class UsuarioTest {
 		usuario.setSenha("testeloginmaiorqueoresultadoesperado");
 		rnUsuario.validarCampos(usuario);
 	}
-	
+		
 	@Test(expected=NegocioException.class)
 	public void TesteSenhaMenorQueOPermitido() throws NegocioException{
 		usuario = new Usuario();
@@ -349,7 +393,15 @@ public class UsuarioTest {
 		usuario.setEmail("b@fggdf@xed");
 		rnUsuario.validarEmail(usuario);
 	}
+	
+	@Test(expected=NegocioException.class)
+	public void TesteObjetoExite() throws NegocioException{	
+		usuario = null;
+		rnUsuario.verificarObjeto(usuario);
+	}
 
+	
+	@Ignore
 	@Test
 	public void TesteUsuarioInserir() throws NegocioException, DadosException, ControladorException{
 		Usuario usuario = new Usuario();
@@ -374,6 +426,7 @@ public class UsuarioTest {
 	    
 	}	
 	
+	@Ignore
 	@Test
 	public void TesteUsuarioExcluir() throws NegocioException, DadosException, ControladorException{
 		Usuario usuario = new Usuario();
@@ -385,7 +438,8 @@ public class UsuarioTest {
 
 	    assertEquals(0, listausuario.size());
 	}
-	
+
+	@Ignore
 	@Test
 	public void TesteUsuarioAlterar() throws NegocioException, DadosException, ControladorException{
 		Usuario usuario = new Usuario();

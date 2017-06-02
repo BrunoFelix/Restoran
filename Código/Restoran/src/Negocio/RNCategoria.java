@@ -58,13 +58,14 @@ public class RNCategoria {
 	 * ##################################
 	 */
 	public void verificarObjeto(Categoria c) throws NegocioException {
-
 		if (c == null)
 			throw new NegocioException("Objeto Categoria não preenchido");
 	}
 
 	public void validarCampos(Categoria c) throws NegocioException {
-		if ((c.getNome().isEmpty() == true) || (c.getNome()).length() < 2)
+		if (c.getNome() == null)
+			throw new NegocioException("Nome Inválido");
+		if (c.getNome().isEmpty() == true || c.getNome().length() < 2 || c.getNome().length() > 50)
 			throw new NegocioException("Nome Inválido");
 		
 	}
