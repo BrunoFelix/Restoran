@@ -56,6 +56,35 @@
                      <p:commandButton  id="reset-button" value="Cadastrar" icon="ui-icon-disk" action="#{ProdutoBean.cadastrar}">
                   </p:commandButton>
             </p:panelGrid>
+            
+            <!-- Itens de Composião do Produto -->
+            <div>
+	 	<p:dataTable var="itemComposicao" value="#{ProdutoBean.listarItemComposicaoProduto}">
+			<p:column headerText="id">
+				<h:outputText value="#{itemComposicao.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputText value="#{itemComposicao.nome}" />
+			</p:column>
+			<p:column headerText="Quantidade">
+				<h:outputText value="#{itemComposicao.quantidade}" />
+			</p:column>
+			<p:column headerText="Unidade de Medida">
+				<h:outputText value="#{itemComposicao.unidadeMedida}" />
+			</p:column>
+			<p:column headerText="Preço de Custo">
+				<h:outputText value="R$ #{itemComposicao.precoCusto}" />
+			</p:column>
+			
+		</p:dataTable>
+	</div>
+            
+            
+            
+            
+            
+            
+            
 	</h:form>
 </h:body>
 </html>

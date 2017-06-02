@@ -2,6 +2,7 @@ package Bean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -29,6 +30,7 @@ public class ProdutoBean {
 	
 	private Produto produtoAlterar;
 
+	private List<ItemComposicaoProduto> listarItemComposicaoProduto;
 	private List<Produto> listarProduto = new ArrayList<Produto>();
 	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
 	private int id;
@@ -37,6 +39,8 @@ public class ProdutoBean {
 	private double precoCusto;
 	private int quantidade;
 	
+	
+	
 	public Produto getProdutoAlterar() {
 		return produtoAlterar;
 	}
@@ -44,6 +48,8 @@ public class ProdutoBean {
 	public void setProdutoAlterar(Produto produtoAlterar) {
 		this.produtoAlterar = produtoAlterar;
 	}
+	
+	
 
 	public List<Produto> getListarProduto() {
 		setListarProduto(fachada.ProdutoListar());
@@ -101,6 +107,14 @@ public class ProdutoBean {
 
 	public void setListarCategoria(List<Categoria> listarCategoria) {
 		this.listarCategoria = listarCategoria;
+	}
+
+	public List<ItemComposicaoProduto> getListarItemComposicaoProduto() {
+		return listarItemComposicaoProduto;
+	}
+
+	public void setListarItemComposicaoProduto(List<ItemComposicaoProduto> listarItemComposicaoProduto) {
+		listarItemComposicaoProduto = listarItemComposicaoProduto;
 	}
 
 	public String index(){
