@@ -93,21 +93,21 @@ public class RNUsuario{
 	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
-		if (u.getNome().length() < 10 || u.getNome().length() > 50)
+		if (u.getNome().trim().length() < 10 || u.getNome().trim().length() > 50)
 			throw new NegocioException("Nome inválido!");
-		if (u.getCpf().length() != 11)
+		if (u.getCpf().trim().length() != 11)
 			throw new NegocioException("Cpf inválido!");
-		if (u.getTelefone().length() < 10 || u.getTelefone().length() > 11)
+		if (u.getTelefone().trim().length() < 10 || u.getTelefone().trim().length() > 11)
 			throw new NegocioException("Telefone inválido!");
-		if (u.getLogin().length() < 4)
+		if (u.getLogin().trim().length() < 4)
 			throw new NegocioException("Login com limite mínimo de 4 caracteres!");
-		if (u.getLogin().length() > 15)
+		if (u.getLogin().trim().length() > 15)
 			throw new NegocioException("Login com limite máximo de 15 caracteres!");
-		if (u.getSenha().length() < 4)
+		if (u.getSenha().trim().length() < 4)
 			throw new NegocioException("Senha com limite mínimo de 4 caracteres!");
-		if (u.getSenha().length() > 15)
+		if (u.getSenha().trim().length() > 15)
 			throw new NegocioException("Senha com limite máximo de 15 caracteres!");
-		if (u.getSexo().length() > 1)
+		if (u.getSexo().trim().length() > 1)
 			throw new NegocioException("Sexo deve ser preenchido somente com M = Masculino ou F = Feminino!");
 	}
 
@@ -134,6 +134,19 @@ public class RNUsuario{
 			throw new NegocioException("O E-mail " + u.getEmail() + " e Inválido");
 
 		}*/
+		
+		if (u.getEmail() != null && u.getEmail().length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(u.getEmail());
+            if (!matcher.matches()) {
+            	throw new NegocioException("O E-mail " + u.getEmail() + " e inválido!");
+            }
+            
+        }else{
+        	throw new NegocioException("O E-mail " + u.getEmail() + " e inválido!");
+        }
+		
 	}
 
 	public void validarDuplicidadeEmail(Usuario u) throws NegocioException, DadosException {
@@ -159,10 +172,14 @@ public class RNUsuario{
 		}
 	}
 	
-	public void validaPreenchimentoUsuarioSenha(Usuario u) throws NegocioException, DadosException {
-		if ((u.getLogin().isEmpty()) == true || u.getLogin() == null)
+	public void validaPreenchimentoUsuarioSenha(Usuario u) throws NegocioException {
+		if (u.getLogin() == null)
 			throw new NegocioException("Login precisa ser preenchido!");
-		if (u.getSenha().isEmpty() == true || u.getSenha() == null)
+		if (u.getLogin().trim().isEmpty() == true)
+			throw new NegocioException("Login precisa ser preenchido!");
+		if (u.getSenha() == null)
+			throw new NegocioException("Senha precisa ser preenchida!");
+		if (u.getSenha().trim().isEmpty() == true)
 			throw new NegocioException("Senha precisa ser preenchida!");
 	}
 

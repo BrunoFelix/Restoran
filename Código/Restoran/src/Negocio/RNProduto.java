@@ -68,12 +68,16 @@ public class RNProduto {
 	}
 
 	public void validarCampos(Produto p ) throws NegocioException {
-		if ((p.getNome().isEmpty() == true) || (p.getNome())== "")
-			throw new NegocioException("Nome Invalido");
-		if(p.getPrecoVenda() == 0)
-			throw new NegocioException("Preço de venda Invalido");
-		if(p.getPrecoCusto() == 0)
-			throw new NegocioException("Preço de custo Invalido");
+		if (p.getNome() == null)
+			throw new NegocioException("Nome inválido!");
+		if (p.getNome().trim().isEmpty() == true || p.getNome().trim().length() < 2 || p.getNome().trim().length() > 50)
+			throw new NegocioException("Nome inválido!");
+		if(p.getPrecoVenda() <= 0)
+			throw new NegocioException("Preço de venda inválido!");
+		if(p.getPrecoCusto() <= 0)
+			throw new NegocioException("Preço de custo inválido");
+		if(p.getQuantidade() <= 0)
+			throw new NegocioException("Quantidade inválida!");
 			
 	}
 

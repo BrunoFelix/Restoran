@@ -1,4 +1,4 @@
-package Testes;
+package TestesUnitario;
 
 public class PedidoTest {
 

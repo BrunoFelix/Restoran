@@ -62,12 +62,18 @@ public class RNItemComposicaoProduto {
 	}
 
 	public void validarCampos(ItemComposicaoProduto i ) throws NegocioException {
-		if ((i.getNome().isEmpty() == true) || (i.getNome()).length() < 1)
-			throw new NegocioException("Nome Invalido");
-		if ((i.getUnidadeMedida().isEmpty() == true))
-			throw new NegocioException("Unidade de medida Inválida");
-		if ((i.getPrecoCusto() == 0))
-			throw new NegocioException("Insira o Preço de Custo");
+		if (i.getNome() == null)
+			throw new NegocioException("Nome inválido!");
+		if (i.getNome().trim().isEmpty() == true || i.getNome().trim().length() < 2 || i.getNome().trim().length() > 50)
+			throw new NegocioException("Nome inválido!");
+		if (i.getQuantidade() <= 0)
+			throw new NegocioException("Quantidade inválida!");
+		if (i.getUnidadeMedida() == null)
+			throw new NegocioException("Unidade de medida inválido!");
+		if (i.getUnidadeMedida().trim().isEmpty() == true || i.getUnidadeMedida().trim().length() < 2 || i.getUnidadeMedida().trim().length() > 50)
+			throw new NegocioException("Unidade de medida inválido!");
+		if ((i.getPrecoCusto() <= 0))
+			throw new NegocioException("Preço de custo inválido!");
 	}
 
 	public void validarDuplicidade(ItemComposicaoProduto i ) throws NegocioException, DadosException {

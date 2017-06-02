@@ -61,17 +61,20 @@ public class RNMesa {
 	 */
 
 	public void verificarObjeto(Mesa m) throws NegocioException {
-
 		if (m == null)
 			throw new NegocioException("Objeto Mesa nao preenchido");
 	}
 
 	public void validarCampos(Mesa m) throws NegocioException {
-		if (m.getNumeroMesa() == 0)
+		if (m.getNumeroMesa() <= 0)
 			throw new NegocioException("Numero de mesa Invalido");
-		if (m.getCapacidadeMesa() == 0)
+		if (m.getCapacidadeMesa() <= 0)
 			throw new NegocioException("Capacidade da mesa nao informada");
-		if ((m.getStatus().isEmpty() == true) || (m.getStatus() == ""))
+		if (m.getStatus() == null)
+			throw new NegocioException("Status da mesa Invalido");
+		if (m.getStatus().trim().isEmpty() == true)
+			throw new NegocioException("Status da mesa Invalido");
+		if (m.getStatus().length() > 10 || m.getStatus().length() < 4)
 			throw new NegocioException("Status da mesa Invalido");
 	}
 
