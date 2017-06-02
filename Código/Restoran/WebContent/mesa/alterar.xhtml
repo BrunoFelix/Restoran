@@ -8,25 +8,35 @@
    
   <h:head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Alterar Usuários</title>
-  </h:head>
-  <h:body>
+            <title>Alterar Mesas</title>
  	
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
  	
- 	<h:form class="form-alterar-usuario">
- 		<h:panelGrid columns="2" cellpadding="5">
- 			<label>Id:</label>
-	        <h:inputText id="id" label="id" value="#{MesaBean.mesaAlterar.id}"/>
- 			<label>Número:</label>
-	        <h:inputText id="nome" label="nome" value="#{MesaBean.mesaAlterar.numeroMesa}"/>
-	        <label>Capacidade:</label>
-	        <h:inputText id="capacidade" label="capacidade" value="#{MesaBean.mesaAlterar.capacidadeMesa}"/>
-	        <h:commandButton id="reset-button" type="reset" value="Limpar"/>
-			<h:commandButton id="insert-button" value="Salvar" action="#{MesaBean.alterar}"/>
-		</h:panelGrid>
+ 	<h:form class="form-alterar-mesa">
+ 	<p:panelGrid columns="2">
+
+            <p:outputLabel value="ID: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="id" value="#{MesaBean.mesaAlterar.id}" />
+            </p:panelGrid>
+
+            <p:outputLabel value="Numero Mesa: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="numeroMesa" value="#{MesaBean.mesaAlterar.numeroMesa}"/>
+            </p:panelGrid>
+            
+             <p:outputLabel value="Capacidade Mesa: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="capacidadeMesa" value="#{MesaBean.mesaAlterar.capacidadeMesa}"/>
+            </p:panelGrid>
+                   <p:commandButton id="insert-button" value="Limpar" icon="ui-icon-trash" type="reset">
+                  </p:commandButton>
+                     <p:commandButton  id="reset-button" value="Salvar" icon="ui-icon-disk" action="#{MesaBean.mesaAlterar.numeroMesa}">
+                  </p:commandButton>
+            </p:panelGrid>
 	</h:form>
   </h:body>
   </html>
+  
