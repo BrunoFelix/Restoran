@@ -15,22 +15,43 @@
  	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
- 	
- 	<h:form class="form-alterar-produto">
- 		<h:panelGrid columns="2" cellpadding="5">
- 			<label>Id:</label>
-	        <h:inputText id="id" label="id" value="#{ProdutoBean.produtoAlterar.id}"/>
- 			<label>Nome:</label>
-	        <h:inputText id="nome" label="nome" value="#{ProdutoBean.produtoAlterar.nome}"/>
-	        <label>Quantidade:</label>
-	        <h:inputText id="quantidade" label="quantidade" value="#{ProdutoBean.produtoAlterar.quantidade}"/>
-	        <label>Preço de Venda:</label>
-	        <h:inputText id="precoVenda" label="precoVenda" value="#{ProdutoBean.produtoAlterar.precoVenda}"/>
-	        <label>Preço de Custo:</label>
-	        <h:inputText id="PrecoCusto" label="precoCusto" value="#{ProdutoBean.produtoAlterar.precoCusto}"/> 
-	        <h:commandButton id="reset-button" type="reset" value="Limpar"/>
-			<h:commandButton id="insert-button" value="Salvar" action="#{ProdutoBean.alterar}"/>
-		</h:panelGrid>
+		<h:form class="form-cadastro-produto">
+		<p:panelGrid columns="2">
+
+            <p:outputLabel value="Nome: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="nome" value="#{ProdutoBean.produtoAlterar.nome}" />
+            </p:panelGrid>
+
+            <p:outputLabel value="Quantidade" />
+            <p:panelGrid columns="1">
+                <p:inputText id="quantidade" value="#{ProdutoBean.produtoAlterar.quantidade}"/>
+            </p:panelGrid>
+            
+            
+            <p:outputLabel value="Preço de venda: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="precoVenda" value="#{ProdutoBean.produtoAlterar.precoVenda}" />
+            </p:panelGrid>
+            
+            <p:outputLabel value="Preço de Custo: " />
+            <p:panelGrid columns="1">
+                <p:inputText id="precoCusto" value="#{ProdutoBean.produtoAlterar.precoCusto}" />
+            </p:panelGrid>
+            
+                <p:outputLabel value="Categoria: " />
+            <p:panelGrid columns="1">
+                <p:selectOneMenu effect="fade">
+				<f:selectItems value="#{ProdutoBean.listarCategoria}"
+					var="categoria" itemLabel="#{categoria.nome}"
+					itemValue="#{categoria.id}" />
+			</p:selectOneMenu>
+            </p:panelGrid>
+                  <p:commandButton id="insert-button" value="Limpar" icon="ui-icon-trash" type="reset">
+                  </p:commandButton>
+                     <p:commandButton  id="reset-button" value="Salvar" icon="ui-icon-disk" action="#{ProdutoBean.alterar}">
+                  </p:commandButton>
+            </p:panelGrid>
 	</h:form>
   </h:body>
   </html>

@@ -23,7 +23,7 @@
  	<div>
  	
 	 	<p:dataTable var="produto" value="#{ProdutoBean.listarProduto}">
-			<p:column headerText="id">
+			<p:column headerText="Id">
 				<h:outputText value="#{produto.id}" />
 			</p:column>
 			<p:column headerText="Nome">
@@ -40,6 +40,9 @@
 			</p:column>
 			<p:column headerText="Itens de Composição">
 				<h:outputText value="" />
+			</p:column>
+			<p:column headerText="Categoria">
+				<h:outputText value="#{produto.id}" />
 			</p:column>
 			<p:column headerText="Ações">
 				<h:form>
