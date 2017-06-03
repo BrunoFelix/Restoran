@@ -1,44 +1,54 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Restoran</title>
- 	
- 	<div id="topo">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Alterar Mesa</title>
+</h:head>
+<h:body>
+
+	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
- 	
- 	<h1><h:outputText id="textotopo" value="Alterar Mesas"/></h1>
- 	
- 	<h:form class="form-alterar-mesa">
- 	<p:panelGrid columns="2">
 
-            <p:outputLabel value="ID: " />
-            <p:panelGrid columns="1">
-                <p:inputText id="id" value="#{MesaBean.mesaAlterar.id}" />
-            </p:panelGrid>
+	<h1>
+		<h:outputText id="textotopo" value="Alterar Mesa" />
+	</h1>
 
-            <p:outputLabel value="Numero Mesa: " />
-            <p:panelGrid columns="1">
-                <p:inputText id="numeroMesa" value="#{MesaBean.mesaAlterar.numeroMesa}"/>
-            </p:panelGrid>
-            
-             <p:outputLabel value="Capacidade Mesa: " />
-            <p:panelGrid columns="1">
-                <p:inputText id="capacidadeMesa" value="#{MesaBean.mesaAlterar.capacidadeMesa}"/>
-            </p:panelGrid>
-                   <p:commandButton id="insert-button" value="Limpar" icon="ui-icon-trash" type="reset">
-                  </p:commandButton>
-                     <p:commandButton  id="reset-button" value="Salvar" icon="ui-icon-disk" action="#{MesaBean.mesaAlterar.numeroMesa}">
-                  </p:commandButton>
-            </p:panelGrid>
+	<h:form class="form-alterar-mesa">
+		<p:panelGrid columns="2" cellpadding="5">
+
+			<p:outputLabel value="ID:" />
+			<p:panelGrid columns="1">
+				<p:outputLabel id="id" value="#{MesaBean.mesaAlterar.id}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Numero Mesa:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="numeroMesa"
+					value="#{MesaBean.mesaAlterar.numeroMesa}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Capacidade Mesa:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="capacidadeMesa"
+					value="#{MesaBean.mesaAlterar.capacidadeMesa}" />
+			</p:panelGrid>
+
+			
+			<p:commandButton id="insert-button" value="Limpar"
+				icon="ui-icon-trash" type="reset">
+			</p:commandButton>
+			<p:commandButton id="reset-button" value="Salvar" icon="ui-icon-disk"
+				action="#{MesaBean.alterar}">
+			</p:commandButton>
+		</p:panelGrid>
 	</h:form>
-  </h:body>
-  </html>
-  
+</h:body>
+</html>

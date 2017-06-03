@@ -1,44 +1,76 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Restoran</title>
-  </h:head>
-  <h:body>
- 	
- 	<div id="topo">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Cadastrar Usuário</title>
+</h:head>
+<h:body>
+
+	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
- 	
- 	<h1><h:outputText id="textotopo" value="Cadastrar Usuário"/></h1>
- 	
- 	<h:form class="form-cadastro-usuario">
- 		<h:panelGrid columns="2" cellpadding="5">
- 			<label>Nome:</label>
-	        <h:inputText id="nome" label="nome" value="#{UsuarioBean.nome}"/>
-	        <label>E-mail:</label>
-	        <h:inputText id="email" label="email" value="#{UsuarioBean.email}"/>
-	        <label>CPF:</label>
-	        <h:inputText id="cpf" label="cpf" value="#{UsuarioBean.cpf}"/>
-	        <label>Sexo:</label>
-	        <h:inputText id="sexo" label="sexo" value="#{UsuarioBean.sexo}"/> 
-	        <label>Tipo:</label>
-	        <h:inputText id="tipo" label="tipo" value="#{UsuarioBean.tipo}"/> 
-	        <label>Telefone:</label>
-	        <h:inputText id="telefone" label="telefone" value="#{UsuarioBean.telefone}"/> 
-	        <label>Login:</label>
-	        <h:inputText id="login" label="login" value="#{UsuarioBean.login}"/> 
-	        <label>Senha:</label>
-	        <h:inputSecret id="senha" label="Senha" value="#{UsuarioBean.senha}"/>
-	        <h:commandButton id="reset-button" type="reset" value="Limpar"/>
-			<h:commandButton id="insert-button" value="Salvar" action="#{UsuarioBean.cadastrar}"/>
-		</h:panelGrid>
+
+	<h1>
+		<h:outputText id="textotopo" value="Cadastrar Usuário" />
+	</h1>
+
+	<h:form class="form-cadastro-usuario">
+		<p:panelGrid columns="2" cellpadding="5">
+
+			<p:outputLabel value="Nome:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="nome" value="#{UsuarioBean.nome}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Email:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="email" value="#{UsuarioBean.email}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="CPF:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="cpf" value="#{UsuarioBean.cpf}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Sexo:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="sexo" value="#{UsuarioBean.sexo}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Tipo:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="tipo" value="#{UsuarioBean.tipo}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Telefone:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="telefone" value="#{UsuarioBean.telefone}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Login:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="login" value="#{UsuarioBean.login}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Senha:" />
+			<p:panelGrid columns="1">
+				<p:inputText id="senha" value="#{UsuarioBean.senha}" />
+			</p:panelGrid>
+
+
+			<p:commandButton id="insert-button" value="Limpar"
+				icon="ui-icon-trash" type="reset">
+			</p:commandButton>
+			<p:commandButton id="reset-button" value="Cadastrar"
+				icon="ui-icon-disk" action="#{UsuarioBean.cadastrar}">
+			</p:commandButton>
+		</p:panelGrid>
 	</h:form>
-  </h:body>
-  </html>
+</h:body>
+</html>

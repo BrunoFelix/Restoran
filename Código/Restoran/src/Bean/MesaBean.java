@@ -84,7 +84,7 @@ public class MesaBean {
 	public String index(){
 		return "listar";
 	}
-	
+
 	public String cadastrar() {
 		Mesa mesainserir = new Mesa();
 		mesainserir.setNumeroMesa(numeroMesa);
@@ -105,9 +105,10 @@ public class MesaBean {
 		mesaAlterar = fachada.MesaBuscarPorId(id);
         return "alterar";
     }
-	
-	public String alterar() {
 
+	public String alterar() {
+		mesaAlterar.setStatus("Disponível");
+		
 		try {
 			fachada.MesaAlterar(mesaAlterar);
 			return "listar";

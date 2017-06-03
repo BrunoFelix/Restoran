@@ -43,7 +43,7 @@ public abstract class DAOGenerico<Entity> {
 		
 		return objeto;
 	}
-	
+
 	public final List<Entity> getAll() {
 		List<Entity> instance = null;
 		EntityManager em = getEntityManagerFactory().createEntityManager();
@@ -75,7 +75,7 @@ public abstract class DAOGenerico<Entity> {
 			tx.rollback();
 		}
 	}
-
+	
 	/**
 	 * Salva o objeto atual na base de dados.
 	 * 

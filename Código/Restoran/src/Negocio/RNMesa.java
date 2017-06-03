@@ -37,7 +37,7 @@ public class RNMesa {
 	public void alterar(Mesa m) throws ControladorException, NegocioException, DadosException {
 
 		validarCampos(m);
-		validarDuplicidadeNumeroMesa(m);
+		//validarDuplicidadeNumeroMesa(m);
 		mesaDAO.update(m);
 
 	}

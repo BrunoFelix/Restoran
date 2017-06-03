@@ -29,6 +29,9 @@ public class Produto {
 	@Column(nullable = false)
 	private int quantidade;
 	
+	@Column
+	private String categoriap;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="pedido_produto", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_pedido"))
 	private Collection<Pedido> pedidos;
@@ -119,6 +122,16 @@ public class Produto {
 
 	public void setCategoria(Collection<Categoria> categoria) {
 		this.categoria = categoria;
+	}
+
+
+	public String getCategoriap() {
+		return categoriap;
+	}
+
+
+	public void setCategoriap(String categoriap) {
+		this.categoriap = categoriap;
 	}
 
 

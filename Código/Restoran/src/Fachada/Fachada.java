@@ -201,7 +201,7 @@ public class Fachada {
 	  public void MesaAlterar(Mesa m) throws NegocioException, DadosException, ControladorException{
 		  rnMesa.alterar(m);
 	  }
-	  
+	 
 	  public void MesaExcluir(Mesa m) throws NegocioException, DadosException, ControladorException{
 		  rnMesa.excluir(m);
 	  }

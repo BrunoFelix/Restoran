@@ -31,7 +31,7 @@ public class UsuarioBean {
 	private Usuario usuarioAlterar;
 
 	private List<Usuario> listarUsuario = new ArrayList<Usuario>();
-
+	
 	private String login;
 	private String senha;
 
@@ -183,7 +183,7 @@ public class UsuarioBean {
 			return "login";
 		}
 	}
-
+	
 	public String getUsuarioNormal() {
 		if (usuario != null) {
 			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
@@ -198,7 +198,7 @@ public class UsuarioBean {
     }
 	
 	public String alterar() {
-
+		
 		try {
 			fachada.UsuarioAlterar(usuarioAlterar);
 			return "listar";
@@ -208,5 +208,4 @@ public class UsuarioBean {
 		}
 		return null;
     }
-
 }

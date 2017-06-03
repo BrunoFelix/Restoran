@@ -38,7 +38,8 @@ public class ProdutoBean {
 	private double precoVenda;
 	private double precoCusto;
 	private int quantidade;
-	
+	private String categoria;
+
 	
 	
 	public Produto getProdutoAlterar() {
@@ -109,6 +110,14 @@ public class ProdutoBean {
 		this.listarCategoria = listarCategoria;
 	}
 
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
 	public List<ItemComposicaoProduto> getListarItemComposicaoProduto() {
 		return listarItemComposicaoProduto;
 	}
@@ -127,6 +136,7 @@ public class ProdutoBean {
 		produtoinserir.setQuantidade(quantidade);
 		produtoinserir.setPrecoVenda(precoVenda);
 		produtoinserir.setPrecoCusto(precoCusto);
+		produtoinserir.setCategoriap(categoria);
 		/*List<ItemComposicaoProduto> itensComposicao = new ArrayList<ItemComposicaoProduto>();
 		produtoinserir.setItensComposicao(itensComposicao);
 		List<Pedido> pedidos = new ArrayList<Pedido>();

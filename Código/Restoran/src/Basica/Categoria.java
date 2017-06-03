@@ -28,7 +28,7 @@ public class Categoria {
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id_categoria) {
 		this.id = id_categoria;
 	}

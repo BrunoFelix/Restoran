@@ -26,7 +26,7 @@ public class ItemComposicaoProdutoBean {
 	private ItemComposicaoProduto itemComposicaoProdutoAlterar;
 
 	private List<ItemComposicaoProduto> listarItemComposicaoProduto = new ArrayList<ItemComposicaoProduto>();
-	
+
 	private int id;
 	private String nome;
 	private int quantidade;

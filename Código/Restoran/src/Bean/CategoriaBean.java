@@ -27,7 +27,7 @@ public class CategoriaBean {
 	private Categoria categoriaAlterar;
 
 	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
-	
+
 	private int id;
 	private String nome;
 	

@@ -1,42 +1,48 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Restoran</title>
-  </h:head>
-  <h:body>
- 	
- 	<div id="topo">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Cadastrar Mesa</title>
+</h:head>
+<h:body>
+
+	<div id="topo">
 		<ui:include src="../menu.xhtml" />
 	</div>
- 	
- 	<h1><h:outputText id="textotopo" value="Cadastrar Mesas"/></h1>
- 	
- 	<h:form class="form-cadastro-mesa">
- 	<p:panelGrid columns="2">
 
-            <p:outputLabel value="Numero Mesa: " />
-            <p:panelGrid columns="1">
-                <p:inputText id="numeroMesa" value="#{MesaBean.numeroMesa}" />
-            </p:panelGrid>
+	<h1>
+		<h:outputText id="textotopo" value="Cadastrar Mesa" />
+	</h1>
 
-            <p:outputLabel value="Capacidade: " />
-            <p:panelGrid columns="1">
-                <p:inputText id="capacidade" value="#{MesaBean.capacidadeMesa}"/>
-            </p:panelGrid>
-                  <p:commandButton id="insert-button" value="Limpar" icon="ui-icon-trash" type="reset">
-                  </p:commandButton>
-                     <p:commandButton  id="reset-button" value="Cadastrar" icon="ui-icon-disk" action="#{MesaBean.cadastrar}">
-                  </p:commandButton>
-            </p:panelGrid>
+	<h:form class="form-cadastro-mesa">
+		<p:panelGrid columns="2">
+
+			<p:outputLabel value="Numero Mesa: " />
+			<p:panelGrid columns="1">
+				<p:inputText id="numeroMesa" value="#{MesaBean.numeroMesa}" />
+			</p:panelGrid>
+
+			<p:outputLabel value="Capacidade: " />
+			<p:panelGrid columns="1">
+				<p:inputText id="capacidade" value="#{MesaBean.capacidadeMesa}" />
+			</p:panelGrid>
+			
+			
+			<p:commandButton id="insert-button" value="Limpar"
+				icon="ui-icon-trash" type="reset">
+			</p:commandButton>
+			<p:commandButton id="reset-button" value="Cadastrar"
+				icon="ui-icon-disk" action="#{MesaBean.cadastrar}">
+			</p:commandButton>
+		</p:panelGrid>
 	</h:form>
-  </h:body>
-  </html>
-  
-   
+</h:body>
+</html>
+
