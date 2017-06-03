@@ -16,33 +16,62 @@ public class ItemComposicaoProdutoDAO extends DAOGenerico<ItemComposicaoProduto>
 		super(emf);
 	}
 
-	public List<ItemComposicaoProduto> PesquisarPorNome(String nome) throws DadosException{
+	@Override
+	public List<ItemComposicaoProduto> PesquisarItemComposicaoProdutoObjeto(ItemComposicaoProduto icp) throws DadosException{
 		try{
-			String queryString = "SELECT ICP FROM ITEMCOMPOSICAOPRODUTO ICP WHERE ICP.nome =(:nome)";
+			String queryString = "select object(icp) from ItemComposicaoProduto as icp where icp.id > 0";
 			
+			if (icp.getNome() != null && icp.getNome().trim().equals("") == false)
+			{
+				queryString += " and icp.nome =(:nome)";
+			}
+			
+			if (icp.getQuantidade() > 0)
+			{
+				queryString += " and icp.quantidade =(:quantidade)";
+			}
+			
+			if (icp.getPrecoCusto() > 0)
+			{
+				queryString += " and icp.precoCusto =(:precoCusto)";
+			}
+			
+			if (icp.getUnidadeMedida() != null && icp.getUnidadeMedida().trim().equals("") == false)
+			{
+				queryString += " and icp.unidadeMedida =(:unidadeMedida)";
+			}
+		
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
-			query.setParameter("nome", nome);
-		    return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}
+			
+			if (icp.getNome() != null && icp.getNome().trim().equals("") == false)
+			{
+				query.setParameter("nome", icp.getNome());
+			}
+			
+			if (icp.getQuantidade() > 0)
+			{
+				query.setParameter("quantidade", icp.getQuantidade());
+			}
+			
+			if (icp.getPrecoCusto() > 0)
+			{
+				query.setParameter("precoCusto", icp.getPrecoCusto());
+			}
+			
+			if (icp.getUnidadeMedida() != null && icp.getUnidadeMedida().trim().equals("") == false)
+			{
+				query.setParameter("unidadeMedida", icp.getUnidadeMedida());
+			}
 	
-	public List<ItemComposicaoProduto> PesquisarPorQuantidade(int quantidade) throws DadosException{
-		try{
-			String queryString = "SELECT ICP FROM ITEMCOMPOSICAOPRODUTO ICP WHERE ICP.quantidade =(:quantidade)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("quantidade", quantidade);
 		    return query.getResultList();
+		    
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
 	}
+
 	
 	
 }

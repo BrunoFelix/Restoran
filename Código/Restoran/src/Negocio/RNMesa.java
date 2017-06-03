@@ -86,7 +86,9 @@ public class RNMesa {
 	public void validarDuplicidadeNumeroMesa(Mesa m) throws NegocioException, DadosException {
 
 		try {
-			List<Mesa> mesaduplicidade = mesaDAO.PesquisarMesaObjeto(m);
+			Mesa mesa = new Mesa();
+			mesa.setNumeroMesa(m.getNumeroMesa());
+			List<Mesa> mesaduplicidade = mesaDAO.PesquisarMesaObjeto(mesa);
 			if (mesaduplicidade.size() > 0) {
 				throw new NegocioException("Mesa com numero " + m.getNumeroMesa() + " ja existe");
 			}

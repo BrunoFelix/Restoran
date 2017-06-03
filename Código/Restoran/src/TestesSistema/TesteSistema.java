@@ -4,7 +4,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import TestesIntegracao.CategoriaTestIntegracao;
+import TestesIntegracao.ItemComposicaoProdutoTestIntegracao;
 import TestesIntegracao.MesaTestIntegracao;
+import TestesIntegracao.ProdutoTestIntegracao;
 import TestesIntegracao.UsuarioTestIntegracao;
 import TestesUnitario.CategoriaTest;
 import TestesUnitario.ItemComposicaoProdutoTest;
@@ -22,7 +24,9 @@ import TestesUnitario.UsuarioTest;
 	ProdutoTest.class,
 	UsuarioTestIntegracao.class,
 	CategoriaTestIntegracao.class,
-	MesaTestIntegracao.class
+	MesaTestIntegracao.class,
+	ItemComposicaoProdutoTestIntegracao.class,
+	ProdutoTestIntegracao.class
 })
 public class TesteSistema {
 }

@@ -78,7 +78,9 @@ public class RNCategoria {
 	public void validarDuplicidadeCategoria(Categoria c) throws NegocioException, DadosException {
 
 		try {
-			List<Categoria> listaduplicidade = categoriaDAO.PesquisarCategoriaObjeto(c);
+			Categoria categoria = new Categoria();
+			categoria.setNome(c.getNome());
+			List<Categoria> listaduplicidade = categoriaDAO.PesquisarCategoriaObjeto(categoria);
 			if (listaduplicidade.size() > 0) {
 				throw new NegocioException("Categoria já existe");
 			}
@@ -91,7 +93,9 @@ public class RNCategoria {
 	public void validaExistencia(Categoria c) throws NegocioException, DadosException {
 
 		try {
-			List<Categoria> listaexistencia = categoriaDAO.PesquisarCategoriaObjeto(c);
+			Categoria categoria = new Categoria();
+			categoria.setNome(c.getNome());
+			List<Categoria> listaexistencia = categoriaDAO.PesquisarCategoriaObjeto(categoria);
 			if (listaexistencia.size() <= 0) {
 				throw new NegocioException("Categoria que deseja excluir não existe");
 			}

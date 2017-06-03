@@ -14,33 +14,62 @@ public class ProdutoDAO extends Dados.Geral.DAOGenerico<Produto> implements IPro
 	public ProdutoDAO(EntityManagerFactory emf) {
 		super(emf);
 	}
-	
-	public List<Produto> PesquisarPorNome(String nome) throws DadosException{
+
+	@Override
+	public List<Produto> PesquisarProdutoObjeto(Produto p) throws DadosException {
 		try{
-			String queryString = "SELECT P FROM PRODUTO P WHERE P.nome =(:nome)";
+			String queryString = "select object(p) from Produto as p where p.id > 0";
+			
+			if (p.getNome() != null && p.getNome().trim().equals("") == false)
+			{
+				queryString += " and p.nome =(:nome)";
+			}
+			
+			if (p.getQuantidade() > 0)
+			{
+				queryString += " and p.quantidade =(:quantidade)";
+			}
+			
+			if (p.getPrecoVenda() > 0)
+			{
+				queryString += " and p.precoVenda =(:precoVenda)";
+			}
+			
+			if (p.getPrecoCusto() > 0)
+			{
+				queryString += " and p.precoCusto =(:precoCusto)";
+			}
 			
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
-			query.setParameter("nome", nome);
-			return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}	
-	
-	public List<Produto> PesquisarPorQuantidade(int quantidade) throws DadosException{
-		try{
-			String queryString = "SELECT P FROM PRODUTO P WHERE P.quantidade =(:quantidade)";
 			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("quantidade", quantidade);
-			return query.getResultList();
+			if (p.getNome() != null && p.getNome().trim().equals("") == false)
+			{
+				query.setParameter("nome", p.getNome());
+			}
+			
+			if (p.getQuantidade() > 0)
+			{
+				query.setParameter("quantidade", p.getQuantidade());
+			}
+			
+			if (p.getPrecoVenda() > 0)
+			{
+				query.setParameter("precoVenda", p.getPrecoVenda());
+			}
+			
+			if (p.getPrecoCusto() > 0)
+			{
+				query.setParameter("precoCusto", p.getPrecoCusto());
+			}
+	
+		    return query.getResultList();
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
 	}
+	
+
 
 }

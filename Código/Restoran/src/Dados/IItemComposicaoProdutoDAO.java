@@ -7,7 +7,6 @@ import Utils.DadosException;
 
 public interface IItemComposicaoProdutoDAO {
 	
-	public List<ItemComposicaoProduto> PesquisarPorNome(String nome) throws DadosException;
-	public List<ItemComposicaoProduto> PesquisarPorQuantidade(int quantidade) throws DadosException;
+	public List<ItemComposicaoProduto> PesquisarItemComposicaoProdutoObjeto(ItemComposicaoProduto icp) throws DadosException;
 	
 }

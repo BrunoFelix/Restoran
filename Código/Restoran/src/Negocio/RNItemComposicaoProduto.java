@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
 import Basica.Usuario;
 import Dados.ItemComposicaoProdutoDAO;
@@ -49,6 +50,10 @@ public class RNItemComposicaoProduto {
 	public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
 		return itemComposicaoProdutoDAO.searchByKey(id);
 	}
+	
+	public List<ItemComposicaoProduto> PesquisarItemComposicaoProdutoObjeto(ItemComposicaoProduto icp) throws DadosException{
+		return itemComposicaoProdutoDAO.PesquisarItemComposicaoProdutoObjeto(icp);
+	}
 	   
 	/*
 	 * ################################## 
@@ -79,7 +84,10 @@ public class RNItemComposicaoProduto {
 	public void validarDuplicidade(ItemComposicaoProduto i ) throws NegocioException, DadosException {
 
 		try {
-			if (itemComposicaoProdutoDAO.PesquisarPorNome(i.getNome()) != null) {
+			ItemComposicaoProduto itemcomposicaoproduto = new ItemComposicaoProduto();
+			itemcomposicaoproduto.setNome(i.getNome());
+			List<ItemComposicaoProduto> listaduplicidade = itemComposicaoProdutoDAO.PesquisarItemComposicaoProdutoObjeto(itemcomposicaoproduto);
+			if (listaduplicidade.size() > 0) {
 				throw new NegocioException("Item de Composição do Produto já existe");
 			}
 		} catch (DadosException e) {
@@ -89,7 +97,10 @@ public class RNItemComposicaoProduto {
 	public void validaExistencia(ItemComposicaoProduto i ) throws NegocioException, DadosException {
 
 		try {
-			if (itemComposicaoProdutoDAO.PesquisarPorNome(i.getNome()) == null) {
+			ItemComposicaoProduto itemcomposicaoproduto = new ItemComposicaoProduto();
+			itemcomposicaoproduto.setNome(i.getNome());
+			List<ItemComposicaoProduto> listaduplicidade = itemComposicaoProdutoDAO.PesquisarItemComposicaoProdutoObjeto(itemcomposicaoproduto);
+			if (listaduplicidade.size() <= 0) {
 				throw new NegocioException("Item de Composição do Produto que deseja excluir não existe");
 			}
 		} catch (DadosException e) {

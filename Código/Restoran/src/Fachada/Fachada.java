@@ -126,6 +126,10 @@ public class Fachada {
 	  public Produto ProdutoBuscarPorId(Integer id){
 			return rnProduto.ProdutoBuscarPorId(id);
 	  }
+	  
+	  public List<Produto> ProdutoPesquisarPorObjeto(Produto p) throws DadosException{
+			return rnProduto.PesquisarProdutoObjeto(p);
+		}
 	/*
 	 * ################################## 
 	 * 	 ITEM DE COMPOSICAO DO PRODUTO
@@ -150,6 +154,10 @@ public class Fachada {
 	  
 	  public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
 			return rnItemComposicaoProduto.ItemComposicaoProdutoBuscarPorId(id);
+	  }
+	  
+	  public List<ItemComposicaoProduto> CategoriaItemComposicaoProdutoPorObjeto(ItemComposicaoProduto icp) throws DadosException{
+			return rnItemComposicaoProduto.PesquisarItemComposicaoProdutoObjeto(icp);
 	  }
 	  
 	  /*

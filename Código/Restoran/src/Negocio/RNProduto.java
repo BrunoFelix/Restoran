@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import Basica.Categoria;
 import Basica.Produto;
 import Basica.Usuario;
 import Dados.ProdutoDAO;
@@ -28,33 +29,28 @@ public class RNProduto {
 	 */
 
 	public void salvar(Produto p) throws NegocioException, DadosException {
-		//validarCampos(p);
+		validarCampos(p);
+		validarDuplicidade(p);
 		produtoDAO.insert(p);
-
 	}
-
 	public void alterar(Produto p ) throws ControladorException, NegocioException, DadosException {
 		validarCampos(p);
 		produtoDAO.update(p);
 	}
-
 	public void excluir(Produto p ) throws ControladorException, NegocioException, DadosException {
 		validaExistencia(p);
 		produtoDAO.remove(p);
 	}
 	public List<Produto> listar(){
-	 return produtoDAO.getAll();
-   }
-	public List<Produto> PesquisarPorNome(String nome) throws DadosException{
-		
-		return produtoDAO.PesquisarPorNome(nome);
-	}
-	public List<Produto> PesquisarPorQuantidade(int quantidade) throws DadosException{
-		return produtoDAO.PesquisarPorQuantidade(quantidade);
+		return produtoDAO.getAll();
 	}
 	public Produto ProdutoBuscarPorId(Integer id){
 		return produtoDAO.searchByKey(id);
 	}
+	public List<Produto> PesquisarProdutoObjeto(Produto p) throws DadosException{
+		return produtoDAO.PesquisarProdutoObjeto(p);
+	}
+	
 		   
 	/*
 	 * ################################## 
@@ -84,7 +80,10 @@ public class RNProduto {
 	public void validarDuplicidade(Produto p ) throws NegocioException, DadosException {
 
 		try {
-			if (produtoDAO.PesquisarPorNome(p.getNome()) != null) {
+			Produto produto = new Produto();
+			produto.setNome(p.getNome());
+			List<Produto> listaduplicidade = produtoDAO.PesquisarProdutoObjeto(produto);
+			if (listaduplicidade.size() > 0) {
 				throw new NegocioException("Produto já existe");
 			}
 		} catch (DadosException e) {
@@ -94,7 +93,10 @@ public class RNProduto {
 	public void validaExistencia(Produto p ) throws NegocioException, DadosException {
 
 		try {
-			if (produtoDAO.PesquisarPorNome(p.getNome()) == null) {
+			Produto produto = new Produto();
+			produto.setNome(p.getNome());
+			List<Produto> listaduplicidade = produtoDAO.PesquisarProdutoObjeto(produto);
+			if (listaduplicidade.size() <= 0) {
 				throw new NegocioException("Produto que deseja excluir não existe");
 			}
 		} catch (DadosException e) {
