@@ -114,7 +114,8 @@ public class RNUsuario{
 	public void validarDuplicidadeLogin(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorLogin(u.getLogin()).size() > 0) {
+			List<Usuario> listalogin = usuarioDAO.PesquisarPorLogin(u.getLogin());
+			if (listalogin.size() > 0) {
 				throw new NegocioException("Login já existe");
 			}
 		} catch (DadosException e) {
@@ -152,7 +153,8 @@ public class RNUsuario{
 	public void validarDuplicidadeEmail(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorEmail(u.getEmail()).size() > 0) {
+			List<Usuario> listaemail = usuarioDAO.PesquisarPorEmail(u.getEmail());
+			if (listaemail.size() > 0) {
 				throw new NegocioException("Email já existe");
 			}
 		} catch (DadosException e) {
@@ -164,7 +166,8 @@ public class RNUsuario{
 	public void validaExistencia(Usuario u) throws NegocioException, DadosException {
 
 		try {
-			if (usuarioDAO.PesquisarPorLogin(u.getLogin()).size() <= 0) {
+			List<Usuario> listaexitencia = usuarioDAO.PesquisarPorLogin(u.getLogin());
+			if (listaexitencia.size() <= 0) {
 				throw new NegocioException("Usuario que deseja excluir não existe");
 			}
 		} catch (DadosException e) {

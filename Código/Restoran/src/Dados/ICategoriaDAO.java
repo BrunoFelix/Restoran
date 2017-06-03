@@ -7,5 +7,5 @@ import Utils.DadosException;
 
 public interface ICategoriaDAO {
 	
-	public List<Categoria> PesquisarPorNome(String nome) throws DadosException;
+	public List<Categoria> PesquisarCategoriaObjeto(Categoria c) throws DadosException;
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
+import Basica.Categoria;
 import Basica.Mesa;
 import Dados.MesaDAO;
 import Utils.ControladorException;
@@ -53,6 +54,10 @@ public class RNMesa {
 	public Mesa MesaBuscarPorId(Integer id){
 		return mesaDAO.searchByKey(id);
     }
+	
+	public List<Mesa> PesquisarMesaObjeto(Mesa m) throws DadosException{
+		return mesaDAO.PesquisarMesaObjeto(m);
+	}
 
 	/*
 	 * ##################################
@@ -81,7 +86,8 @@ public class RNMesa {
 	public void validarDuplicidadeNumeroMesa(Mesa m) throws NegocioException, DadosException {
 
 		try {
-			if (mesaDAO.PesquisarPorNumeroMesa(m.getNumeroMesa()).size() > 0) {
+			List<Mesa> mesaduplicidade = mesaDAO.PesquisarMesaObjeto(m);
+			if (mesaduplicidade.size() > 0) {
 				throw new NegocioException("Mesa com numero " + m.getNumeroMesa() + " ja existe");
 			}
 		} catch (DadosException e) {

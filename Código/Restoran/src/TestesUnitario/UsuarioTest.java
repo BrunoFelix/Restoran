@@ -400,68 +400,6 @@ public class UsuarioTest {
 		rnUsuario.verificarObjeto(usuario);
 	}
 
-	
-	@Ignore
-	@Test
-	public void TesteUsuarioInserir() throws NegocioException, DadosException, ControladorException{
-		Usuario usuario = new Usuario();
-		usuario.setNome("Bruno felix");
-		usuario.setCpf("41459738799");
-		usuario.setEmail("bruno@hotmail.com");
-		usuario.setLogin("bruno");
-		usuario.setSenha("Bruno");
-		usuario.setTelefone("81999878578");
-		usuario.setTipo("Garçom");
-		usuario.setSexo("M");
-		
-		fachada.UsuarioInserir(usuario);
-		
-		List<Usuario> listausuario = fachada.UsuarioPesquisarPorObjeto(usuario);
-		
-	    assertNotNull(listausuario);
-
-	    assertNotEquals(1, listausuario.size());
-	    
-	    TesteUsuarioExcluir();
-	    
-	}	
-	
-	@Ignore
-	@Test
-	public void TesteUsuarioExcluir() throws NegocioException, DadosException, ControladorException{
-		Usuario usuario = new Usuario();
-		usuario.setNome("Bruno felix");
-		
-		fachada.UsuarioExcluir(usuario);
-		
-		List<Usuario> listausuario = fachada.UsuarioPesquisarPorObjeto(usuario);
-
-	    assertEquals(0, listausuario.size());
-	}
-
-	@Ignore
-	@Test
-	public void TesteUsuarioAlterar() throws NegocioException, DadosException, ControladorException{
-		Usuario usuario = new Usuario();
-		usuario.setNome("Bruno felix");
-		
-		List<Usuario> listausuario = fachada.UsuarioPesquisarPorObjeto(usuario);
-		
-		usuario = listausuario.get(0);
-		
-		usuario.setNome("Bruno Barbosa");
-		
-		fachada.UsuarioAlterar(usuario);
-		
-		Usuario pesquisar = new Usuario();
-		
-		pesquisar.setNome("Bruno Barbosa");
-		
-		List<Usuario> listausuario2 = fachada.UsuarioPesquisarPorObjeto(pesquisar);
-
-	    assertEquals(1, listausuario2.size());
-	}
-
 	@After
 	public void FinalizarHibernate(){
 		//

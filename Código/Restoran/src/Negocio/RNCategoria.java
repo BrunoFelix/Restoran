@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import Basica.Categoria;
+import Basica.Usuario;
 import Dados.CategoriaDAO;
 import Utils.ControladorException;
 import Utils.DadosException;
@@ -51,6 +52,10 @@ public class RNCategoria {
 		return categoriaDAO.searchByKey(id);
 	}
 	
+	public List<Categoria> PesquisarCategoriaObjeto(Categoria c) throws DadosException{
+		return categoriaDAO.PesquisarCategoriaObjeto(c);
+	}
+	
 	
 	/*
 	 * ################################## 
@@ -73,7 +78,8 @@ public class RNCategoria {
 	public void validarDuplicidadeCategoria(Categoria c) throws NegocioException, DadosException {
 
 		try {
-			if (categoriaDAO.PesquisarPorNome(c.getNome()).size() > 0) {
+			List<Categoria> listaduplicidade = categoriaDAO.PesquisarCategoriaObjeto(c);
+			if (listaduplicidade.size() > 0) {
 				throw new NegocioException("Categoria já existe");
 			}
 		} catch (DadosException e) {
@@ -85,7 +91,8 @@ public class RNCategoria {
 	public void validaExistencia(Categoria c) throws NegocioException, DadosException {
 
 		try {
-			if (categoriaDAO.PesquisarPorNome(c.getNome()) == null) {
+			List<Categoria> listaexistencia = categoriaDAO.PesquisarCategoriaObjeto(c);
+			if (listaexistencia.size() <= 0) {
 				throw new NegocioException("Categoria que deseja excluir não existe");
 			}
 		} catch (DadosException e) {

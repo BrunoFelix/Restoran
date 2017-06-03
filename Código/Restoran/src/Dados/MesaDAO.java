@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
+import Basica.Categoria;
 import Basica.Mesa;
 
 public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
@@ -15,49 +16,49 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 	public MesaDAO(EntityManagerFactory emf) {
 		super(emf);
 	}
-	
-	public List<Mesa> PesquisarPorStatus(String status) throws DadosException{
+		
+	public List<Mesa> PesquisarMesaObjeto(Mesa m) throws DadosException{
 		try{
-			String queryString = "select object(m) from Mesa as m where m.status=(:status)";
+			String queryString = "select object(m) from Mesa as m where m.id > 0";
 			
+			if (m.getNumeroMesa() > 0)
+			{
+				queryString += " and m.numeroMesa =(:numeroMesa)";
+			}
+			
+			if (m.getCapacidadeMesa() > 0)
+			{
+				queryString += " and m.capacidadeMesa =(:capacidadeMesa)";
+			}
+			
+			if (m.getStatus() != null && m.getStatus().trim().equals("") == false)
+			{
+				queryString += " and m.status =(:status)";
+			}
+		
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
-			query.setParameter("status", status);
+			
+			if (m.getNumeroMesa() > 0)
+			{
+				query.setParameter("numeroMesa", m.getNumeroMesa());
+			}
+	
+			if (m.getCapacidadeMesa() > 0)
+			{
+				query.setParameter("capacidadeMesa", m.getCapacidadeMesa());
+			}
+			
+			if (m.getStatus() != null && m.getStatus().trim().equals("") == false)
+			{
+				query.setParameter("status", m.getStatus());
+			}
+			
 		    return query.getResultList();
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
 	}
-	
-	public List<Mesa> PesquisarPorCapacidade(int capacidade) throws DadosException{
-		try{
-			String queryString = "select object(m) from Mesa as m where m.capacidade=(:capacidade)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("capacidade", capacidade);
-			return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}
-	public List<Mesa> PesquisarPorNumeroMesa(int numeromesa) throws DadosException{
-		
-			try{
-			String queryString = "select object(m) from Mesa as m where m.numeroMesa=(:numeromesa)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("numeromesa", numeromesa);
-			return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	
-	}
-	
  
 }

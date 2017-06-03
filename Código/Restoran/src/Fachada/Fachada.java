@@ -177,6 +177,10 @@ public class Fachada {
 			return rnCategoria.CategoriaBuscarPorId(id);
 	  }
 	  
+	  public List<Categoria> CategoriaPesquisarPorObjeto(Categoria c) throws DadosException{
+			return rnCategoria.PesquisarCategoriaObjeto(c);
+	  }
+	  
 	  /*
 		 * ################################## 
 		 * 				 MESA
@@ -200,6 +204,10 @@ public class Fachada {
 	  
 	  public Mesa MesaBuscarPorId(Integer id){
 			return rnMesa.MesaBuscarPorId(id);
+	  }
+	  
+	  public List<Mesa> MesaPesquisarPorObjeto(Mesa m) throws DadosException{
+			return rnMesa.PesquisarMesaObjeto(m);
 	  }
 
 }

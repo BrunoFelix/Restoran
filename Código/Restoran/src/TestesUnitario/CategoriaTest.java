@@ -73,21 +73,5 @@ public class CategoriaTest {
 		categoria = null;
 		rnCategoria.verificarObjeto(categoria);
 	}
-	
-	
-	@Ignore
-	@Test
-	public void TesteCategoriaInserir(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projetorestoran");
-		Categoria categoria = new Categoria();
-		categoria.setNome("Bebida");
-		CategoriaDAO categoriadao = new CategoriaDAO(emf);
-		categoriadao.insert(categoria);
-		
-		List<Categoria> listacategoria = categoriadao.getAll();
-		
-	    assertNotNull(listacategoria);
 
-	    assertEquals(1, listacategoria.size());
-	}
 }

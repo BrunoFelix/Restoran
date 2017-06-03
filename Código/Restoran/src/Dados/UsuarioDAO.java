@@ -112,34 +112,6 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 		}
 	}
 	
-	public List<Usuario> PesquisarPorCpf(String cpf) throws DadosException{
-		try{
-			String queryString = "select object(u) from Usuario as u where u.cpf =(:cpf)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("cpf", cpf);
-		    return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}
-	
-	public List<Usuario> PesquisarPorNome(String nome) throws DadosException{
-		try{
-			String queryString = "select object(u) from Usuario as u where u.nome =(:nome)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("nome", nome);
-		    return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}
-	
 	public List<Usuario> PesquisarPorEmail(String email) throws DadosException{
 		try{
 			String queryString = "select object(u) from Usuario as u where u.email =(:email)";
@@ -153,34 +125,6 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 			throw new DadosException(e);
 		}
 	    
-	}
-	
-	public List<Usuario> PesquisarPorSexo(String sexo) throws DadosException{
-		try{
-			String queryString = "select object(u) from Usuario as u where u.sexo =(:sexo)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("sexo", sexo);
-		    return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
-	}
-	
-	public List<Usuario> PesquisarPorDataNasc(Date dataNasc) throws DadosException{
-		try{
-			String queryString = "select object(u) from Usuario as u where u.dataNas =(:dataNas)";
-			
-			EntityManager em = getEntityManagerFactory().createEntityManager();
-					
-			Query query = em.createQuery(queryString);
-			query.setParameter("dataNas", dataNasc);
-		    return query.getResultList();
-		} catch (Exception e) {
-			throw new DadosException(e);
-		}
 	}
 	
 	public List<Usuario> PesquisarPorLogin(String login) throws DadosException{

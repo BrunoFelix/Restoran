@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import Dados.Geral.DAOGenerico;
 import Utils.DadosException;
 import Basica.Categoria;
+import Basica.Usuario;
 
 public class CategoriaDAO extends DAOGenerico<Categoria> implements ICategoriaDAO {
 
@@ -16,18 +17,27 @@ public class CategoriaDAO extends DAOGenerico<Categoria> implements ICategoriaDA
 		super(emf);
 	}
 	
-	public List<Categoria> PesquisarPorNome(String nome) throws DadosException{
+	public List<Categoria> PesquisarCategoriaObjeto(Categoria c) throws DadosException{
 		try{
-			String queryString = "select object(u) from Categoria as u where u.nome =(:nome)";
+			String queryString = "select object(c) from Categoria as c where c.id > 0";
 			
+			if (c.getNome() != null && c.getNome().trim().equals("") == false)
+			{
+				queryString += " and c.nome =(:nome)";
+			}
+		
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
-			query.setParameter("nome", nome);
+			
+			if (c.getNome() != null && c.getNome().trim().equals("") == false)
+			{
+				query.setParameter("nome", c.getNome());
+			}
+	
 		    return query.getResultList();
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
 	}
-
 }
