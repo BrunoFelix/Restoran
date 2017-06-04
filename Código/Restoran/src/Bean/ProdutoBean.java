@@ -1,6 +1,7 @@
 package Bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,10 +23,8 @@ import Utils.NegocioException;
 
 @ManagedBean(name="ProdutoBean")
 @SessionScoped
-public class ProdutoBean {
+public class ProdutoBean{
 	
-	FacesMessage msg;
-
 	Fachada fachada = Fachada.getInstance();
 	
 	private Produto produtoAlterar;
@@ -38,10 +37,8 @@ public class ProdutoBean {
 	private double precoVenda;
 	private double precoCusto;
 	private int quantidade;
-	private String categoria;
+	private Categoria categoria;
 
-	
-	
 	public Produto getProdutoAlterar() {
 		return produtoAlterar;
 	}
@@ -49,7 +46,6 @@ public class ProdutoBean {
 	public void setProdutoAlterar(Produto produtoAlterar) {
 		this.produtoAlterar = produtoAlterar;
 	}
-	
 	
 
 	public List<Produto> getListarProduto() {
@@ -110,20 +106,20 @@ public class ProdutoBean {
 		this.listarCategoria = listarCategoria;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-
 	public List<ItemComposicaoProduto> getListarItemComposicaoProduto() {
 		return listarItemComposicaoProduto;
 	}
 
 	public void setListarItemComposicaoProduto(List<ItemComposicaoProduto> listarItemComposicaoProduto) {
-		listarItemComposicaoProduto = listarItemComposicaoProduto;
+		this.listarItemComposicaoProduto = listarItemComposicaoProduto;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public String index(){
@@ -136,19 +132,32 @@ public class ProdutoBean {
 		produtoinserir.setQuantidade(quantidade);
 		produtoinserir.setPrecoVenda(precoVenda);
 		produtoinserir.setPrecoCusto(precoCusto);
-		produtoinserir.setCategoriap(categoria);
+		produtoinserir.setCategoria(categoria);
 		/*List<ItemComposicaoProduto> itensComposicao = new ArrayList<ItemComposicaoProduto>();
 		produtoinserir.setItensComposicao(itensComposicao);
 		List<Pedido> pedidos = new ArrayList<Pedido>();
-		produtoinserir.setPedidos(pedidos);
-		List<Categoria> categoria = new ArrayList<Categoria>();
-		produtoinserir.setCategoria(categoria);*/
+		produtoinserir.setPedidos(pedidos);*/
+		/*Categoria categoria = new Categoria();
+		for (int i = 0; i < listarCategoria.size(); i++) {
+			if (listarCategoria.get(i).getId() == idCategoria){
+				categoria = listarCategoria.get(i);
+			}
+		}*/
+		/*List<Categoria> listainserircategoria = new ArrayList<Categoria>();
+		listainserircategoria.add(categoria);
+		produtoinserir.setCategoria(listainserircategoria);*/
 		try {
 			fachada.ProdutoInserir(produtoinserir);
+			
+			nome = "";
+			quantidade = 0;
+			precoCusto = 0;
+			precoVenda = 0;
+			//categoria = null;
+			
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -163,8 +172,7 @@ public class ProdutoBean {
 			fachada.ProdutoAlterar(produtoAlterar);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
     }

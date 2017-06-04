@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Produto {
@@ -28,10 +34,7 @@ public class Produto {
 	
 	@Column(nullable = false)
 	private int quantidade;
-	
-	@Column
-	private String categoriap;
-	
+		
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="pedido_produto", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_pedido"))
 	private Collection<Pedido> pedidos;
@@ -40,9 +43,11 @@ public class Produto {
 	@JoinTable(name="produto_item", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_item"))
 	private Collection<ItemComposicaoProduto> itensComposicao;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="produto_categoria", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_categoria"))
-	private Collection<Categoria> categoria;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="id_categoria", insertable=true, updatable=true) //Chave Estrangeira
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private Categoria categoria;
 
 	//Gets & Sets
 	public int getId() {
@@ -115,26 +120,14 @@ public class Produto {
 	}
 
 
-	public Collection<Categoria> getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
 
-	public void setCategoria(Collection<Categoria> categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
-
-	public String getCategoriap() {
-		return categoriap;
-	}
-
-
-	public void setCategoriap(String categoriap) {
-		this.categoriap = categoriap;
-	}
-
-
-	
 	
 }

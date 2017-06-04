@@ -16,4 +16,30 @@
 
 }
 
+form table{
+	margin: 0px auto;
+}
 
+.textotopo{
+	margin: 0px auto;
+	padding: 10px;
+	font-family: Arial,sans-serif;
+	font-size: 20pt;
+	text-align: center;
+}
+
+#textotopo{
+	margin: 0px auto;
+	padding: 10px;
+	font-family: Arial,sans-serif;
+	font-size: 20pt;
+	text-align: center;
+}
+
+#msgErro{
+	color: red;
+	list-style: none;
+	font-size: 15pt;
+	width: 390px;
+	margin: 0px auto;
+}

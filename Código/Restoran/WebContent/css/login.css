@@ -232,6 +232,8 @@ form button:hover {
 }
 
 
-.msgErro{
-	
+.wrapper .container .msgErro{
+	color: red;
+	list-style: none;
+	font-size: 15pt;
 }

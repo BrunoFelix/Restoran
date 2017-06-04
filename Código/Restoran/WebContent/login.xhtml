@@ -6,7 +6,6 @@
          xmlns:p="http://primefaces.org/ui"
          xmlns:pe="http://primefaces.org/ui/extensions">
   <h:head>
-  	<link rel="StyleSheet" type="text/css" href="css/estilo.css" media="screen"/>
   	<link rel="StyleSheet" type="text/css" href="css/login.css" media="screen"/>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Restoran</title>
@@ -16,7 +15,7 @@
  	
  		  <div class="wrapper">
 			<div class="container">
-				<h1>Sistema Restoran</h1>
+				<h1><img src="img/logorestoran.png"/></h1>
 				
 				<h:form class="form">
 			        <h:inputText id="login" label="Login" value="#{UsuarioBean.login}"/>
@@ -24,7 +23,7 @@
 					<h:commandButton id="login-button" value="Entrar" action="#{UsuarioBean.logar}"/>
 				</h:form>
 				
-				<h:messages id="msgErro" style="color: red"/>
+				<h:messages id="msgErro" class="msgErro"/>
 			</div>
 			
 			<ul class="bg-bubbles">

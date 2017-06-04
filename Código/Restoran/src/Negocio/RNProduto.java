@@ -68,12 +68,14 @@ public class RNProduto {
 			throw new NegocioException("Nome inválido!");
 		if (p.getNome().trim().isEmpty() == true || p.getNome().trim().length() < 2 || p.getNome().trim().length() > 50)
 			throw new NegocioException("Nome inválido!");
+		if(p.getQuantidade() <= 0)
+			throw new NegocioException("Quantidade inválida!");
 		if(p.getPrecoVenda() <= 0)
 			throw new NegocioException("Preço de venda inválido!");
 		if(p.getPrecoCusto() <= 0)
 			throw new NegocioException("Preço de custo inválido");
-		if(p.getQuantidade() <= 0)
-			throw new NegocioException("Quantidade inválida!");
+		if(p.getCategoria() == null)
+			throw new NegocioException("Categoria inválida!");
 			
 	}
 

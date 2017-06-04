@@ -22,8 +22,6 @@ import Fachada.Fachada;
 @SessionScoped
 public class UsuarioBean {
 
-	FacesMessage msg;
-
 	Fachada fachada = Fachada.getInstance();
 
 	private static Usuario usuario;
@@ -138,12 +136,10 @@ public class UsuarioBean {
 			if (usuario != null) {
 				return "index";
 			} else {
-				msg = new FacesMessage("Usuário ou senha inválido, tente novamente!");
-				FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+				FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage("Usuário ou senha inválido, tente novamente!"));
 			}
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -163,8 +159,7 @@ public class UsuarioBean {
 			fachada.UsuarioInserir(usuarioinserir);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -203,8 +198,7 @@ public class UsuarioBean {
 			fachada.UsuarioAlterar(usuarioAlterar);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage(e.getMessage()));
 		}
 		return null;
     }
