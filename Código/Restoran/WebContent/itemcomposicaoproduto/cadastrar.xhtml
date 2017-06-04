@@ -9,8 +9,9 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
-	<title>Restoran</title>
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
+	<title>Restoran | Cadastrar Item de Composição do Produto</title>
 </h:head>
 <h:body>
 
@@ -24,42 +25,47 @@
 			value="Cadastrar Item de Composição do Produto" />
 	</h1>
 
-	<h:form class="form-cadastro-itemComp">
-		<p:panelGrid columns="2" cellpadding="5">
 
-			<p:outputLabel value="Nome: " />
-			<p:panelGrid columns="1">
-				<p:inputText id="nome" value="#{ItemComposicaoProdutoBean.nome}" />
-			</p:panelGrid>
+	<div class="wrapper">
+		<div class="container">
+			<h:form class="form-cadastro-itemComp">
+				<p:panelGrid columns="2" cellpadding="5">
 
-			<p:outputLabel value="Quantidade" />
-			<p:panelGrid columns="1">
-				<p:inputText id="quantidade" value="#{ItemComposicaoProdutoBean.quantidade}" />
-			</p:panelGrid>
-			
-			<p:outputLabel value="Unidade de Medida:" />
-			<p:panelGrid columns="1">
-				<p:inputText id="unidadeMedida" value="#{ItemComposicaoProdutoBean.unidadeMedida}" />
-			</p:panelGrid>
-	
-			<p:outputLabel value="Preço de Custo:" />
-			<p:panelGrid columns="1">
-				<p:inputText id="precoCusto" value="#{ItemComposicaoProdutoBean.precoCusto}" />
-			</p:panelGrid>
-			
-			
-			<p:commandButton id="insert-button" value="Limpar"
-				icon="ui-icon-trash" type="reset">
-			</p:commandButton>
-			<p:commandButton id="reset-button" value="Cadastrar"
-				icon="ui-icon-disk" action="#{ItemComposicaoProdutoBean.cadastrar}">
-			</p:commandButton>
-		</p:panelGrid>
-	</h:form>
+					<p:outputLabel value="Nome: " />
+					<p:panelGrid columns="1">
+						<p:inputText id="nome" value="#{ItemComposicaoProdutoBean.nome}" />
+					</p:panelGrid>
+
+					<p:outputLabel value="Quantidade" />
+					<p:panelGrid columns="1">
+						<p:inputText id="quantidade"
+							value="#{ItemComposicaoProdutoBean.quantidade}" />
+					</p:panelGrid>
+
+					<p:outputLabel value="Unidade de Medida:" />
+					<p:panelGrid columns="1">
+						<p:inputText id="unidadeMedida"
+							value="#{ItemComposicaoProdutoBean.unidadeMedida}" />
+					</p:panelGrid>
+
+					<p:outputLabel value="Preço de Custo:" />
+					<p:panelGrid columns="1">
+						<p:inputText id="precoCusto"
+							value="#{ItemComposicaoProdutoBean.precoCusto}" />
+					</p:panelGrid>
+
+
+					<p:commandButton id="insert-button" value="Limpar"
+						icon="ui-icon-trash" type="reset">
+					</p:commandButton>
+					<p:commandButton id="reset-button" value="Cadastrar"
+						icon="ui-icon-disk"
+						action="#{ItemComposicaoProdutoBean.cadastrar}">
+					</p:commandButton>
+				</p:panelGrid>
+			</h:form>
+			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+		</div>
+	</div>
 </h:body>
 </html>
-
-
-
-
-

@@ -1,31 +1,37 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-  <h:head>
-  	<link rel="StyleSheet" type="text/css" href="css/login.css" media="screen"/>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Restoran</title>
-  </h:head>
-  <h:body>
- 	<h:body>
- 	
- 		  <div class="wrapper">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<link rel="StyleSheet" type="text/css" href="css/login.css"
+		media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran</title>
+</h:head>
+<h:body>
+	<h:body>
+
+		<div class="wrapper">
 			<div class="container">
-				<h1><img src="img/logorestoran.png"/></h1>
-				
+				<h1>
+					<img src="img/logorestoran.png" />
+				</h1>
+
 				<h:form class="form">
-			        <h:inputText id="login" label="Login" value="#{UsuarioBean.login}"/>
-			        <h:inputSecret id="senha" label="Senha" value="#{UsuarioBean.senha}"/>
-					<h:commandButton id="login-button" value="Entrar" action="#{UsuarioBean.logar}"/>
+					<h:inputText id="login" label="Login" value="#{UsuarioBean.login}" />
+					<h:inputSecret id="senha" label="Senha"
+						value="#{UsuarioBean.senha}" />
+					<h:commandButton id="login-button" value="Entrar"
+						action="#{UsuarioBean.logar}" />
 				</h:form>
-				
-				<h:messages id="msgErro" class="msgErro"/>
+
+				<h:messages id="msgErro" class="msgErro" />
 			</div>
-			
+
 			<ul class="bg-bubbles">
 				<li></li>
 				<li></li>
@@ -38,8 +44,8 @@
 				<li></li>
 				<li></li>
 			</ul>
-		   </div>
+		</div>
 
-    </h:body>
-  </h:body>
-  </html>
+	</h:body>
+</h:body>
+</html>

@@ -42,6 +42,9 @@
 			<p:column headerText="Sexo">
 				<h:outputText value="#{usuario.sexo}" />
 			</p:column>
+			<p:column headerText="Tipo">
+				<h:outputText value="#{usuario.tipo}" />
+			</p:column>
 			<p:column headerText="Ações">
 				<h:form>
 					<h:commandButton id="alterar-button" value="Alterar" action="#{UsuarioBean.chamadaAlterar(usuario.id)}"/>	
