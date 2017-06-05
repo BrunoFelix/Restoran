@@ -23,7 +23,6 @@ import org.hibernate.annotations.FetchMode;
 public class Pedido{
 	
 	@Id @GeneratedValue
-	@Column()
 	private int id;
 	
 	@Column(nullable=false)
@@ -34,6 +33,9 @@ public class Pedido{
 	
 	@Column(nullable=false)
 	private Date data;
+
+	@Column(length=10, nullable=false)
+	private String status;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_usuario", insertable=true, updatable=true) //Chave Estrangeira
@@ -51,10 +53,6 @@ public class Pedido{
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Mesa mesa;
-	
-	@OneToOne(mappedBy="pedido", targetEntity = Historico.class, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_historico")
-	private Historico historico;
 	
 	//Gets & Sets
 	public int getId_pedido() {
@@ -112,14 +110,12 @@ public class Pedido{
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-
-	public Historico getHistorico() {
-		return historico;
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public void setHistorico(Historico historico) {
-		this.historico = historico;
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
-	
 }

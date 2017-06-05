@@ -153,7 +153,7 @@ public class ProdutoBean{
 			quantidade = 0;
 			precoCusto = 0;
 			precoVenda = 0;
-			//categoria = null;
+			categoria = null;
 			
 			return "listar";
 		} catch (Exception e) {

@@ -157,9 +157,19 @@ public class UsuarioBean {
 
 		try {
 			fachada.UsuarioInserir(usuarioinserir);
+			
+			nome="";
+			login="";
+			senha="";
+			email="";
+			cpf="";
+			telefone="";
+			sexo="";
+			tipo="";
+			
 			return "listar";
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -167,7 +177,6 @@ public class UsuarioBean {
 	public String logout() {
 		UsuarioBean.usuario = null;
 		return "login";
-
 	}
 
 
@@ -198,7 +207,7 @@ public class UsuarioBean {
 			fachada.UsuarioAlterar(usuarioAlterar);
 			return "listar";
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage("msgErro", new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
     }

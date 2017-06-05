@@ -17,7 +17,32 @@
 		<ui:include src="../menu.xhtml" />
 	</div>
 	
-	<h1><h:outputText id="textotopo" value="Gerenciar Pedidos"/></h1>
+	<h1 class="textotopo">
+		<h:outputText value="Gerenciar Pedidos"/>
+	</h1>
+	
+	<p:dataTable var="pedido" value="#{PedidoBean.listarPedido}">
+		<p:column headerText="id">
+			<h:outputText value="#{pedido.data}" />
+		</p:column>
+		<p:column headerText="Qtd. Produtos">
+			<h:outputText value="#{pedido.qtdProdutos}" />
+		</p:column>
+		<p:column headerText="Total Pedido">
+			<h:outputText value="#{pedido.totalPedido}" />
+		</p:column>
+		<p:column headerText="Número da Mesa">
+			<h:outputText value="#{pedido.mesa.numeroMesa}" />
+		</p:column>
+		<p:column headerText="Garçom">
+			<h:outputText value="#{pedido.garcom.nome}" />
+		</p:column>
+		<p:column headerText="Ações">
+			<h:form>
+				<h:commandButton id="alterar-button" value="Pronto" action="#{MesaBean.chamadaAlterar(mesa.id)}"/>	
+			</h:form>
+		</p:column>
+	</p:dataTable>
  	
   </h:body>
   </html>

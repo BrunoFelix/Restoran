@@ -19,8 +19,6 @@ import Fachada.Fachada;
 @SessionScoped
 public class ItemComposicaoProdutoBean {
 
-	FacesMessage msg;
-
 	Fachada fachada = Fachada.getInstance();
 	
 	private ItemComposicaoProduto itemComposicaoProdutoAlterar;
@@ -106,8 +104,7 @@ public class ItemComposicaoProdutoBean {
 			fachada.ItemComposicaoProdutoInserir(itemComposicaoProdutoInserir);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -122,8 +119,7 @@ public class ItemComposicaoProdutoBean {
 			fachada.ItemComposicaoProdutoAlterar(itemComposicaoProdutoAlterar);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
     }

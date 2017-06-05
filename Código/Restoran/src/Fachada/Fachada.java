@@ -8,11 +8,11 @@ import javax.persistence.Persistence;
 import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
 import Basica.Mesa;
+import Basica.Pedido;
 import Basica.Produto;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Negocio.RNCategoria;
-import Negocio.RNHistorico;
 import Negocio.RNItemComposicaoProduto;
 import Negocio.RNMesa;
 import Negocio.RNPedido;
@@ -36,7 +36,6 @@ public class Fachada {
 	 * ##################################
 	 */
 	RNCategoria rnCategoria;
-	RNHistorico rnHistorico;
 	RNItemComposicaoProduto rnItemComposicaoProduto;
 	RNMesa rnMesa;
 	RNPedido rnPedido;
@@ -60,13 +59,27 @@ public class Fachada {
 		}	
         emf = Persistence.createEntityManagerFactory("projetorestoran");
         rnCategoria = new RNCategoria(emf);
-        rnHistorico = new RNHistorico(emf);
         rnItemComposicaoProduto = new RNItemComposicaoProduto(emf);
         rnMesa = new RNMesa(emf);
         rnPedido = new RNPedido(emf);
         rnUsuario = new RNUsuario(emf);
 		rnProduto = new RNProduto(emf);
 	}
+	
+	/*
+	 * ################################## 
+	 * 				PEDIDO
+	 * ##################################
+	 */
+	public List<Pedido> PesquisarPorMesa(Integer numeroMesa) throws DadosException{
+		return rnPedido.PesquisarPorMesa(numeroMesa);
+	}
+	
+	public List<Pedido> PedidoListar() throws DadosException{
+		return rnPedido.PedidoListar();
+	}
+	
+	
 	
 	/*
 	 * ################################## 

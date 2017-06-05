@@ -75,12 +75,6 @@ public class RNMesa {
 			throw new NegocioException("Numero de mesa Invalido");
 		if (m.getCapacidadeMesa() <= 0)
 			throw new NegocioException("Capacidade da mesa nao informada");
-		if (m.getStatus() == null)
-			throw new NegocioException("Status da mesa Invalido");
-		if (m.getStatus().trim().isEmpty() == true)
-			throw new NegocioException("Status da mesa Invalido");
-		if (m.getStatus().length() > 10 || m.getStatus().length() < 4)
-			throw new NegocioException("Status da mesa Invalido");
 	}
 
 	public void validarDuplicidadeNumeroMesa(Mesa m) throws NegocioException, DadosException {

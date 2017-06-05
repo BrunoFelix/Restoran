@@ -33,9 +33,6 @@
 			<p:column headerText="Capacidade">
 				<h:outputText value="#{mesa.capacidadeMesa}" />
 			</p:column>
-			<p:column headerText="Status">
-				<h:outputText value="#{mesa.status}" />
-			</p:column>
 			<p:column headerText="Ações">
 				<h:form>
 					<h:commandButton id="alterar-button" value="Alterar" action="#{MesaBean.chamadaAlterar(mesa.id)}"/>	

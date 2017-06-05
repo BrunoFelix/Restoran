@@ -7,19 +7,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import Basica.Mesa;
-import Basica.Usuario;
 import Fachada.Fachada;
 
 @ManagedBean(name="MesaBean")
 @SessionScoped
 public class MesaBean {
-
-	FacesMessage msg;
 
 	Fachada fachada = Fachada.getInstance();
 
@@ -89,14 +83,16 @@ public class MesaBean {
 		Mesa mesainserir = new Mesa();
 		mesainserir.setNumeroMesa(numeroMesa);
 		mesainserir.setCapacidadeMesa(capacidadeMesa);
-		mesainserir.setStatus("Disponível");
 
 		try {
 			fachada.MesaInserir(mesainserir);
+			
+			numeroMesa = 0;
+			capacidadeMesa = 0;
+			
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -106,15 +102,12 @@ public class MesaBean {
         return "alterar";
     }
 
-	public String alterar() {
-		mesaAlterar.setStatus("Disponível");
-		
+	public String alterar() {	
 		try {
 			fachada.MesaAlterar(mesaAlterar);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
     }

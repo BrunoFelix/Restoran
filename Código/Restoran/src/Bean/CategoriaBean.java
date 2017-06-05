@@ -1,6 +1,5 @@
 package Bean;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,19 +7,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import Basica.Categoria;
-import Basica.Usuario;
 import Fachada.Fachada;
 
 @ManagedBean(name="CategoriaBean")
 @SessionScoped
 public class CategoriaBean {
-
-	FacesMessage msg;
 
 	Fachada fachada = Fachada.getInstance();
 	
@@ -74,10 +67,12 @@ public class CategoriaBean {
 
 		try {
 			fachada.CategoriaInserir(categoriainserir);
+			
+			nome="";
+			
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
 	}
@@ -93,8 +88,7 @@ public class CategoriaBean {
 			fachada.CategoriaAlterar(categoriaAlterar);
 			return "listar";
 		} catch (Exception e) {
-			msg = new FacesMessage(e.getMessage());
-			FacesContext.getCurrentInstance().addMessage("msgErro", msg);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
     }

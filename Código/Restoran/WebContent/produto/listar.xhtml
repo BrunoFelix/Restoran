@@ -6,8 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:head>
-	<link rel="StyleSheet" type="text/css" href="css/login.css"
-		media="screen" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Restoran | Gerenciar Produtos</title>
 </h:head>
@@ -16,14 +15,14 @@
 		<div id="topo">
 			<ui:include src="../menu.xhtml" />
 		</div>
+		
+		<h1 class="textotopo">
+			<h:outputText value="Gerenciar Produtos"/>
+		</h1>
+				
 		<div class="wrapper">
 			<div class="container">
-
-				<h1 id="textotopo" class="textotopo">
-					<h:outputText value="Cadastrar Produto" />
-				</h1>
-
-				
+			
 
 				<p:dataTable var="produto" value="#{ProdutoBean.listarProduto}">
 					<p:column headerText="Id">

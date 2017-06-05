@@ -31,11 +31,6 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 				queryString += " and m.capacidadeMesa =(:capacidadeMesa)";
 			}
 			
-			if (m.getStatus() != null && m.getStatus().trim().equals("") == false)
-			{
-				queryString += " and m.status =(:status)";
-			}
-		
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
 			Query query = em.createQuery(queryString);
@@ -48,11 +43,6 @@ public class MesaDAO extends DAOGenerico<Mesa> implements IMesaDAO {
 			if (m.getCapacidadeMesa() > 0)
 			{
 				query.setParameter("capacidadeMesa", m.getCapacidadeMesa());
-			}
-			
-			if (m.getStatus() != null && m.getStatus().trim().equals("") == false)
-			{
-				query.setParameter("status", m.getStatus());
 			}
 			
 		    return query.getResultList();

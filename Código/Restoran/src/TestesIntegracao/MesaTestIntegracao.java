@@ -41,7 +41,6 @@ public class MesaTestIntegracao {
 		mesa = new Mesa();
 		mesa.setNumeroMesa(1);
 		mesa.setCapacidadeMesa(5);
-		mesa.setStatus("aberta");
 		
 		fachada.MesaInserir(mesa);
 		
@@ -59,8 +58,7 @@ public class MesaTestIntegracao {
 		mesa = new Mesa();
 		mesa.setNumeroMesa(2);
 		mesa.setCapacidadeMesa(5);
-		mesa.setStatus("aberta");
-		
+
 		fachada.MesaInserir(mesa);
 		
 		mesa.setNumeroMesa(100);
@@ -77,7 +75,6 @@ public class MesaTestIntegracao {
 		mesa = new Mesa();
 		mesa.setNumeroMesa(3);
 		mesa.setCapacidadeMesa(5);
-		mesa.setStatus("aberta");
 		
 		fachada.MesaInserir(mesa);
 		
@@ -93,7 +90,6 @@ public class MesaTestIntegracao {
 		mesa = new Mesa();
 		mesa.setNumeroMesa(3);
 		mesa.setCapacidadeMesa(5);
-		mesa.setStatus("aberta");
 		
 		fachada.MesaInserir(mesa);
 		

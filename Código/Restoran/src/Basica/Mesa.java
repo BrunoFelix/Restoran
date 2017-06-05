@@ -18,7 +18,7 @@ public class Mesa {
 	@Id
 	@GeneratedValue
 	@Column(name="id_mesa")
-	private int id;
+	private Long id;
 	
 	@Column(nullable=false)
 	private int numeroMesa;
@@ -26,19 +26,16 @@ public class Mesa {
 	@Column(nullable=false)
 	private int capacidadeMesa;
 	
-	@Column(length=10, nullable=false)
-	private String status;
-	
 	@OneToMany(mappedBy="mesa", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	private Collection<Pedido> pedidos;
 	
 	//Gets & Sets
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -48,14 +45,6 @@ public class Mesa {
 
 	public void setNumeroMesa(int numeroMesa) {
 		this.numeroMesa = numeroMesa;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public int getCapacidadeMesa() {
@@ -74,6 +63,35 @@ public class Mesa {
 		this.pedidos = pedidos;
 	}
 
+	
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Mesa other = (Mesa) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+    @Override
+    public String toString() {
+        return "Mesa " + numeroMesa;
+    }
 	
 	
 }

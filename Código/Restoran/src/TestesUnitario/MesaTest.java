@@ -70,57 +70,11 @@ public class MesaTest {
 
 	}
 	
-	/***********************************
-	 * 
-	 * Testes da regra de negocio com relação ao campo STATUS
-	 * Mesa 
-	 * @throws NegocioException
-	 */
-	@Test(expected=NegocioException.class)
-	public void TesteStatusVazio() throws NegocioException{
-		mesa = new Mesa();
-		mesa.setNumeroMesa(1);
-		mesa.setCapacidadeMesa(1);
-		mesa.setStatus("");
-		rnMesa.validarCampos(mesa);
-
-	}
-	
-	@Test(expected=NegocioException.class)
-	public void TesteStatusNull() throws NegocioException{
-		mesa = new Mesa();
-		mesa.setNumeroMesa(1);
-		mesa.setCapacidadeMesa(1);
-		mesa.setStatus(null);
-		rnMesa.validarCampos(mesa);
-
-	}
-	
-	@Test(expected=NegocioException.class)
-	public void TesteStatusMaiorQueOPermitido() throws NegocioException{	
-		mesa = new Mesa();
-		mesa.setNumeroMesa(1);
-		mesa.setCapacidadeMesa(1);
-		mesa.setStatus("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		rnMesa.validarCampos(mesa);
-	}
-	
-	@Test(expected=NegocioException.class)
-	public void TesteStatusMenorQueOPermitido() throws NegocioException{	
-		mesa = new Mesa();
-		mesa.setNumeroMesa(1);
-		mesa.setCapacidadeMesa(1);
-		mesa.setStatus("a");
-		rnMesa.validarCampos(mesa);
-		
-	}
-	
 	@Test(expected=NegocioException.class)
 	public void TesteStatusSomenteComEspacos() throws NegocioException{	
 		mesa = new Mesa();
 		mesa.setNumeroMesa(1);
 		mesa.setCapacidadeMesa(1);
-		mesa.setStatus("      ");
 		rnMesa.validarCampos(mesa);
 	}
 	
