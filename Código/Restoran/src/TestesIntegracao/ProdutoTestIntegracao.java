@@ -43,7 +43,7 @@ public class ProdutoTestIntegracao {
 		produto.setPrecoVenda(10);
 		produto.setPrecoCusto(10);
 		
-		fachada.ProdutoInserir(produto);
+		//fachada.ProdutoInserir(produto);
 		
 		List<Produto> listaproduto = fachada.ProdutoPesquisarPorObjeto(produto);
 		
@@ -61,7 +61,7 @@ public class ProdutoTestIntegracao {
 		produto.setPrecoVenda(10);
 		produto.setPrecoCusto(10);
 		
-		fachada.ProdutoInserir(produto);
+		//fachada.ProdutoInserir(produto);
 		
 		produto.setNome("Bebida");
 		
@@ -80,7 +80,7 @@ public class ProdutoTestIntegracao {
 		produto.setPrecoVenda(10);
 		produto.setPrecoCusto(10);
 		
-		fachada.ProdutoInserir(produto);
+		//fachada.ProdutoInserir(produto);
 		
 		fachada.ProdutoExcluir(produto);
 
@@ -97,7 +97,7 @@ public class ProdutoTestIntegracao {
 		produto.setPrecoVenda(10);
 		produto.setPrecoCusto(10);
 		
-		fachada.ProdutoInserir(produto);
+		//fachada.ProdutoInserir(produto);
 
 		rnProduto.validarDuplicidade(produto);
 	}

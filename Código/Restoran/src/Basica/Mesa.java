@@ -1,5 +1,6 @@
 package Basica;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 @Entity
-public class Mesa {
+public class Mesa implements Serializable{
 	
 	@Id
 	@GeneratedValue

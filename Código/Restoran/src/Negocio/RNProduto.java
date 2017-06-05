@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 
-import Basica.Categoria;
 import Basica.Produto;
-import Basica.Usuario;
 import Dados.ProdutoDAO;
 import Utils.ControladorException;
 import Utils.DadosException;

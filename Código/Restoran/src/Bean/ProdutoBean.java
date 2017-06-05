@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
@@ -18,6 +21,7 @@ import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
 import Basica.Pedido;
 import Basica.Produto;
+import Basica.ProdutoItem;
 import Fachada.Fachada;
 import Utils.NegocioException;
 
@@ -27,9 +31,10 @@ public class ProdutoBean{
 	
 	Fachada fachada = Fachada.getInstance();
 	
-	private Produto produtoAlterar;
+	private Produto produtoAlterar = new Produto();
 
-	private List<ItemComposicaoProduto> listarItemComposicaoProduto;
+	private List<ItemComposicaoProduto> listarItemComposicaoProduto = new ArrayList<ItemComposicaoProduto>();
+	private Set<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados = new HashSet<ItemComposicaoProduto>();
 	private List<Produto> listarProduto = new ArrayList<Produto>();
 	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
 	private int id;
@@ -38,6 +43,9 @@ public class ProdutoBean{
 	private double precoCusto;
 	private int quantidade;
 	private Categoria categoria;
+	private int qtdItemComposicaoProduto;
+	private ItemComposicaoProduto inserirItemComposicaoProduto;
+	
 
 	public Produto getProdutoAlterar() {
 		return produtoAlterar;
@@ -107,6 +115,7 @@ public class ProdutoBean{
 	}
 
 	public List<ItemComposicaoProduto> getListarItemComposicaoProduto() {
+		setListarItemComposicaoProduto(fachada.ItemComposicaoProdutoListar());
 		return listarItemComposicaoProduto;
 	}
 
@@ -122,8 +131,36 @@ public class ProdutoBean{
 		this.categoria = categoria;
 	}
 
+	public int getQtdItemComposicaoProduto() {
+		return qtdItemComposicaoProduto;
+	}
+
+	public void setQtdItemComposicaoProduto(int qtdItemComposicaoProduto) {
+		this.qtdItemComposicaoProduto = qtdItemComposicaoProduto;
+	}
+
+	public ItemComposicaoProduto getInserirItemComposicaoProduto() {
+		return inserirItemComposicaoProduto;
+	}
+
+	public void setInserirItemComposicaoProduto(ItemComposicaoProduto inserirItemComposicaoProduto) {
+		this.inserirItemComposicaoProduto = inserirItemComposicaoProduto;
+	}
+
+	public Set<ItemComposicaoProduto> getListaDeItensDeComposicaoJaAdicionados() {
+		return listaDeItensDeComposicaoJaAdicionados;
+	}
+
+	public void setListaDeItensDeComposicaoJaAdicionados(Set<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados) {
+		this.listaDeItensDeComposicaoJaAdicionados = listaDeItensDeComposicaoJaAdicionados;
+	}
+
 	public String index(){
 		return "listar";
+	}
+
+	public void adicionarItemComp(){
+		listaDeItensDeComposicaoJaAdicionados.add(inserirItemComposicaoProduto);
 	}
 	
 	public String cadastrar() {
@@ -133,19 +170,35 @@ public class ProdutoBean{
 		produtoinserir.setPrecoVenda(precoVenda);
 		produtoinserir.setPrecoCusto(precoCusto);
 		produtoinserir.setCategoria(categoria);
-		/*List<ItemComposicaoProduto> itensComposicao = new ArrayList<ItemComposicaoProduto>();
-		produtoinserir.setItensComposicao(itensComposicao);
-		List<Pedido> pedidos = new ArrayList<Pedido>();
-		produtoinserir.setPedidos(pedidos);*/
-		/*Categoria categoria = new Categoria();
-		for (int i = 0; i < listarCategoria.size(); i++) {
-			if (listarCategoria.get(i).getId() == idCategoria){
-				categoria = listarCategoria.get(i);
-			}
+		List<ProdutoItem> listaproduto_item = new ArrayList<ProdutoItem>();
+		ProdutoItem produto_item = new ProdutoItem();
+		Iterator<ItemComposicaoProduto> carrosAsIterator = listaDeItensDeComposicaoJaAdicionados.iterator();
+        while (carrosAsIterator.hasNext()){
+        	ItemComposicaoProduto it = carrosAsIterator.next();
+        	produto_item.setItemcomposicaoproduto(it);
+			produto_item.setProduto(produtoinserir);
+			produto_item.setQuantidade(10);
+			listaproduto_item.add(produto_item);
+			System.out.println(it.getId());
+               
+        }
+		
+		/*for (int i = 0; i < listaDeItensDeComposicaoJaAdicionados.size(); i++) {
+			produto_item.setItemcomposicaoproduto(listaDeItensDeComposicaoJaAdicionados.get(i));
+			produto_item.setProduto(produtoinserir);
+			produto_item.setQuantidade(10);
+			listaproduto_item.add(produto_item);
 		}*/
-		/*List<Categoria> listainserircategoria = new ArrayList<Categoria>();
-		listainserircategoria.add(categoria);
-		produtoinserir.setCategoria(listainserircategoria);*/
+
+		
+		produtoinserir.setItensComp(listaproduto_item);
+		
+		for (int i = 0; i < produtoinserir.getItensComp().size(); i++) {
+			System.out.println(produtoinserir.getItensComp().get(i).getItemcomposicaoproduto().getId() + ", " + produtoinserir.getItensComp().get(i).getItemcomposicaoproduto().getNome() + ", " + produtoinserir.getItensComp().get(i).getQuantidade());
+		}
+		
+		
+		
 		try {
 			fachada.ProdutoInserir(produtoinserir);
 			

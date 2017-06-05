@@ -1,7 +1,10 @@
 package Basica;
 
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +17,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class ItemComposicaoProduto {
+public class ItemComposicaoProduto implements Serializable{
 	
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -31,16 +34,16 @@ public class ItemComposicaoProduto {
 	@Column(nullable = false)
 	private double precoCusto;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "itemcomposicaoproduto")
-	public List<Produto_item> produto_item;
+	@OneToMany(mappedBy = "itemcomposicaoproduto")
+    private List<ProdutoItem> produtos;
 	
 	//Gets & Sets
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id_itemComposicaoProduto) {
-		this.id = id_itemComposicaoProduto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
   public String getNome() {
@@ -75,13 +78,43 @@ public class ItemComposicaoProduto {
 		this.precoCusto = precoCusto;
 	}
 
-	public List<Produto_item> getProduto_item() {
-		return produto_item;
+
+	public List<ProdutoItem> getProdutos() {
+		return produtos;
 	}
 
-	public void setProduto_item(List<Produto_item> produto_item) {
-		this.produto_item = produto_item;
+	public void setProdutos(List<ProdutoItem> produtos) {
+		this.produtos = produtos;
 	}
+
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ItemComposicaoProduto other = (ItemComposicaoProduto) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+    @Override
+    public String toString() {
+        return nome + " | " + id;
+    }
 
 	
 }

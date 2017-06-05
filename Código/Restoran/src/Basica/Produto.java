@@ -1,19 +1,13 @@
 package Basica;
 
-import java.util.Collection;
+
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -21,10 +15,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@Column(length=50, nullable = false)
 	private String nome;
@@ -38,11 +32,11 @@ public class Produto {
 	@Column(nullable = false)
 	private int quantidade;
 		
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	@OneToMany(cascade=javax.persistence.CascadeType.PERSIST, mappedBy = "produto")
 	public List<Pedido_produto> pedido_produto;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
-	public List<Produto_item> produto_item;
+	@OneToMany(mappedBy = "produto")
+    private List<ProdutoItem> itensComp;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_categoria", insertable=true, updatable=true) //Chave Estrangeira
@@ -51,13 +45,13 @@ public class Produto {
 	private Categoria categoria;
 
 	//Gets & Sets
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
 
-	public void setId(int id_produto) {
-		this.id = id_produto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
@@ -118,16 +112,45 @@ public class Produto {
 	public void setPedido_produto(List<Pedido_produto> pedido_produto) {
 		this.pedido_produto = pedido_produto;
 	}
-
-
-	public List<Produto_item> getProduto_item() {
-		return produto_item;
+	
+	public List<ProdutoItem> getItensComp() {
+		return itensComp;
 	}
 
 
-	public void setProduto_item(List<Produto_item> produto_item) {
-		this.produto_item = produto_item;
+	public void setItensComp(List<ProdutoItem> itensComp) {
+		this.itensComp = itensComp;
 	}
+
+
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Produto other = (Produto) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+    @Override
+    public String toString() {
+        return nome + " | " + id;
+    }
 
 	
 }

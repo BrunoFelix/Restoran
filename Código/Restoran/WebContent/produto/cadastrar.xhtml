@@ -65,34 +65,29 @@
 						icon="ui-icon-disk" action="#{ProdutoBean.cadastrar}">
 					</p:commandButton>
 				</p:panelGrid>
-
-				<p:commandButton id="AddItemComposicao" type="button"
-					value="Adicionar Item de Composição ao Produto"
-					action="#{ProdutoBean}" />
-
-				<!-- Itens de Composião do Produto -->
-				<div>
-					<p:dataTable var="itemComposicao"
-						value="#{ProdutoBean.listarItemComposicaoProduto}">
-						<p:column headerText="id">
-							<h:outputText value="#{itemComposicao.id}" />
-						</p:column>
-						<p:column headerText="Nome">
-							<h:outputText value="#{itemComposicao.nome}" />
-						</p:column>
-						<p:column headerText="Quantidade">
-							<h:outputText value="#{itemComposicao.quantidade}" />
-						</p:column>
-						<p:column headerText="Unidade de Medida">
-							<h:outputText value="#{itemComposicao.unidadeMedida}" />
-						</p:column>
-						<p:column headerText="Preço de Custo">
-							<h:outputText value="R$ #{itemComposicao.precoCusto}" />
-						</p:column>
-					</p:dataTable>
-				</div>
+						
 
 			</h:form>
+			
+			<h:form class="form-inserir-itemComp-produto">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Categoria:" />
+					<p:panelGrid columns="1">
+						<h:selectOneMenu value="#{ProdutoBean.inserirItemComposicaoProduto}">
+							<f:selectItem itemValue="null" itemLabel="Item Composição" />
+							<f:selectItems value="#{ProdutoBean.listarItemComposicaoProduto}" var="cl"
+								itemValue="#{itemComposicao}" itemLabel="#{itemComposicao.nome}" />
+						</h:selectOneMenu>
+					</p:panelGrid>
+					<p:outputLabel value="Quantidade:" />
+					<p:panelGrid columns="1">
+						<p:inputText id="precoCusto" value="#{ProdutoBean.qtdItemComposicaoProduto}" />
+					</p:panelGrid>
+				</p:panelGrid>
+				<p:commandButton id="reset-button" value="Adicionar Item Comp" icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}">
+				</p:commandButton>
+			</h:form>
+				
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>
 	</div>
