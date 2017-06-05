@@ -120,7 +120,7 @@ public class ProdutoTestIntegracao {
 	
 	@Test
 	public void TesteBuscarPorId() throws NegocioException, DadosException, ControladorException{
-		assertEquals(null,fachada.ProdutoBuscarPorId(99));
+		assertEquals(null,fachada.ProdutoBuscarPorId((long) 99));
 	}
 	
 	

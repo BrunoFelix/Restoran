@@ -47,7 +47,7 @@ public class RNItemComposicaoProduto {
 		return itemComposicaoProdutoDAO.getAll();
    }
 	
-	public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
+	public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Long id){
 		return itemComposicaoProdutoDAO.searchByKey(id);
 	}
 	

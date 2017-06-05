@@ -110,7 +110,7 @@ public class ItemComposicaoProdutoBean {
 	}
 
 	public String chamadaAlterar(Integer id) {
-		itemComposicaoProdutoAlterar = fachada.ItemComposicaoProdutoBuscarPorId(id);
+		itemComposicaoProdutoAlterar = fachada.ItemComposicaoProdutoBuscarPorId((long) id);
         return "alterar";
     }
 	

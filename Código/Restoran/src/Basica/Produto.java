@@ -18,6 +18,7 @@ import org.hibernate.annotations.FetchMode;
 public class Produto implements Serializable {
 
 	@Id @GeneratedValue
+	@Column(name = "id", updatable = false, nullable = false)
 	private Long id;
 	
 	@Column(length=50, nullable = false)
@@ -32,11 +33,11 @@ public class Produto implements Serializable {
 	@Column(nullable = false)
 	private int quantidade;
 		
-	@OneToMany(cascade=javax.persistence.CascadeType.PERSIST, mappedBy = "produto")
-	public List<Pedido_produto> pedido_produto;
+	@OneToMany(mappedBy = "produto", fetch = FetchType.EAGER)
+	private Set<PedidoProduto> pedidos = new HashSet<PedidoProduto>();
 	
-	@OneToMany(mappedBy = "produto")
-    private List<ProdutoItem> itensComp;
+	@OneToMany(mappedBy = "produto", fetch = FetchType.EAGER)
+	private Set<ProdutoItem> itemComps = new HashSet<ProdutoItem>();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_categoria", insertable=true, updatable=true) //Chave Estrangeira
@@ -103,23 +104,23 @@ public class Produto implements Serializable {
 		this.categoria = categoria;
 	}
 
-
-	public List<Pedido_produto> getPedido_produto() {
-		return pedido_produto;
+	public Set<ProdutoItem> getItemComps() {
+		return itemComps;
 	}
 
 
-	public void setPedido_produto(List<Pedido_produto> pedido_produto) {
-		this.pedido_produto = pedido_produto;
-	}
-	
-	public List<ProdutoItem> getItensComp() {
-		return itensComp;
+	public void setItemComps(Set<ProdutoItem> itemComps) {
+		this.itemComps = itemComps;
 	}
 
 
-	public void setItensComp(List<ProdutoItem> itensComp) {
-		this.itensComp = itensComp;
+	public Set<PedidoProduto> getPedidos() {
+		return pedidos;
+	}
+
+
+	public void setPedidos(Set<PedidoProduto> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 

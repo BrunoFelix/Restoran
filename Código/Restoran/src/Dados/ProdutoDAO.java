@@ -5,10 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import Basica.Produto;
+import Basica.ProdutoItem;
 import Utils.DadosException;
 
 public class ProdutoDAO extends Dados.Geral.DAOGenerico<Produto> implements IProdutoDAO {
@@ -70,6 +72,34 @@ public class ProdutoDAO extends Dados.Geral.DAOGenerico<Produto> implements IPro
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
+	}
+
+	@Override
+	public void InserirVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException {
+		// TODO Auto-generated method stub
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
+		ProdutoItem bp;
+		for (int i = 0; i < pi.size(); i++) {
+			bp = pi.get(i);
+			em.persist(bp);
+		}
+		em.getTransaction().commit();
+		em.close();
+	}
+
+	@Override
+	public void AlterarVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException {
+		// TODO Auto-generated method stub
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		em.getTransaction().begin();
+		ProdutoItem bp;
+		for (int i = 0; i < pi.size(); i++) {
+			bp = pi.get(i);
+			em.merge(bp);
+		}
+		em.getTransaction().commit();
+		em.close();
 	}
 	
 

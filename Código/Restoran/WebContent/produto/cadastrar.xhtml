@@ -69,24 +69,48 @@
 
 			</h:form>
 			
+						
 			<h:form class="form-inserir-itemComp-produto">
-				<p:panelGrid columns="2">
-					<p:outputLabel value="Categoria:" />
+				<p:panelGrid columns="5">
+					<p:outputLabel value="Id:" />
 					<p:panelGrid columns="1">
-						<h:selectOneMenu value="#{ProdutoBean.inserirItemComposicaoProduto}">
-							<f:selectItem itemValue="null" itemLabel="Item Composição" />
-							<f:selectItems value="#{ProdutoBean.listarItemComposicaoProduto}" var="cl"
-								itemValue="#{itemComposicao}" itemLabel="#{itemComposicao.nome}" />
-						</h:selectOneMenu>
+						<p:inputText id="id" value="#{ProdutoBean.idItemComp}" />
 					</p:panelGrid>
 					<p:outputLabel value="Quantidade:" />
 					<p:panelGrid columns="1">
-						<p:inputText id="precoCusto" value="#{ProdutoBean.qtdItemComposicaoProduto}" />
+						<p:inputText id="quantidade" value="#{ProdutoBean.qtdItemComposicaoProduto}" />
 					</p:panelGrid>
+					<p:commandButton id="reset-button" value="Adicionar Item Comp" icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}"></p:commandButton>
 				</p:panelGrid>
-				<p:commandButton id="reset-button" value="Adicionar Item Comp" icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}">
-				</p:commandButton>
+
 			</h:form>
+			
+			<p:dataTable process="@this" update="@this" id="Tabela"
+	                             widgetVar="Tabela"
+	                             rowIndexVar="rowNumber"
+	                             rows="10"
+	                             paginator="true"
+	                             value="#{ProdutoBean.listaDeItensDeComposicaoJaAdicionados}"
+	                             var="itemjaadiconados">
+				<p:column headerText="Id">
+					<h:outputText value="#{itemjaadiconados.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{itemjaadiconados.nome}" />
+				</p:column>
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{itemjaadiconados.quantidade}" />
+				</p:column>
+				<p:column headerText="Ação">
+				<h:form>
+					<h:commandButton id="alterar-button" rendered="#{itemjaadiconados.quantidade > 1}" value="Diminuir quantidade"
+						action="#{ProdutoBean.diminuirItemComp(itemjaadiconados.id)}" />
+					<h:commandButton id="excluir-button" value="Excluir"
+						action="#{ProdutoBean.removerItemComp(itemjaadiconados.id)}" />
+				</h:form>
+				</p:column>
+			</p:dataTable>
+			
 				
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>

@@ -2,14 +2,18 @@ package Fachada;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 
 import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
 import Basica.Mesa;
 import Basica.Pedido;
 import Basica.Produto;
+import Basica.ProdutoItem;
 import Basica.Usuario;
 import Dados.UsuarioDAO;
 import Negocio.RNCategoria;
@@ -64,6 +68,19 @@ public class Fachada {
         rnPedido = new RNPedido(emf);
         rnUsuario = new RNUsuario(emf);
 		rnProduto = new RNProduto(emf);
+	}
+	
+	public void inserirprodutoitem(ProdutoItem pi){
+		EntityManager em =  emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();		
+		try {
+			tx.begin();
+			em.persist(pi);
+			tx.commit();
+			em.close();
+		} catch (PersistenceException e) {
+			tx.rollback();
+		}
 	}
 	
 	/*
@@ -136,12 +153,20 @@ public class Fachada {
 		  return rnProduto.listar();
 	  }
 	  
-	  public Produto ProdutoBuscarPorId(Integer id){
+	  public Produto ProdutoBuscarPorId(Long id){
 		  return rnProduto.ProdutoBuscarPorId(id);
 	  }
 	  
 	  public List<Produto> ProdutoPesquisarPorObjeto(Produto p) throws DadosException{
 		  return rnProduto.PesquisarProdutoObjeto(p);
+	  }
+	  
+	  public void ProdutoInserirVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException{
+		  rnProduto.InserirVinculoProdutoItemComp(pi);
+	  }
+	  
+	  public void ProdutoAlterarVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException{
+		  rnProduto.AlterarVinculoProdutoItemComp(pi);
 	  }
 	  
 	/*
@@ -166,7 +191,7 @@ public class Fachada {
 		  return rnItemComposicaoProduto.listar();
 	  }
 	  
-	  public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Integer id){
+	  public ItemComposicaoProduto ItemComposicaoProdutoBuscarPorId(Long id){
 			return rnItemComposicaoProduto.ItemComposicaoProdutoBuscarPorId(id);
 	  }
 	  

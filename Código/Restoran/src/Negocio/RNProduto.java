@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import Basica.Produto;
+import Basica.ProdutoItem;
 import Dados.ProdutoDAO;
 import Utils.ControladorException;
 import Utils.DadosException;
@@ -42,13 +43,20 @@ public class RNProduto {
 	public List<Produto> listar(){
 		return produtoDAO.getAll();
 	}
-	public Produto ProdutoBuscarPorId(Integer id){
+	public Produto ProdutoBuscarPorId(Long id){
 		return produtoDAO.searchByKey(id);
 	}
 	public List<Produto> PesquisarProdutoObjeto(Produto p) throws DadosException{
 		return produtoDAO.PesquisarProdutoObjeto(p);
 	}
 	
+	public void InserirVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException{
+		produtoDAO.InserirVinculoProdutoItemComp(pi);
+	}
+	
+	public void AlterarVinculoProdutoItemComp(List<ProdutoItem> pi) throws DadosException{
+		produtoDAO.AlterarVinculoProdutoItemComp(pi);
+	}
 		   
 	/*
 	 * ################################## 
