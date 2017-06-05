@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import Basica.Categoria;
 import Basica.Mesa;
 import Basica.Pedido;
+import Basica.Produto;
 import Fachada.Fachada;
 
 @ManagedBean(name="PedidoBean")
@@ -28,6 +29,8 @@ public class PedidoBean {
 	private List<Pedido> listarPedido = new ArrayList<Pedido>();
 	
 	private List<Mesa> listarMesa = new ArrayList<Mesa>();
+	
+	private List<Produto> listarProduto = new ArrayList<Produto>();
 
 	public List<Pedido> getListarPedido() {
 		try{
@@ -49,6 +52,15 @@ public class PedidoBean {
 
 	public void setListarMesa(List<Mesa> listarMesa) {
 		this.listarMesa = listarMesa;
+	}
+
+	public List<Produto> getListarProduto() {
+		setListarProduto(fachada.ProdutoListar());
+		return listarProduto;
+	}
+
+	public void setListarProduto(List<Produto> listarProduto) {
+		this.listarProduto = listarProduto;
 	}
 	
 	

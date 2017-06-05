@@ -1,6 +1,7 @@
 package Basica;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -35,13 +38,11 @@ public class Produto {
 	@Column(nullable = false)
 	private int quantidade;
 		
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="pedido_produto", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_pedido"))
-	private Collection<Pedido> pedidos;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	public List<Pedido_produto> pedido_produto;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="produto_item", joinColumns=@JoinColumn(name="id_produto"), inverseJoinColumns=@JoinColumn(name="id_item"))
-	private Collection<ItemComposicaoProduto> itensComposicao;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	public List<Produto_item> produto_item;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_categoria", insertable=true, updatable=true) //Chave Estrangeira
@@ -99,27 +100,6 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-
-	public Collection<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-
-	public void setPedidos(Collection<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-
-
-	public Collection<ItemComposicaoProduto> getItensComposicao() {
-		return itensComposicao;
-	}
-
-
-	public void setItensComposicao(Collection<ItemComposicaoProduto> itensComposicao) {
-		this.itensComposicao = itensComposicao;
-	}
-
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -127,6 +107,26 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+
+	public List<Pedido_produto> getPedido_produto() {
+		return pedido_produto;
+	}
+
+
+	public void setPedido_produto(List<Pedido_produto> pedido_produto) {
+		this.pedido_produto = pedido_produto;
+	}
+
+
+	public List<Produto_item> getProduto_item() {
+		return produto_item;
+	}
+
+
+	public void setProduto_item(List<Produto_item> produto_item) {
+		this.produto_item = produto_item;
 	}
 
 	

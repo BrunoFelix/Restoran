@@ -1,6 +1,7 @@
 package Basica;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ItemComposicaoProduto {
@@ -29,9 +31,8 @@ public class ItemComposicaoProduto {
 	@Column(nullable = false)
 	private double precoCusto;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="produto_item", joinColumns=@JoinColumn(name="id_item"), inverseJoinColumns=@JoinColumn(name="id_produto"))
-	private Collection<Produto> produtos;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "itemcomposicaoproduto")
+	public List<Produto_item> produto_item;
 	
 	//Gets & Sets
 	public int getId() {
@@ -74,12 +75,13 @@ public class ItemComposicaoProduto {
 		this.precoCusto = precoCusto;
 	}
 
-	public Collection<Produto> getProdutos() {
-		return produtos;
+	public List<Produto_item> getProduto_item() {
+		return produto_item;
 	}
 
-	public void setProdutos(Collection<Produto> produtos) {
-		this.produtos = produtos;
+	public void setProduto_item(List<Produto_item> produto_item) {
+		this.produto_item = produto_item;
 	}
+
 	
 }

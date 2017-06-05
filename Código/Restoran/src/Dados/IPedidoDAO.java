@@ -13,5 +13,6 @@ public interface IPedidoDAO {
 	public List<Pedido> PesquisarPorGarcom(int codigoGarcom) throws DadosException;
 	public List<Pedido> PesquisarPorMesa(int numeroMesa) throws DadosException;
 	public List<Pedido> PesquisarPorProduto(int codigoProduto) throws DadosException;
+	public List<Pedido> ListaPedidos() throws DadosException;
 
 }

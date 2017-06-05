@@ -86,6 +86,20 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		} catch (Exception e) {
 			throw new DadosException(e);
 		}
+	}
+
+	@Override
+	public List<Pedido> ListaPedidos() throws DadosException {
+		try{
+			String queryString = "select object(p) from Pedido as p where p.status = 'Produção' order by p.data asc, p.id asc";
+
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+					
+			Query query = em.createQuery(queryString);
+			return query.getResultList();
+		} catch (Exception e) {
+			throw new DadosException(e);
+		}
 	}	
 	
 	

@@ -21,28 +21,53 @@
 		<h:outputText value="Gerenciar Pedidos"/>
 	</h1>
 	
-	<p:dataTable var="pedido" value="#{PedidoBean.listarPedido}">
-		<p:column headerText="id">
-			<h:outputText value="#{pedido.data}" />
-		</p:column>
-		<p:column headerText="Qtd. Produtos">
-			<h:outputText value="#{pedido.qtdProdutos}" />
-		</p:column>
-		<p:column headerText="Total Pedido">
-			<h:outputText value="#{pedido.totalPedido}" />
-		</p:column>
-		<p:column headerText="Número da Mesa">
-			<h:outputText value="#{pedido.mesa.numeroMesa}" />
-		</p:column>
-		<p:column headerText="Garçom">
-			<h:outputText value="#{pedido.garcom.nome}" />
-		</p:column>
-		<p:column headerText="Ações">
-			<h:form>
-				<h:commandButton id="alterar-button" value="Pronto" action="#{MesaBean.chamadaAlterar(mesa.id)}"/>	
-			</h:form>
-		</p:column>
-	</p:dataTable>
+	<div class="wrapper">
+		<div class="container">
+			<div class="panel_mesas">
+				<h:form id="form">
+				    <p:dataGrid var="pedido" value="#{PedidoBean.listarPedido}" columns="3" layout="grid"
+				        rows="12" paginator="true" id="mesas"
+				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				        rowsPerPageTemplate="6,12,16">
+				 
+				        <f:facet name="header" id="textotopo" class="textotopo">
+				            Painel de pedidos
+				        </f:facet>
+				        
+				 
+				        <p:panel header="Pedido #{pedido.id}" style="text-align:center">
+				            <h:panelGrid columns="1" style="width:100%"> 
+				 
+				 	
+				                <h:outputText value="Número da mesa: #{pedido.mesa.numeroMesa}" />
+				 				<h:outputText value="Garçom: #{pedido.garcom.nome}" />
+				 				
+				                <p:commandLink update=":form:detalheMesa" oncomplete="PF('detalheMesa').show()" title="Visualizar Produtos">
+				                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+				                </p:commandLink>
+				            </h:panelGrid>
+				        </p:panel>
+				 
+				    </p:dataGrid>
+				 
+				    <p:dialog header="Produtos Pedido" widgetVar="detalheMesa" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+				        <p:outputPanel id="detalheMesa" style="text-align:center;">
+				        	
+				        	<p:dataTable var="produto" value="#{PedidoBean.listarProduto}">
+								<p:column headerText="Nome">
+									<h:outputText value="#{produto.nome}" />
+								</p:column>
+								
+							</p:dataTable>
+				        	
+				        </p:outputPanel>
+				    </p:dialog>
+				</h:form>
+			</div>
+		</div>
+	</div>
+	
+
  	
   </h:body>
   </html>

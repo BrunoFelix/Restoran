@@ -23,7 +23,7 @@ public class RNPedido {
 	}
 	
 	public List<Pedido> PedidoListar() throws DadosException{
-		return pedidoDAO.getAll();
+		return pedidoDAO.ListaPedidos();
 	}
 	
 	/*

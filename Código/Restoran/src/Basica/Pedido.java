@@ -2,6 +2,7 @@ package Basica;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
 
 @Entity
 public class Pedido{
@@ -43,10 +46,8 @@ public class Pedido{
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Usuario garcom;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="pedido_produto", joinColumns=@JoinColumn(name="id_pedido"), inverseJoinColumns=@JoinColumn(name="id_produto"))
-	private Collection<Produto> produtos;
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
+	public List<Pedido_produto> pedido_produto;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_mesa", insertable=true, updatable=true) //Chave Estrangeira
@@ -55,12 +56,12 @@ public class Pedido{
 	private Mesa mesa;
 	
 	//Gets & Sets
-	public int getId_pedido() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId_pedido(int id_pedido) {
-		this.id = id_pedido;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getTotalPedido() {
@@ -95,14 +96,6 @@ public class Pedido{
 		this.garcom = garcom;
 	}
 
-	public Collection<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(Collection<Produto> produtos) {
-		this.produtos = produtos;
-	}
-
 	public Mesa getMesa() {
 		return mesa;
 	}
@@ -117,5 +110,13 @@ public class Pedido{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<Pedido_produto> getPedido_produto() {
+		return pedido_produto;
+	}
+
+	public void setPedido_produto(List<Pedido_produto> pedido_produto) {
+		this.pedido_produto = pedido_produto;
 	}
 }
