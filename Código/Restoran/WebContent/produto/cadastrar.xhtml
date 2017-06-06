@@ -67,63 +67,36 @@
 					</p:panelGrid>
 				</h:form>
 
-<<<<<<< HEAD
 
-					<p:commandButton id="insert-button" value="Limpar"
-						icon="ui-icon-trash" type="reset">
-					</p:commandButton>
-					<p:commandButton id="reset-button" value="Cadastrar"
-						icon="ui-icon-disk" action="#{ProdutoBean.cadastrar}">
-					</p:commandButton>
-				</p:panelGrid>
-						
 
-			</h:form>
-			
-						
-			<h:form class="form-inserir-itemComp-produto">
-				<p:panelGrid columns="5">
-					<p:outputLabel value="Id:" />
-					<p:panelGrid columns="1">
-						<p:inputText id="id" value="#{ProdutoBean.idItemComp}" />
-					</p:panelGrid>
-					<p:outputLabel value="Quantidade:" />
-					<p:panelGrid columns="1">
-						<p:inputText id="quantidade" value="#{ProdutoBean.qtdItemComposicaoProduto}" />
-					</p:panelGrid>
-					<p:commandButton id="reset-button" value="Adicionar Item Comp" icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}"></p:commandButton>
-				</p:panelGrid>
 
-			</h:form>
-			
-			<p:dataTable process="@this" update="@this" id="Tabela"
-	                             widgetVar="Tabela"
-	                             rowIndexVar="rowNumber"
-	                             rows="10"
-	                             paginator="true"
-	                             value="#{ProdutoBean.listaDeItensDeComposicaoJaAdicionados}"
-	                             var="itemjaadiconados">
-				<p:column headerText="Id">
-					<h:outputText value="#{itemjaadiconados.id}" />
-				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{itemjaadiconados.nome}" />
-				</p:column>
-				<p:column headerText="Quantidade">
-					<h:outputText value="#{itemjaadiconados.quantidade}" />
-				</p:column>
-				<p:column headerText="Ação">
-				<h:form>
-					<h:commandButton id="alterar-button" rendered="#{itemjaadiconados.quantidade > 1}" value="Diminuir quantidade"
-						action="#{ProdutoBean.diminuirItemComp(itemjaadiconados.id)}" />
-					<h:commandButton id="excluir-button" value="Excluir"
-						action="#{ProdutoBean.removerItemComp(itemjaadiconados.id)}" />
-				</h:form>
-				</p:column>
-			</p:dataTable>
-			
-				
-=======
+				<p:dataTable process="@this" update="@this" id="Tabela"
+					widgetVar="Tabela" rowIndexVar="rowNumber" rows="10"
+					paginator="true"
+					value="#{ProdutoBean.listaDeItensDeComposicaoJaAdicionados}"
+					var="itemjaadiconados">
+					<p:column headerText="Id">
+						<h:outputText value="#{itemjaadiconados.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{itemjaadiconados.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{itemjaadiconados.quantidade}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<h:form>
+							<p:commandButton id="alterar-button"
+								rendered="#{itemjaadiconados.quantidade > 1}"
+								value="Diminuir quantidade"
+								action="#{ProdutoBean.diminuirItemComp(itemjaadiconados.id)}" />
+							<p:commandButton id="excluir-button" value="Excluir"
+								action="#{ProdutoBean.removerItemComp(itemjaadiconados.id)}" />
+						</h:form>
+					</p:column>
+				</p:dataTable>
+
+
 				<h:form class="form-inserir-itemComp-produto">
 					<p:panelGrid columns="2">
 						<p:outputLabel value="Item de Composição:" />
@@ -148,10 +121,9 @@
 					</p:commandButton>
 				</h:form>
 			</div>
->>>>>>> refs/remotes/origin/master
+
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>
 	</div>
-
 </h:body>
 </html>

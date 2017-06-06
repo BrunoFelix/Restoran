@@ -67,11 +67,11 @@ public class PedidoBean {
 		this.listarProduto = listarProduto;
 	}
 	
-	public String chamadaCadastrar(Integer id){
+	/*public String chamadaCadastrar(Integer id){
 		Mesa mesa = fachada.MesaBuscarPorId(id);
 		Usuari
 		return "cadastrar";
-	}
+	}*/
 	
 	
 	
