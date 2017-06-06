@@ -1,57 +1,72 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
-            <title>Restoran | Gerenciar Usuários</title>
-  </h:head>
-  <h:body> 	
- 	 	
- 	<div id="topo">
-		<ui:include src="../menu.xhtml" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<link rel="StyleSheet" type="text/css" href="../css/produto.css"
+		media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Gerenciar Usuários</title>
+</h:head>
+<h:body>
+	<div class="wrapper">
+		<div>
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
 
- 	<h1 class="textotopo">
-		<h:outputText value="Gerenciar Usuários"/>
-	</h1>
- 	
-	 	<p:dataTable var="usuario" value="#{UsuarioBean.listarUsuario}">
-			<p:column headerText="id">
-				<h:outputText value="#{usuario.id}" />
-			</p:column>
-			<p:column headerText="Nome">
-				<h:outputText value="#{usuario.nome}" />
-			</p:column>
-			<p:column headerText="E-mail">
-				<h:outputText value="#{usuario.email}" />
-			</p:column>
-			<p:column headerText="login">
-				<h:outputText value="#{usuario.login}" />
-			</p:column>
-			<p:column headerText="CPF">
-				<h:outputText value="#{usuario.cpf}" />
-			</p:column>
-			<p:column headerText="Telefone">
-				<h:outputText value="#{usuario.telefone}" />
-			</p:column>
-			<p:column headerText="Sexo">
-				<h:outputText value="#{usuario.sexo}" />
-			</p:column>
-			<p:column headerText="Tipo">
-				<h:outputText value="#{usuario.tipo}" />
-			</p:column>
-			<p:column headerText="Ações">
-				<h:form>
-					<h:commandButton id="alterar-button" value="Alterar" action="#{UsuarioBean.chamadaAlterar(usuario.id)}"/>	
-					<h:commandButton id="excluir-button" value="Excluir" action="#{UsuarioBean.excluir}"/>	
-				</h:form>
-			</p:column>
-		</p:dataTable>
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
+
+			<h1 class="textotopo">
+				<h:outputText value="Gerenciar Usuários" />
+			</h1>
+
+			<p:dataTable var="usuario" value="#{UsuarioBean.listarUsuario}">
+				<p:column headerText="id">
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+
+				<p:column headerText="E-mail">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+
+				<p:column headerText="login">
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
+
+				<p:column headerText="CPF">
+					<h:outputText value="#{usuario.cpf}" />
+				</p:column>
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{usuario.telefone}" />
+				</p:column>
+
+				<p:column headerText="Sexo">
+					<h:outputText value="#{usuario.sexo}" />
+				</p:column>
+
+				<p:column headerText="Tipo">
+					<h:outputText value="#{usuario.tipo}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:commandButton id="alterar-button" value="Alterar"
+						action="#{UsuarioBean.chamadaAlterar(usuario.id)}" />
+					<p:commandButton id="excluir-button" value="Excluir"
+						action="#{UsuarioBean.excluir}" />
+				</p:column>
+			</p:dataTable>
+
+		</div>
 	</div>
-  </h:body>
-  </html>
+</h:body>
+</html>

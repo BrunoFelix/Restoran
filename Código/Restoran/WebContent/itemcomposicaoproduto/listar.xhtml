@@ -1,50 +1,61 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
-            <title>Restoran | Gerenciar Itens de Composição do Produto</title>
-  </h:head>
-  <h:body> 	
- 	 	
- 	<div id="topo">
-		<ui:include src="../menu.xhtml" />
-	</div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<link rel="StyleSheet" type="text/css" href="../css/produto.css"
+		media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Gerenciar Itens de Composição do Produto</title>
+</h:head>
+<h:body>
+	<div class="wrapper">
+		<div>
+			<img src="../img/logorestoranicon.png" />
+			<img src="../img/logorestoranNome.png" />
 
-	<h1 class="textotopo">
-		<h:outputText value="Gerenciar Itens de Composição do Produto"/>
-	</h1>
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
 
- 	<div>
-	 	<p:dataTable var="itemComposicao" value="#{ItemComposicaoProdutoBean.listarItemComposicaoProduto}">
-			<p:column headerText="id">
-				<h:outputText value="#{itemComposicao.id}" />
-			</p:column>
-			<p:column headerText="Nome">
-				<h:outputText value="#{itemComposicao.nome}" />
-			</p:column>
-			<p:column headerText="Quantidade">
-				<h:outputText value="#{itemComposicao.quantidade}" />
-			</p:column>
-			<p:column headerText="Unidade de Medida">
-				<h:outputText value="#{itemComposicao.unidadeMedida}" />
-			</p:column>
-			<p:column headerText="Preço de Custo">
-				<h:outputText value="R$ #{itemComposicao.precoCusto}" />
-			</p:column>
-			<p:column headerText="Ações">
-				<h:form>
-					<h:commandButton id="alterar-button" value="Alterar" action="#{ItemComposicaoProdutoBean.chamadaAlterar(itemComposicao.id)}"/>	
-					<h:commandButton id="excluir-button" value="Excluir" action="#{ItemComposicaoProdutoBean.excluir}"/>	
-				</h:form>
-			</p:column>
-		</p:dataTable>
+			<h1 class="textotopo">
+				<h:outputText value="Gerenciar Itens de Composição do Produto" />
+			</h1>
+
+			<p:dataTable var="itemComposicao"
+				value="#{ItemComposicaoProdutoBean.listarItemComposicaoProduto}">
+				<p:column headerText="id">
+					<h:outputText value="#{itemComposicao.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{itemComposicao.nome}" />
+				</p:column>
+
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{itemComposicao.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Unidade de Medida">
+					<h:outputText value="#{itemComposicao.unidadeMedida}" />
+				</p:column>
+
+				<p:column headerText="Preço de Custo">
+					<h:outputText value="R$ #{itemComposicao.precoCusto}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:commandButton id="alterar-button" value="Alterar"
+						action="#{ItemComposicaoProdutoBean.chamadaAlterar(itemComposicao.id)}" />
+					<p:commandButton id="excluir-button" value="Excluir"
+						action="#{ItemComposicaoProdutoBean.excluir}" />
+				</p:column>
+			</p:dataTable>
+
+		</div>
 	</div>
-  </h:body>
-  </html>
+</h:body>
+</html>

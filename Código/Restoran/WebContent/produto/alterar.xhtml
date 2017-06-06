@@ -39,7 +39,6 @@
 							value="#{ProdutoBean.produtoAlterar.quantidade}" />
 					</p:panelGrid>
 
-
 					<p:outputLabel value="Preço de venda: " />
 					<p:panelGrid columns="1">
 						<p:inputText id="precoVenda"
@@ -68,6 +67,29 @@
 					</p:commandButton>
 				</p:panelGrid>
 			</h:form>
+
+			<!-- Itens de Composião do Produto -->
+			<div>
+				<p:dataTable var="itemComposicao"
+					value="#{ProdutoBean.listarItemComposicaoProduto}">
+					<p:column headerText="id">
+						<h:outputText value="#{itemComposicao.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{itemComposicao.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{itemComposicao.quantidade}" />
+					</p:column>
+					<p:column headerText="Unidade de Medida">
+						<h:outputText value="#{itemComposicao.unidadeMedida}" />
+					</p:column>
+					<p:column headerText="Preço de Custo">
+						<h:outputText value="R$ #{itemComposicao.precoCusto}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>
 	</div>
