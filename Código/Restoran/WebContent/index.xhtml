@@ -6,41 +6,53 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:head>
-	<link rel="StyleSheet" type="text/css" href="css/login.css" media="screen" />
+	<link rel="StyleSheet" type="text/css" href="css/login.css"
+		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Restoran | Home</title>
 </h:head>
 <h:body>
-
-	<div id="topo">
-		<ui:include src="menu.xhtml" />
-	</div>
-	
 	<div class="wrapper">
-		<div class="container">
+		<div>
+			<img src="img/logorestoranicon.png" /> <img
+				src="img/logorestoranNome.png" />
 
-			<h1>
-				<h:outputText id="textotopo" value="Home" />
-			</h1>
+			<div id="topo">
+				<ui:include src="menu.xhtml" />
+			</div>
 
-			<h1>
-				<img src="img/logorestoran.png" />
-			</h1>
+			<div class="wrapper">
+				<div class="container">
+					<h1>
+						<h:outputText id="textotopo" value="Home" />
+					</h1>
 
-			<div id="index"></div>
+					<div>
+						<h1>
+							<img src="img/logorestoranLogo.png" />
+						</h1>
+
+						<h1>
+							<img src="img/logorestoranNome.png" />
+						</h1>
+					</div>
+
+					<div id="index"></div>
+				</div>
+				<ul class="bg-bubbles">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
 		</div>
-		<ul class="bg-bubbles">
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
 </h:body>
 </html>
