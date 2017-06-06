@@ -33,7 +33,7 @@ public class ProdutoBean{
 	
 	private static Produto produto;
 	
-	private Produto produtoAlterar = new Produto();
+	private Produto produtoAlterar;
 
 	private List<ItemComposicaoProduto> listarItemComposicaoProduto = new ArrayList<ItemComposicaoProduto>();
 	private Set<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados = new HashSet<ItemComposicaoProduto>();

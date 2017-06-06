@@ -5,96 +5,106 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-
 <h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+	<link rel="StyleSheet" type="text/css" href="../css/alterar.css"
 		media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Restoran | Alterar Produto</title>
 </h:head>
 <h:body>
+	<div class="wrapper">
+		<div>
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
+				
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
 
-	<div id="topo">
-		<ui:include src="../menu.xhtml" />
+			<div class="container">
+				<h1 id="textotopo">
+					<h:outputText value="Alterar Produto" />
+				</h1>
+
+				<h:form class="form-alterar-produto" id="form-alterar-produto">
+					<p:panelGrid columns="2" cellpadding="5">
+
+						<p:outputLabel value="ID:" />
+						<p:panelGrid columns="1">
+							<p:outputLabel id="id" value="#{ProdutoBean.produtoAlterar.id}" />
+						</p:panelGrid>
+
+						<p:outputLabel value="Nome:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="nome" value="#{ProdutoBean.produtoAlterar.nome}" />
+						</p:panelGrid>
+
+						<p:outputLabel value="Quantidade" />
+						<p:panelGrid columns="1">
+							<p:inputText id="quantidade"
+								value="#{ProdutoBean.produtoAlterar.quantidade}" />
+						</p:panelGrid>
+
+						<p:outputLabel value="Preço de venda:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="precoVenda"
+								value="#{ProdutoBean.produtoAlterar.precoVenda}" />
+						</p:panelGrid>
+
+						<p:outputLabel value="Preço de Custo:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="precoCusto"
+								value="#{ProdutoBean.produtoAlterar.precoCusto}" />
+						</p:panelGrid>
+
+						<p:outputLabel value="Categoria:" />
+						<p:panelGrid columns="1">
+							<h:selectOneMenu value="#{ProdutoBean.produtoAlterar.categoria}">
+								<f:selectItem itemValue="null" itemLabel="Categoria" />
+								<f:selectItems value="#{ProdutoBean.listarCategoria}" var="cl"
+									itemValue="#{categoria}" itemLabel="#{categoria.nome}" />
+							</h:selectOneMenu>
+						</p:panelGrid>
+
+						<p:commandButton id="insert-button" value="Limpar"
+							icon="ui-icon-trash" type="reset">
+						</p:commandButton>
+						<p:commandButton id="reset-button" value="Salvar"
+							icon="ui-icon-disk" action="#{ProdutoBean.alterar}">
+						</p:commandButton>
+					</p:panelGrid>
+				</h:form>
+
+				<!-- Itens de Composião do Produto -->
+				<h:form>
+					<div>
+						<p:dataTable var="itemComposicao"
+							value="#{ProdutoBean.listarItemComposicaoProduto}">
+							<p:column headerText="id">
+								<h:outputText value="#{produtoItemComposicao.id}" />
+							</p:column>
+							<p:column headerText="Nome">
+								<h:outputText value="#{produto.produtoItemComposicao.nome}" />
+							</p:column>
+							<p:column headerText="Quantidade">
+								<h:outputText
+									value="#{produto.produtoItemComposicao.quantidade}" />
+							</p:column>
+							<p:column headerText="Unidade de Medida">
+								<h:outputText
+									value="#{produto.produtoItemComposicao.unidadeMedida}" />
+							</p:column>
+							<p:column headerText="Preço de Custo">
+								<h:outputText
+									value="R$ #{produto.produtoItemComposicao.precoCusto}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</h:form>
+				<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+			</div>
+		</div>
+
 	</div>
-
-	<h1>
-		<h:outputText id="textotopo" class="textotopo" value="Alterar Produto" />
-	</h1>
-
-	<h:form class="form-alterar-produto" id="form-alterar-produto">
-		<p:panelGrid columns="2" cellpadding="5">
-
-			<p:outputLabel value="ID:" />
-			<p:panelGrid columns="1">
-				<p:outputLabel id="id" value="#{ProdutoBean.produtoAlterar.id}" />
-			</p:panelGrid>
-
-			<p:outputLabel value="Nome:" />
-			<p:panelGrid columns="1">
-				<p:inputText id="nome" value="#{ProdutoBean.produtoAlterar.nome}" />
-			</p:panelGrid>
-
-			<p:outputLabel value="Quantidade" />
-			<p:panelGrid columns="1">
-				<p:inputText id="quantidade"
-					value="#{ProdutoBean.produtoAlterar.quantidade}" />
-			</p:panelGrid>
-
-			<p:outputLabel value="Preço de venda:" />
-			<p:panelGrid columns="1">
-				<p:inputText id="precoVenda"
-					value="#{ProdutoBean.produtoAlterar.precoVenda}" />
-			</p:panelGrid>
-
-			<p:outputLabel value="Preço de Custo:" />
-			<p:panelGrid columns="1">
-				<p:inputText id="precoCusto"
-					value="#{ProdutoBean.produtoAlterar.precoCusto}" />
-			</p:panelGrid>
-
-			<p:outputLabel value="Categoria:" />
-			<p:panelGrid columns="1">
-				<h:selectOneMenu value="#{ProdutoBean.produtoAlterar.categoria}">
-					<f:selectItem itemValue="null" itemLabel="Categoria" />
-					<f:selectItems value="#{ProdutoBean.listarCategoria}" var="cl"
-						itemValue="#{categoria}" itemLabel="#{categoria.nome}" />
-				</h:selectOneMenu>
-			</p:panelGrid>
-			
-			<p:commandButton id="insert-button" value="Limpar"
-				icon="ui-icon-trash" type="reset">
-			</p:commandButton>
-			<p:commandButton id="reset-button" value="Salvar" icon="ui-icon-disk"
-				action="#{ProdutoBean.alterar}">
-			</p:commandButton>
-		</p:panelGrid>
-	</h:form>
-
-	<!-- Itens de Composião do Produto -->
-	<h:form>
-	<div>
-		<p:dataTable var="itemComposicao"
-			value="#{ProdutoBean.listarItemComposicaoProduto}">
-			<p:column headerText="id">
-				<h:outputText value="#{produtoItemComposicao.id}" />
-			</p:column>
-			<p:column headerText="Nome">
-				<h:outputText value="#{produto.produtoItemComposicao.nome}" />
-			</p:column>
-			<p:column headerText="Quantidade">
-				<h:outputText value="#{produto.produtoItemComposicao.quantidade}" />
-			</p:column>
-			<p:column headerText="Unidade de Medida">
-				<h:outputText value="#{produto.produtoItemComposicao.unidadeMedida}" />
-			</p:column>
-			<p:column headerText="Preço de Custo">
-				<h:outputText value="R$ #{produto.produtoItemComposicao.precoCusto}" />
-			</p:column>
-		</p:dataTable>
-	</div>
-	</h:form>
-	<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
-
 </h:body>
 </html>

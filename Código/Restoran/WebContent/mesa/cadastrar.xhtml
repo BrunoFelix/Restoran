@@ -8,40 +8,50 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
+	<link rel="StyleSheet" type="text/css" href="../css/cadastrar.css"
+		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
 	<title>Restoran | Cadastrar Mesa</title>
 </h:head>
 <h:body>
+	<div class="wrapper">
+		<div>
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
 
-	<div id="topo">
-		<ui:include src="../menu.xhtml" />
-	</div>
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
 
-	<h1>
-		<h:outputText id="textotopo" value="Cadastrar Mesa" />
-	</h1>
+			<div class="container">
+				<h1 id="textotopo">
+					<h:outputText value="Cadastrar Mesa" />
+				</h1>
 
-	<h:form class="form-cadastro-mesa">
-		<p:panelGrid columns="2">
+				<h:form class="form-cadastro-mesa">
+					<p:panelGrid columns="2">
 
-			<p:outputLabel value="Numero Mesa: " />
-			<p:panelGrid columns="1">
-				<p:inputText id="numeroMesa" value="#{MesaBean.numeroMesa}" />
-			</p:panelGrid>
-			<p:outputLabel value="Capacidade: " />
-			<p:panelGrid columns="1">
-				<p:inputText id="capacidade" value="#{MesaBean.capacidadeMesa}" />
-			</p:panelGrid>	
-			<p:commandButton id="insert-button" value="Limpar"
-				icon="ui-icon-trash" type="reset">
-			</p:commandButton>
-			<p:commandButton id="reset-button" value="Cadastrar"
-				icon="ui-icon-disk" action="#{MesaBean.cadastrar}">
-			</p:commandButton>
-		</p:panelGrid>
-	</h:form>
-	<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+						<p:outputLabel value="Numero Mesa:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="numeroMesa" value="#{MesaBean.numeroMesa}" />
+						</p:panelGrid>
+						<p:outputLabel value="Capacidade:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="capacidade" value="#{MesaBean.capacidadeMesa}" />
+						</p:panelGrid>
+
+						<p:commandButton id="insert-button" value="Limpar"
+							icon="ui-icon-trash" type="reset">
+						</p:commandButton>
+						<p:commandButton id="reset-button" value="Cadastrar"
+							icon="ui-icon-disk" action="#{MesaBean.cadastrar}">
+						</p:commandButton>
+					</p:panelGrid>
+				</h:form>
+				<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+			</div>
+		</div>
+		</div>
 </h:body>
 </html>
 
