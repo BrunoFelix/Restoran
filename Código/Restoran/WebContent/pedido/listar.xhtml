@@ -1,73 +1,84 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  	<link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
-            <title>Restoran | Gerenciar Pedidos</title>
-  </h:head>
-  <h:body>
- 	
- 	<div id="topo">
-		<ui:include src="../menu.xhtml" />
-	</div>
-	
-	<h1 class="textotopo">
-		<h:outputText value="Gerenciar Pedidos"/>
-	</h1>
-	
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
+	<title>Restoran | Gerenciar Pedidos</title>
+</h:head>
+<h:body>
 	<div class="wrapper">
-		<div class="container">
-			<div class="panel_mesas">
-				<h:form id="form">
-				    <p:dataGrid var="pedido" value="#{PedidoBean.listarPedido}" columns="3" layout="grid"
-				        rows="12" paginator="true" id="mesas"
-				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				        rowsPerPageTemplate="6,12,16">
-				 
-				        <f:facet name="header" id="textotopo" class="textotopo">
+		<div>
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
+			
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
+
+			<h1 class="textotopo">
+				<h:outputText value="Gerenciar Pedidos" />
+			</h1>
+
+			<div class="wrapper">
+				<div class="container">
+					<div class="panel_mesas">
+						<h:form id="form">
+							<p:dataGrid var="pedido" value="#{PedidoBean.listarPedido}"
+								columns="3" layout="grid" rows="12" paginator="true" id="mesas"
+								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="6,12,16">
+
+								<f:facet name="header" id="textotopo" class="textotopo">
 				            Painel de pedidos
 				        </f:facet>
-				        
-				 
-				        <p:panel header="Pedido #{pedido.id}" style="text-align:center">
-				            <h:panelGrid columns="1" style="width:100%"> 
-				 
-				 	
-				                <h:outputText value="Número da mesa: #{pedido.mesa.numeroMesa}" />
-				 				<h:outputText value="Garçom: #{pedido.garcom.nome}" />
-				 				
-				                <p:commandLink update=":form:detalheMesa" oncomplete="PF('detalheMesa').show()" title="Visualizar Produtos">
-				                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-				                </p:commandLink>
-				            </h:panelGrid>
-				        </p:panel>
-				 
-				    </p:dataGrid>
-				 
-				    <p:dialog header="Produtos Pedido" widgetVar="detalheMesa" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-				        <p:outputPanel id="detalheMesa" style="text-align:center;">
-				        	
-				        	<p:dataTable var="produto" value="#{PedidoBean.listarProduto}">
-								<p:column headerText="Nome">
-									<h:outputText value="#{produto.nome}" />
-								</p:column>
-								
-							</p:dataTable>
-				        	
-				        </p:outputPanel>
-				    </p:dialog>
-				</h:form>
-			</div>
-		</div>
-	</div>
-	
 
- 	
-  </h:body>
-  </html>
+
+								<p:panel header="Pedido #{pedido.id}" style="text-align:center">
+									<h:panelGrid columns="1" style="width:100%">
+
+
+										<h:outputText
+											value="Número da mesa: #{pedido.mesa.numeroMesa}" />
+										<h:outputText value="Garçom: #{pedido.garcom.nome}" />
+
+										<p:commandLink update=":form:detalheMesa"
+											oncomplete="PF('detalheMesa').show()"
+											title="Visualizar Produtos">
+											<h:outputText styleClass="ui-icon ui-icon-search"
+												style="margin:0 auto;" />
+										</p:commandLink>
+									</h:panelGrid>
+								</p:panel>
+
+							</p:dataGrid>
+
+							<p:dialog header="Produtos Pedido" widgetVar="detalheMesa"
+								modal="true" showEffect="fade" hideEffect="fade"
+								resizable="false">
+								<p:outputPanel id="detalheMesa" style="text-align:center;">
+
+									<p:dataTable var="produto" value="#{PedidoBean.listarProduto}">
+										<p:column headerText="Nome">
+											<h:outputText value="#{produto.nome}" />
+										</p:column>
+
+									</p:dataTable>
+
+								</p:outputPanel>
+							</p:dialog>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+</h:body>
+</html>
