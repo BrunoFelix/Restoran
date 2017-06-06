@@ -27,7 +27,7 @@ public class Mesa implements Serializable{
 	@Column(nullable=false)
 	private int capacidadeMesa;
 	
-	@OneToMany(mappedBy="mesa", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="mesa", fetch = FetchType.EAGER)
 	@Cascade(CascadeType.ALL)
 	private Collection<Pedido> pedidos;
 	

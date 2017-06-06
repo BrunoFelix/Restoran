@@ -121,6 +121,14 @@ public class UsuarioBean {
 		this.usuarioAlterar = usuarioAlterar;
 	}
 
+	public static Usuario getUsuario() {
+		return usuario;
+	}
+
+	public static void setUsuario(Usuario usuario) {
+		UsuarioBean.usuario = usuario;
+	}
+
 	public String index() {
 		return "usuario";
 	}
@@ -183,6 +191,14 @@ public class UsuarioBean {
 	public String getUsuarioGerente() {
 		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
 			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
+		} else {
+			return "login";
+		}
+	}
+	
+	public String getUsuarioPrivilegioGerente() {
+		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
+			return "true";
 		} else {
 			return "login";
 		}

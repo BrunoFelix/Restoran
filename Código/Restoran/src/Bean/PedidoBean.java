@@ -31,6 +31,10 @@ public class PedidoBean {
 	private List<Mesa> listarMesa = new ArrayList<Mesa>();
 	
 	private List<Produto> listarProduto = new ArrayList<Produto>();
+	
+	private String NumeroMesa;
+	private String nomeGarcom;
+	private String Status;
 
 	public List<Pedido> getListarPedido() {
 		try{
@@ -61,6 +65,12 @@ public class PedidoBean {
 
 	public void setListarProduto(List<Produto> listarProduto) {
 		this.listarProduto = listarProduto;
+	}
+	
+	public String chamadaCadastrar(Integer id){
+		Mesa mesa = fachada.MesaBuscarPorId(id);
+		Usuari
+		return "cadastrar";
 	}
 	
 	

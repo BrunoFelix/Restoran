@@ -1,5 +1,7 @@
 package Testes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import javax.persistence.Persistence;
 
 import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
+import Basica.Pedido;
+import Basica.PedidoProduto;
 import Basica.Produto;
 import Basica.ProdutoItem;
 import Bean.UsuarioBean;
@@ -18,7 +22,7 @@ import Utils.NegocioException;
 
 public class Main {
 
-	public static void main(String[] args) throws NegocioException, DadosException {
+	public static void main(String[] args) throws NegocioException, DadosException, ParseException {
 		// TODO Auto-generated method stub
 		/*UsuarioBean usuariobean = new UsuarioBean();
 		System.out.println(usuariobean.getListarUsuario().size());*/		
@@ -28,7 +32,7 @@ public class Main {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 
-		Produto b = new Produto();
+		/*Produto b = new Produto();
 		b.setNome("Produto1");
 		b.setPrecoCusto(10);
 		b.setPrecoVenda(10);
@@ -43,8 +47,25 @@ public class Main {
 		em.persist(p);
 
 		ProdutoItem bp = new ProdutoItem(b, p, 10);
-		em.persist(bp);
+		em.persist(bp);*/
+		
+		Pedido p = new Pedido();
+		p.setQtdProdutos(1);
+		p.setStatus("aberta");
+		p.setTotalPedido(10);
+		p.setData(new SimpleDateFormat( "dd/MM/yyyy" ).parse( "23/11/2015" ));
+		em.persist(p);
+		
+		Produto f = new Produto();
+		f.setNome("novo");
+		f.setPrecoCusto(40);
+		f.setPrecoVenda(30);
+		f.setQuantidade(10);
+		em.persist(f);
 
+		PedidoProduto pb = new PedidoProduto(p, f, 2);
+		em.persist(pb);
+		
 		em.getTransaction().commit();
 		em.close();
 		

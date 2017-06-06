@@ -19,24 +19,22 @@
 	</div>
 
 	<h1 id="textotopo">
-		<h:outputText value="Cadastrar Produto" />
+		<h:outputText value="Cadastrar Pedido" />
 	</h1>
 
 
 	<div class="wrapper">
 		<div class="container">
 			<h:form class="form-inserir-pedido">
-				<p:panelGrid columns="2">
+				<p:panelGrid columns="3">
 
 					<p:outputLabel value="Mesa:" />
-					<p:panelGrid columns="1">
-						<h:selectOneMenu value="#{ProdutoBean.categoria}">
-							<f:selectItem itemValue="null" itemLabel="Categoria" />
-							<f:selectItems value="#{PedidoBean.listarMesa}" var="cl"
-								itemValue="#{mesa}" itemLabel="#{mesa.nome}" />
-						</h:selectOneMenu>
-					</p:panelGrid>
 					
+					<p:outputLabel value="Garçom: " />
+					
+					<p:outputLabel value="Status: " />
+				</p:panelGrid>	
+				<p:panelGrid columns="2">	
 					<p:commandButton id="insert-button" value="Limpar"
 						icon="ui-icon-trash" type="reset">
 					</p:commandButton>
@@ -44,6 +42,7 @@
 						icon="ui-icon-disk" action="#{ProdutoBean.cadastrar}">
 					</p:commandButton>
 				</p:panelGrid>
+				
 
 			</h:form>
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
