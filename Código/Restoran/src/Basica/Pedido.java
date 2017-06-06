@@ -1,8 +1,10 @@
 package Basica;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +28,7 @@ import org.hibernate.annotations.FetchMode;
 public class Pedido{
 	
 	@Id @GeneratedValue
-	private int id;
+	private Long id;
 	
 	@Column(nullable=false)
 	private double totalPedido;
@@ -46,8 +48,8 @@ public class Pedido{
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Usuario garcom;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido")
-	public List<Pedido_produto> pedido_produto;
+	@OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
+	private Set<PedidoProduto> produtos = new HashSet<PedidoProduto>();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_mesa", insertable=true, updatable=true) //Chave Estrangeira
@@ -56,11 +58,11 @@ public class Pedido{
 	private Mesa mesa;
 	
 	//Gets & Sets
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -112,11 +114,12 @@ public class Pedido{
 		this.status = status;
 	}
 
-	public List<Pedido_produto> getPedido_produto() {
-		return pedido_produto;
+	public Set<PedidoProduto> getProdutos() {
+		return produtos;
 	}
 
-	public void setPedido_produto(List<Pedido_produto> pedido_produto) {
-		this.pedido_produto = pedido_produto;
+	public void setProdutos(Set<PedidoProduto> produtos) {
+		this.produtos = produtos;
 	}
+
 }

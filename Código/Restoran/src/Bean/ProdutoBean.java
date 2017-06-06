@@ -36,7 +36,7 @@ public class ProdutoBean{
 	private Produto produtoAlterar;
 
 	private List<ItemComposicaoProduto> listarItemComposicaoProduto = new ArrayList<ItemComposicaoProduto>();
-	private Set<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados = new HashSet<ItemComposicaoProduto>();
+	private List<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados = new ArrayList<ItemComposicaoProduto>();
 	private List<Produto> listarProduto = new ArrayList<Produto>();
 	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
 	private int id;
@@ -47,6 +47,7 @@ public class ProdutoBean{
 	private Categoria categoria;
 	private int qtdItemComposicaoProduto;
 	private ItemComposicaoProduto inserirItemComposicaoProduto;
+	private int idItemComp;
 	
 
 	public Produto getProdutoAlterar() {
@@ -149,12 +150,20 @@ public class ProdutoBean{
 		this.inserirItemComposicaoProduto = inserirItemComposicaoProduto;
 	}
 
-	public Set<ItemComposicaoProduto> getListaDeItensDeComposicaoJaAdicionados() {
+	public List<ItemComposicaoProduto> getListaDeItensDeComposicaoJaAdicionados() {
 		return listaDeItensDeComposicaoJaAdicionados;
 	}
 
-	public void setListaDeItensDeComposicaoJaAdicionados(Set<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados) {
+	public void setListaDeItensDeComposicaoJaAdicionados(List<ItemComposicaoProduto> listaDeItensDeComposicaoJaAdicionados) {
 		this.listaDeItensDeComposicaoJaAdicionados = listaDeItensDeComposicaoJaAdicionados;
+	}
+
+	public int getIdItemComp() {
+		return idItemComp;
+	}
+
+	public void setIdItemComp(int idItemComp) {
+		this.idItemComp = idItemComp;
 	}
 
 	public String index(){
@@ -162,7 +171,48 @@ public class ProdutoBean{
 	}
 
 	public void adicionarItemComp(){
-		listaDeItensDeComposicaoJaAdicionados.add(inserirItemComposicaoProduto);
+		try{
+			if (qtdItemComposicaoProduto > 0){
+			boolean achou = false;
+			
+				for (int i = 0; i < listaDeItensDeComposicaoJaAdicionados.size(); i++) {
+					if (listaDeItensDeComposicaoJaAdicionados.get(i).getId() == idItemComp){
+						listaDeItensDeComposicaoJaAdicionados.get(i).setQuantidade(listaDeItensDeComposicaoJaAdicionados.get(i).getQuantidade() + qtdItemComposicaoProduto);
+						achou = true;
+					}
+				}
+				
+				if(!achou){
+					ItemComposicaoProduto item = fachada.ItemComposicaoProdutoBuscarPorId((long) idItemComp);
+					item.setQuantidade(qtdItemComposicaoProduto);
+					listaDeItensDeComposicaoJaAdicionados.add(item);
+					
+				}else{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Como o procedimento já havia sido adicionado, foi aumentada a quantidade!"));
+				}	
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Quantidade inválida"));
+			}
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Id inválido/inexistente"));
+		}
+		
+	}
+	
+	public void removerItemComp(int id){
+		for (int i = 0; i < listaDeItensDeComposicaoJaAdicionados.size(); i++) {
+			if (listaDeItensDeComposicaoJaAdicionados.get(i).getId() == id){
+				listaDeItensDeComposicaoJaAdicionados.remove(i);
+			}
+		}
+	}
+	
+	public void diminuirItemComp(int id){
+		for (int i = 0; i < listaDeItensDeComposicaoJaAdicionados.size(); i++) {
+			if (listaDeItensDeComposicaoJaAdicionados.get(i).getId() == id){
+				listaDeItensDeComposicaoJaAdicionados.get(i).setQuantidade(listaDeItensDeComposicaoJaAdicionados.get(i).getQuantidade() - 1);
+			}
+		}
 	}
 	
 	public String cadastrar() {
@@ -171,39 +221,22 @@ public class ProdutoBean{
 		produtoinserir.setQuantidade(quantidade);
 		produtoinserir.setPrecoVenda(precoVenda);
 		produtoinserir.setPrecoCusto(precoCusto);
-		produtoinserir.setCategoria(categoria);
-		List<ProdutoItem> listaproduto_item = new ArrayList<ProdutoItem>();
-		ProdutoItem produto_item = new ProdutoItem();
-		Iterator<ItemComposicaoProduto> carrosAsIterator = listaDeItensDeComposicaoJaAdicionados.iterator();
-        while (carrosAsIterator.hasNext()){
-        	ItemComposicaoProduto it = carrosAsIterator.next();
-        	produto_item.setItemcomposicaoproduto(it);
-			produto_item.setProduto(produtoinserir);
-			produto_item.setQuantidade(10);
-			listaproduto_item.add(produto_item);
-			System.out.println(it.getId());
-               
-        }
-		
-		/*for (int i = 0; i < listaDeItensDeComposicaoJaAdicionados.size(); i++) {
-			produto_item.setItemcomposicaoproduto(listaDeItensDeComposicaoJaAdicionados.get(i));
-			produto_item.setProduto(produtoinserir);
-			produto_item.setQuantidade(10);
-			listaproduto_item.add(produto_item);
-		}*/
-
-		
-		produtoinserir.setItensComp(listaproduto_item);
-		
-		for (int i = 0; i < produtoinserir.getItensComp().size(); i++) {
-			System.out.println(produtoinserir.getItensComp().get(i).getItemcomposicaoproduto().getId() + ", " + produtoinserir.getItensComp().get(i).getItemcomposicaoproduto().getNome() + ", " + produtoinserir.getItensComp().get(i).getQuantidade());
-		}
-		
-		
+		produtoinserir.setCategoria(categoria);		
 		
 		try {
 			fachada.ProdutoInserir(produtoinserir);
 			
+			List<ProdutoItem> pi = new ArrayList<ProdutoItem>();
+			
+			Iterator<ItemComposicaoProduto> itemCompAsIterator = listaDeItensDeComposicaoJaAdicionados.iterator();
+	        while (itemCompAsIterator.hasNext()){
+	        	ItemComposicaoProduto it = itemCompAsIterator.next();
+	        	ProdutoItem produtoitem = new ProdutoItem(produtoinserir,it,it.getQuantidade());
+	        	pi.add(produtoitem);
+	        }
+	        
+			fachada.ProdutoInserirVinculoProdutoItemComp(pi);
+							
 			nome = "";
 			quantidade = 0;
 			precoCusto = 0;
@@ -218,13 +251,31 @@ public class ProdutoBean{
 	}
 	
 	public String chamadaAlterar(Integer id) {
-		produtoAlterar = fachada.ProdutoBuscarPorId(id);
+		produtoAlterar = fachada.ProdutoBuscarPorId((long) id);
+		
+		for (ProdutoItem s : produtoAlterar.getItemComps()) {
+			s.getItemComp().setQuantidade(s.getQuantidade());
+			listaDeItensDeComposicaoJaAdicionados.add(s.getItemComp());
+		}
         return "alterar";
     }
 	
 	public String alterar() {
 		try {
 			fachada.ProdutoAlterar(produtoAlterar);
+			
+			
+			List<ProdutoItem> pi = new ArrayList<ProdutoItem>();
+			
+			Iterator<ItemComposicaoProduto> itemCompAsIterator = listaDeItensDeComposicaoJaAdicionados.iterator();
+	        while (itemCompAsIterator.hasNext()){
+	        	ItemComposicaoProduto it = itemCompAsIterator.next();
+	        	ProdutoItem produtoitem = new ProdutoItem(produtoAlterar,it,it.getQuantidade());
+	        	pi.add(produtoitem);
+	        }
+	        
+	        fachada.ProdutoAlterarVinculoProdutoItemComp(pi);
+			
 			return "listar";
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
