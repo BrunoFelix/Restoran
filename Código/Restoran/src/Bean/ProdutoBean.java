@@ -31,6 +31,8 @@ public class ProdutoBean{
 	
 	Fachada fachada = Fachada.getInstance();
 	
+	private static Produto produto;
+	
 	private Produto produtoAlterar = new Produto();
 
 	private List<ItemComposicaoProduto> listarItemComposicaoProduto = new ArrayList<ItemComposicaoProduto>();

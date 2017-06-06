@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 <h:head>
-	<link rel="StyleSheet" type="text/css" href="../css/produto.css"
+	<link rel="StyleSheet" type="text/css" href="../css/listar.css"
 		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Restoran | Gerenciar Produtos</title>
@@ -24,7 +24,7 @@
 			<h1 id="textotopo">
 				<h:outputText value="Gerenciar Produtos" />
 			</h1>
-
+				
 			<p:dataTable var="produto" value="#{ProdutoBean.listarProduto}">
 				<p:column headerText="Id">
 					<h:outputText value="#{produto.id}" />
@@ -55,10 +55,12 @@
 				</p:column>
 
 				<p:column headerText="Ações">
+				<h:column>
 					<p:commandButton id="alterar-button" value="Alterar"
 						action="#{ProdutoBean.chamadaAlterar(produto.id)}" />
 					<p:commandButton id="excluir-button" value="Excluir"
 						action="#{ProdutoBean.excluir}" />
+				</h:column>
 				</p:column>
 			</p:dataTable>
 
