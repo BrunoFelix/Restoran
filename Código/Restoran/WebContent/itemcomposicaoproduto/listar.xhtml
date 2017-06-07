@@ -25,7 +25,7 @@
 				<h:outputText value="Gerenciar Itens de Composição do Produto" />
 			</h1>
 
-			<p:dataTable var="itemComposicao"
+			<p:dataTable id="tabela" var="itemComposicao"
 				value="#{ItemComposicaoProdutoBean.listarItemComposicaoProduto}">
 				<p:column headerText="ID">
 					<h:outputText value="#{itemComposicao.id}" />
@@ -51,7 +51,7 @@
 					<p:commandButton id="alterar-button" value="Alterar"
 						action="#{ItemComposicaoProdutoBean.chamadaAlterar(itemComposicao.id)}" />
 					<p:commandButton id="excluir-button" value="Excluir"
-						action="#{ItemComposicaoProdutoBean.excluir}" />
+						action="#{ItemComposicaoProdutoBean.excluir(itemComposicao)}" update=":tabela" />
 				</p:column>
 			</p:dataTable>
 

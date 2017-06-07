@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import Basica.ItemComposicaoProduto;
+import Basica.Produto;
 import Basica.Usuario;
 import Fachada.Fachada;
 
@@ -123,4 +124,12 @@ public class ItemComposicaoProdutoBean {
 		}
 		return null;
     }
+	
+	public void excluir(ItemComposicaoProduto i){
+		try{
+			fachada.ItemComposicaoProdutoExcluir(i);
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+	}
 }

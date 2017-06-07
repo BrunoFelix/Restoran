@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import Basica.Categoria;
+import Basica.Usuario;
 import Fachada.Fachada;
 
 @ManagedBean(name="CategoriaBean")
@@ -92,5 +93,13 @@ public class CategoriaBean {
 		}
 		return null;
     }
+	
+	public void excluir(Categoria c){
+		try{
+			fachada.CategoriaExcluir(c);
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+	}
 
 }

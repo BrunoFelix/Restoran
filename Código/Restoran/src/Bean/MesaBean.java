@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import Basica.Mesa;
+import Basica.Produto;
 import Fachada.Fachada;
 
 @ManagedBean(name="MesaBean")
@@ -111,4 +112,11 @@ public class MesaBean {
 		}
 		return null;
     }
+	public void excluir(Mesa m){
+		try{
+			fachada.MesaExcluir(m);
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+	}
 }

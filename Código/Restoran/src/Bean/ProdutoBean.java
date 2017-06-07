@@ -283,4 +283,12 @@ public class ProdutoBean{
 		}
 		return null;
     }
+	
+	public void excluir(Produto p){
+		try{
+			fachada.ProdutoExcluir(p);
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+	}
 }

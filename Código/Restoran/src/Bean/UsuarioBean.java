@@ -15,6 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import Basica.Produto;
 import Basica.Usuario;
 import Fachada.Fachada;
 
@@ -227,4 +228,12 @@ public class UsuarioBean {
 		}
 		return null;
     }
+	
+	public void excluir(Usuario u){
+		try{
+			fachada.UsuarioExcluir(u);
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+	}
 }

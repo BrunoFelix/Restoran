@@ -1,75 +1,89 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:h="http://java.sun.com/jsf/html"
-         xmlns:f="http://java.sun.com/jsf/core"
-         xmlns:ui="http://java.sun.com/jsf/facelets"
-         xmlns:p="http://primefaces.org/ui"
-         xmlns:pe="http://primefaces.org/ui/extensions">
-   
-  <h:head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  	<link rel="StyleSheet" type="text/css" href="../css/estilo.css" media="screen"/>
-            <title>Restoran | Gerenciar Pedidos</title>
-  </h:head>
-  <h:body>
- 	
- 	<div id="topo" rendered="#{UsuarioBean.usuarioPrivilegioGerente}">
-		<ui:include src="../menu.xhtml" />
-	</div>
-	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<link rel="StyleSheet" type="text/css"
+		href="../css/gerenciarPedidos.css" media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Restoran | Gerenciar Pedidos</title>
+</h:head>
+<h:body>
 	<div class="wrapper">
 		<div class="container">
-			<div class="panel_mesas">
-				<h:form id="form">
-				    <p:dataGrid var="mesa" value="#{MesaBean.listarMesa}" columns="3" layout="grid"
-				        rows="12" paginator="true" id="mesas"
-				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				        rowsPerPageTemplate="6,12,16">
-				 
-				        <f:facet name="header" id="textotopo" class="textotopo">
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
+
+			<div id="topo" rendered="#{UsuarioBean.usuarioPrivilegioGerente}">
+				<ui:include src="../menu.xhtml" />
+			</div>
+		</div>
+
+		<div>
+			<div class="containerpro">
+				<div class="panel_mesas">
+					<h:form id="form">
+						<p:dataGrid var="mesa" value="#{MesaBean.listarMesa}" columns="3"
+							layout="grid" rows="12" paginator="true" id="mesas"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="6,12,16">
+
+							<f:facet name="header" id="textotopo" class="textotopo">
 				            Painel de mesas
 				        </f:facet>
-				        
-				 
-				        <p:panel header="Mesa #{mesa.numeroMesa}" style="text-align:center">
-				            <h:panelGrid columns="1" style="width:100%">
-				                <img src="../img/mesa.png"/> 
-				 
-				                <h:outputText value="Capacidade: #{mesa.capacidadeMesa}" />
-				 
-				        			<p:commandButton id="novo-pedido-button" style="background-color: green;" rendered="#{mesa.pedidos.size() == 0}" value="Novo Pedido"
-										icon="ui-icon-circle-plus" action="#{PedidoBean.chamadaCadastrar(mesa.id)}">
+
+
+							<p:panel header="Mesa #{mesa.numeroMesa}"
+								style="text-align:center">
+								<h:panelGrid columns="1" style="width:100%">
+									<img src="../img/mesa.png" />
+
+									<h:outputText value="Capacidade: #{mesa.capacidadeMesa}" />
+
+									<p:commandButton id="novo-pedido-button"
+										style="background-color: green;"
+										rendered="#{mesa.pedidos.size() == 0}" value="Novo Pedido"
+										icon="ui-icon-circle-plus"
+										action="#{PedidoBean.chamadaCadastrar(mesa.id)}">
 									</p:commandButton>
-				        			<p:commandButton id="alterar-pedido-button" style="background-color: red;" rendered="#{mesa.pedidos.size() != 0}" value="Visualizar Pedido"
-										icon="ui-icon-circle-zoomin" action="#{PedidoBean.chamadaAlterar(mesa.id)}">
+									<p:commandButton id="alterar-pedido-button"
+										style="background-color: red;"
+										rendered="#{mesa.pedidos.size() != 0}"
+										value="Visualizar Pedido" icon="ui-icon-circle-zoomin"
+										action="#{PedidoBean.chamadaAlterar(mesa.id)}">
 									</p:commandButton>
 
-				            </h:panelGrid>
-				        </p:panel>
-				 
-				    </p:dataGrid>
-				 
-				    <p:dialog header="Gerenciar Pedido" widgetVar="detalheMesa" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-				        <p:outputPanel id="detalheMesa" style="text-align:center;">
-				        	<h:form>
-			        			<p:commandButton id="reset-button" value="Novo Pedido"
-									icon="ui-icon-circle-plus" action="#{ProdutoBean.cadastrar}">
-								</p:commandButton>
-				        	</h:form>
-				        	
-				        	<h:form>
-			        			<p:commandButton id="reset-button" value="Alterar Pedido"
-									icon="ui-icon-circle-arrow-n" action="#{ProdutoBean.cadastrar}">
-								</p:commandButton>
-				        	</h:form>
-				        	
-				          
-				        </p:outputPanel>
-				    </p:dialog>
-				</h:form>
+								</h:panelGrid>
+							</p:panel>
+
+						</p:dataGrid>
+
+						<p:dialog header="Gerenciar Pedido" widgetVar="detalheMesa"
+							modal="true" showEffect="fade" hideEffect="fade"
+							resizable="false">
+							<p:outputPanel id="detalheMesa" style="text-align:center;">
+								<h:form>
+									<p:commandButton id="reset-button" value="Novo Pedido"
+										icon="ui-icon-circle-plus" action="#{ProdutoBean.cadastrar}">
+									</p:commandButton>
+								</h:form>
+
+								<h:form>
+									<p:commandButton id="reset-button" value="Alterar Pedido"
+										icon="ui-icon-circle-arrow-n"
+										action="#{ProdutoBean.cadastrar}">
+									</p:commandButton>
+								</h:form>
+							</p:outputPanel>
+						</p:dialog>
+					</h:form>
+
+				</div>
 			</div>
 		</div>
 	</div>
- 	
-  </h:body>
-  </html>
+</h:body>
+</html>

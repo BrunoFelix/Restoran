@@ -37,7 +37,7 @@ public class RNProduto {
 		produtoDAO.update(p);
 	}
 	public void excluir(Produto p ) throws ControladorException, NegocioException, DadosException {
-		validaExistencia(p);
+		//validaExistencia(p);
 		produtoDAO.remove(p);
 	}
 	public List<Produto> listar(){
