@@ -12,6 +12,7 @@ import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
 import Basica.Mesa;
 import Basica.Pedido;
+import Basica.PedidoProduto;
 import Basica.Produto;
 import Basica.ProdutoItem;
 import Basica.Usuario;
@@ -88,14 +89,30 @@ public class Fachada {
 	 * 				PEDIDO
 	 * ##################################
 	 */
-	public List<Pedido> PesquisarPorMesa(Integer numeroMesa) throws DadosException{
+	
+	public void PedidoInserir(Pedido p) throws NegocioException, DadosException{
+		rnPedido.salvar(p);
+	}
+	
+	public void PedidoAlterar(Pedido p) throws NegocioException, DadosException{
+		rnPedido.alterar(p);
+	}
+	
+	public Pedido PedidoPesquisarPorMesa(long numeroMesa) throws DadosException{
 		return rnPedido.PesquisarPorMesa(numeroMesa);
 	}
 	
 	public List<Pedido> PedidoListar() throws DadosException{
 		return rnPedido.PedidoListar();
 	}
-	
+
+	public void PedidoInserirVinculoProduto(List<PedidoProduto> pp) throws DadosException{
+		rnPedido.InserirVinculoProduto(pp);
+	}
+	  
+	  public void PedidoAlterarVinculoProduto(List<PedidoProduto> pp) throws DadosException{
+		 rnPedido.AlterarVinculoProduto(pp);
+	}
 	
 	
 	/*
@@ -249,7 +266,7 @@ public class Fachada {
 		  return rnMesa.listar();
 	  }
 	  
-	  public Mesa MesaBuscarPorId(Integer id){
+	  public Mesa MesaBuscarPorId(Long id){
 			return rnMesa.MesaBuscarPorId(id);
 	  }
 	  

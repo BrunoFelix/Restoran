@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
 import Basica.Pedido;
+import Basica.PedidoProduto;
+import Basica.ProdutoItem;
 import Dados.PedidoDAO;
 import Utils.DadosException;
 import Utils.NegocioException;
@@ -18,13 +20,30 @@ public class RNPedido {
 		pedidoDAO = new PedidoDAO(emf);
 	}
 	
-	public List<Pedido> PesquisarPorMesa(Integer numeroMesa) throws DadosException{
+	public void salvar(Pedido p) throws NegocioException, DadosException {
+		pedidoDAO.insert(p);
+	}
+	
+	public void alterar(Pedido p) throws NegocioException, DadosException {
+		pedidoDAO.update(p);
+	}
+	
+	public Pedido PesquisarPorMesa(long numeroMesa) throws DadosException{
 		return pedidoDAO.PesquisarPorMesa(numeroMesa);
 	}
 	
 	public List<Pedido> PedidoListar() throws DadosException{
 		return pedidoDAO.ListaPedidos();
 	}
+	
+	public void InserirVinculoProduto(List<PedidoProduto> pp) throws DadosException{
+		pedidoDAO.InserirVinculoProduto(pp);
+	}
+	
+	public void AlterarVinculoProduto(List<PedidoProduto> pp) throws DadosException{
+		pedidoDAO.AlterarVinculoProduto(pp);
+	}
+	
 	
 	/*
 	if (m.getStatus() == null)

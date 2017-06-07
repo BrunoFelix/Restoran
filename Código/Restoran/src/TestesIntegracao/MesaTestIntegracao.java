@@ -103,7 +103,7 @@ public class MesaTestIntegracao {
 	
 	@Test
 	public void TesteBuscarPorId() throws NegocioException, DadosException, ControladorException{
-		assertEquals(null,fachada.MesaBuscarPorId(99));
+		assertEquals(null,fachada.MesaBuscarPorId((long) 99));
 	}
 	
 	@After

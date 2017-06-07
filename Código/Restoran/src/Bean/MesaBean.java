@@ -98,7 +98,7 @@ public class MesaBean {
 	}
 	
 	public String chamadaAlterar(Integer id) {
-		mesaAlterar = fachada.MesaBuscarPorId(id);
+		mesaAlterar = fachada.MesaBuscarPorId((long) id);
         return "alterar";
     }
 

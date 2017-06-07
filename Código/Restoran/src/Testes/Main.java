@@ -51,7 +51,6 @@ public class Main {
 		
 		Pedido p = new Pedido();
 		p.setQtdProdutos(1);
-		p.setStatus("aberta");
 		p.setTotalPedido(10);
 		p.setData(new SimpleDateFormat( "dd/MM/yyyy" ).parse( "23/11/2015" ));
 		em.persist(p);
@@ -63,7 +62,7 @@ public class Main {
 		f.setQuantidade(10);
 		em.persist(f);
 
-		PedidoProduto pb = new PedidoProduto(p, f, 2);
+		PedidoProduto pb = new PedidoProduto(p, f, 2, "Aberto");
 		em.persist(pb);
 		
 		em.getTransaction().commit();

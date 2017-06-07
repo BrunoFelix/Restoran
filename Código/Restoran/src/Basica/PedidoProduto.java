@@ -83,11 +83,14 @@ public class PedidoProduto {
 	@Column
 	private Integer quantidade;
 	
+	@Column
+	private String status;
+	
 	public PedidoProduto(){
 		
 	}
 
-	public PedidoProduto(Pedido pedido, Produto produto, Integer quantidade) {
+	public PedidoProduto(Pedido pedido, Produto produto, Integer quantidade, String status) {
 		// create primary key
 		this.id = new PedidoProdutoId(pedido.getId(), produto.getId());
 		
@@ -95,10 +98,51 @@ public class PedidoProduto {
 		this.pedido = pedido;
 		this.produto = produto;
 		this.quantidade = quantidade;
+		this.status = status;
 		
 		// update relationships to assure referential integrity
 		pedido.getProdutos().add(this);
 		produto.getPedidos().add(this);
+	}
+
+	public PedidoProdutoId getId() {
+		return id;
+	}
+
+	public void setId(PedidoProdutoId id) {
+		this.id = id;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

@@ -37,16 +37,13 @@
 				 
 				                <h:outputText value="Capacidade: #{mesa.capacidadeMesa}" />
 				 
-				                <h:form>
-				        			<p:commandButton id="reset-button" rendered="#{mesa.pedidos.size() == 0}" value="Novo Pedido"
-										icon="ui-icon-circle-plus" action="#{ProdutoBean.chamadaCadastrar(mesa.id)}">
+				        			<p:commandButton id="novo-pedido-button" style="background-color: green;" rendered="#{mesa.pedidos.size() == 0}" value="Novo Pedido"
+										icon="ui-icon-circle-plus" action="#{PedidoBean.chamadaCadastrar(mesa.id)}">
 									</p:commandButton>
-				        		</h:form>
-				        		<h:form>
-				        			<p:commandButton id="reset-button" rendered="#{mesa.pedidos.size() != 0}" value="Alterar Pedido"
-										icon="ui-icon-circle-arrow-n" action="#{ProdutoBean.chamadaAlterar(mesa.id)}">
+				        			<p:commandButton id="alterar-pedido-button" style="background-color: red;" rendered="#{mesa.pedidos.size() != 0}" value="Visualizar Pedido"
+										icon="ui-icon-circle-zoomin" action="#{PedidoBean.chamadaAlterar(mesa.id)}">
 									</p:commandButton>
-				        		</h:form>
+
 				            </h:panelGrid>
 				        </p:panel>
 				 

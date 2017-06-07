@@ -252,14 +252,12 @@ public class ProdutoBean{
 	}
 	
 	public String chamadaAlterar(Integer id) {
-		System.out.println("Entrou alterar");
 		produtoAlterar = fachada.ProdutoBuscarPorId((long) id);
 		
 		for (ProdutoItem s : produtoAlterar.getItemComps()) {
 			s.getItemComp().setQuantidade(s.getQuantidade());
 			listaDeItensDeComposicaoJaAdicionados.add(s.getItemComp());
 		}
-		System.out.println("Vai chamar a tela");
         return "alterar";
     }
 	

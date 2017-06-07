@@ -10,7 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
 		media="screen" />
-	<title>Restoran | Cadastrar Pedido</title>
+	<title>Restoran | Visualizar Pedido</title>
 </h:head>
 <h:body>
 
@@ -28,13 +28,13 @@
 			<h:form class="form-inserir-pedido">
 				<p:panelGrid columns="2">
 
-					<p:outputLabel value="Mesa: #{PedidoBean.mesa.numeroMesa}" />
+					<p:outputLabel value="Mesa: #{PedidoBean.pedidoAlterar.mesa.numeroMesa}" />
 					
-					<p:outputLabel value="Garçom: #{PedidoBean.usuario.nome}" />
+					<p:outputLabel value="Garçom: #{PedidoBean.pedidoAlterar.garcom.nome}" />
 					
-					<p:outputLabel value="Total: #{PedidoBean.totalPedido}" />
+					<p:outputLabel value="Total: #{PedidoBean.pedidoAlterar.totalPedido}" />
 					
-					<p:outputLabel value="Qtd. produtos: #{PedidoBean.qtdProdutosAdicionados}" />
+					<p:outputLabel value="Qtd. produtos: #{PedidoBean.pedidoAlterar.qtdProdutos}" />
 					
 				</p:panelGrid>	
 				<p:panelGrid columns="2">	
@@ -42,7 +42,7 @@
 						icon="ui-icon-trash" type="reset">
 					</p:commandButton>
 					<p:commandButton id="reset-button" value="Salvar"
-						icon="ui-icon-disk" action="#{PedidoBean.cadastrar(PedidoBean.mesa.numeroMesa)}">
+						icon="ui-icon-disk" action="#{ProdutoBean.alterar}">
 					</p:commandButton>
 				</p:panelGrid>			
 			</h:form>

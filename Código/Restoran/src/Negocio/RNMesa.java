@@ -51,7 +51,7 @@ public class RNMesa {
 		return mesaDAO.getAll();
 	}
 	
-	public Mesa MesaBuscarPorId(Integer id){
+	public Mesa MesaBuscarPorId(Long id){
 		return mesaDAO.searchByKey(id);
     }
 	

@@ -32,6 +32,8 @@ public class Produto implements Serializable {
 	
 	@Column(nullable = false)
 	private int quantidade;
+	
+	private String status;
 		
 	@OneToMany(mappedBy = "produto", fetch = FetchType.EAGER)
 	private Set<PedidoProduto> pedidos = new HashSet<PedidoProduto>();
@@ -121,6 +123,16 @@ public class Produto implements Serializable {
 
 	public void setPedidos(Set<PedidoProduto> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 
