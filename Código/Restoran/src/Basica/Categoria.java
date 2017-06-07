@@ -19,7 +19,8 @@ import org.hibernate.annotations.CascadeType;
 @Entity
 public class Categoria implements Serializable{
 	
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 	
 	@Column(length=50, nullable = false)

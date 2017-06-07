@@ -48,7 +48,7 @@ public class RNCategoria {
 		return categoriaDAO.getAll();
 	}
 	
-	public Categoria CategoriaBuscarPorId(Integer id){
+	public Categoria CategoriaBuscarPorId(Long id){
 		return categoriaDAO.searchByKey(id);
 	}
 	

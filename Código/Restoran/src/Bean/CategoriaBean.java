@@ -21,7 +21,7 @@ public class CategoriaBean {
 
 	private List<Categoria> listarCategoria = new ArrayList<Categoria>();
 
-	private int id;
+	private Long id;
 	private String nome;
 	
 	public Categoria getCategoriaAlterar() {
@@ -41,11 +41,11 @@ public class CategoriaBean {
 		this.listarCategoria = listaCategoria;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -78,7 +78,7 @@ public class CategoriaBean {
 	}
 	
 	public String chamadaAlterar(Integer id) {
-		categoriaAlterar = fachada.CategoriaBuscarPorId(id);
+		categoriaAlterar = fachada.CategoriaBuscarPorId((long) id);
         return "alterar";
     }
 	

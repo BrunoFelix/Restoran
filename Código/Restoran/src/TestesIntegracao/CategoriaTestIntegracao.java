@@ -107,7 +107,7 @@ public class CategoriaTestIntegracao {
 	
 	@Test
 	public void TesteBuscarPorId() throws NegocioException, DadosException, ControladorException{
-		assertEquals(null,fachada.CategoriaBuscarPorId(99));
+		assertEquals(null,fachada.CategoriaBuscarPorId((long)99));
 	}
 	
 	@After

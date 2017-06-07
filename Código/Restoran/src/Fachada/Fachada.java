@@ -237,7 +237,7 @@ public class Fachada {
 		  return rnCategoria.listar();
 	  }
 	  
-	  public Categoria CategoriaBuscarPorId(Integer id){
+	  public Categoria CategoriaBuscarPorId(Long id){
 			return rnCategoria.CategoriaBuscarPorId(id);
 	  }
 	  

@@ -9,6 +9,8 @@
 	<link rel="StyleSheet" type="text/css" href="../css/cadastrar.css"
 		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
 	<title>Restoran | Cadastrar Produto</title>
 </h:head>
 <h:body>
@@ -21,7 +23,7 @@
 				<ui:include src="../menu.xhtml" />
 			</div>
 
-			<div>
+			<div class="containerpro">
 				<h1 id="textotopo">
 					<h:outputText value="Cadastrar Produto" />
 				</h1>
@@ -66,7 +68,8 @@
 						</p:commandButton>
 					</p:panelGrid>
 				</h:form>
-
+				
+				<!--  Itens de Composição -->
 
 				<h:form class="form-inserir-itemComp-produto">
 					<p:panelGrid columns="5">
@@ -74,17 +77,17 @@
 						<p:panelGrid columns="1">
 							<p:inputText id="id" value="#{ProdutoBean.idItemComp}" />
 						</p:panelGrid>
-						
-						<p:outputLabel value="Quantidade:" />						
+
+						<p:outputLabel value="Quantidade:" />
 						<p:panelGrid columns="1">
 							<p:inputText id="quantidade"
 								value="#{ProdutoBean.qtdItemComposicaoProduto}" />
 						</p:panelGrid>
-						
-						<p:commandButton id="reset-button" value="Adicionar Item Comp"
-							icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}" update=":tabela">
-						</p:commandButton>
 
+						<p:commandButton id="reset-button" value="Adicionar Item Comp"
+							icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}"
+							update=":tabela">
+						</p:commandButton>
 					</p:panelGrid>
 				</h:form>
 
@@ -107,17 +110,18 @@
 							<p:commandButton id="alterar-button"
 								rendered="#{itemjaadiconados.quantidade > 1}"
 								value="Diminuir quantidade"
-								action="#{ProdutoBean.diminuirItemComp(itemjaadiconados.id)}" update=":tabela" />
+								action="#{ProdutoBean.diminuirItemComp(itemjaadiconados.id)}"
+								update=":tabela" />
 							<p:commandButton id="excluir-button" value="Excluir"
-								action="#{ProdutoBean.removerItemComp(itemjaadiconados.id)}" update=":tabela"/>
+								action="#{ProdutoBean.removerItemComp(itemjaadiconados.id)}"
+								update=":tabela" />
 						</h:form>
 					</p:column>
 				</p:dataTable>
-			</div>
 
+			</div>
 		</div>
 		<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 	</div>
-
 </h:body>
 </html>
