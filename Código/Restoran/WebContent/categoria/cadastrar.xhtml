@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -6,44 +5,47 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
-
 <h:head>
 	<link rel="StyleSheet" type="text/css" href="../css/cadastrar.css"
 		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
 	<title>Restoran | Cadastrar Categoria</title>
 </h:head>
 <h:body>
-	<div class="wrapper">
+	<h:form class="wrapper">
 		<div>
-			<img src="../img/logorestoranicon.png" /> <img
-				src="../img/logorestoranNome.png" />
-			<div id="topo">
-				<ui:include src="../menu.xhtml" />
-			</div>
+			<div>
+				<img src="../img/logorestoranicon.png" /> <img
+					src="../img/logorestoranNome.png" />
+				<div id="topo">
+					<ui:include src="../menu.xhtml" />
+				</div>
 
-			<div class="container">
-				<h1 id="textotopo">
-					<h:outputText value="Cadastrar Categoria" />
-				</h1>
+				<div class="container">
+					<h1 id="textotopo">
+						<h:outputText value="Cadastrar Categoria" />
+					</h1>
 
-				<h:form class="form-cadastro-categoria">
-					<p:panelGrid columns="2">
-						<p:outputLabel value="Nome: " />
-						<p:panelGrid columns="1">
-							<p:inputText id="nome" value="#{CategoriaBean.nome}" />
+					<h:form class="form-cadastro-categoria">
+						<p:panelGrid columns="2">
+							<p:outputLabel value="Nome: " />
+							<p:panelGrid columns="1">
+								<p:inputText id="nome" value="#{CategoriaBean.nome}" />
+							</p:panelGrid>
+							<p:commandButton id="insert-button" value="Limpar"
+								icon="ui-icon-trash" type="reset">
+							</p:commandButton>
+							<p:commandButton id="reset-button" value="Cadastrar"
+								icon="ui-icon-disk" action="#{CategoriaBean.cadastrar}">
+							</p:commandButton>
 						</p:panelGrid>
-						<p:commandButton id="insert-button" value="Limpar"
-							icon="ui-icon-trash" type="reset">
-						</p:commandButton>
-						<p:commandButton id="reset-button" value="Cadastrar"
-							icon="ui-icon-disk" action="#{CategoriaBean.cadastrar}">
-						</p:commandButton>
-					</p:panelGrid>
-				</h:form>
-				<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+					</h:form>
+					<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 				</div>
-				</div>
-				</div>
+			</div>
+		</div>
+	</h:form>
 </h:body>
 </html>

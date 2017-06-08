@@ -14,18 +14,19 @@
 	<title>Restoran | Alterar Categoria</title>
 </h:head>
 <h:body>
-	<div class="wrapper">
+	<h:form class="wrapper">
+	<div>
 		<div>
 			<img src="../img/logorestoranicon.png" /> <img
 				src="../img/logorestoranNome.png" />
 			<div id="topo">
 				<ui:include src="../menu.xhtml" />
 			</div>
-			<div class="container">
+			<div class="containerpro">
 				<h1>
 					<h:outputText id="textotopo" value="Alterar Categoria" />
 				</h1>
-
+				
 				<h:form class="form-alterar-categoria">
 					<p:panelGrid columns="2">
 
@@ -53,6 +54,7 @@
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>
 	</div>
+	</h:form>
 </h:body>
 </html>
 

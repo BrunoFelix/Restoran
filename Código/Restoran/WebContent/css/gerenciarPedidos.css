@@ -55,20 +55,20 @@ body :-ms-input-placeholder {
           transform: translateY(85px);
 }
 .container {
-   max-width: 2500px;
-   margin: 0 auto;
-   padding: 10px;
-   height: 10px;
-   text-align: left;
-   margin-top: 0%;
-}
-.containerpro {
-   max-width: 2000px;
+   max-width: 600px;
    margin: 0 auto;
    padding: 10px;
    height: 10px;
    text-align: center;
    margin-top: 10%;
+}
+.containerpro {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 10px;
+   height: 10px;
+   text-align: left;
+   margin-top: 0%;
 }
 .container h1 {
   font-size: 40px;

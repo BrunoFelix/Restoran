@@ -14,75 +14,77 @@
 	<title>Restoran | Cadastrar Usuário</title>
 </h:head>
 <h:body>
-	<div class="wrapper">
+	<h:form class="wrapper">
 		<div>
-			<img src="../img/logorestoranicon.png" /> <img
-				src="../img/logorestoranNome.png" />
+			<div>
+				<img src="../img/logorestoranicon.png" /> <img
+					src="../img/logorestoranNome.png" />
 
-			<div id="topo">
-				<ui:include src="../menu.xhtml" />
+				<div id="topo">
+					<ui:include src="../menu.xhtml" />
+				</div>
+
+				<div class="container">
+					<h1 id="textotopo">
+						<h:outputText value="Cadastrar Usuário" />
+					</h1>
+
+					<h:form class="form-cadastro-usuario">
+						<p:panelGrid columns="2" cellpadding="5">
+
+							<p:outputLabel value="Nome:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="nome" value="#{UsuarioBean.nome}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Email:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="email" value="#{UsuarioBean.email}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="CPF:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="cpf" value="#{UsuarioBean.cpf}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Sexo:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="sexo" value="#{UsuarioBean.sexo}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Tipo:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="tipo" value="#{UsuarioBean.tipo}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Telefone:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="telefone" value="#{UsuarioBean.telefone}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Login:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="login" value="#{UsuarioBean.login}" />
+							</p:panelGrid>
+
+							<p:outputLabel value="Senha:" />
+							<p:panelGrid columns="1">
+								<p:inputText id="senha" value="#{UsuarioBean.senha}" />
+							</p:panelGrid>
+
+							<p:commandButton id="insert-button" value="Limpar"
+								icon="ui-icon-trash" type="reset">
+							</p:commandButton>
+							<p:commandButton id="reset-button" value="Cadastrar"
+								icon="ui-icon-disk" action="#{UsuarioBean.cadastrar}">
+							</p:commandButton>
+						</p:panelGrid>
+					</h:form>
+				</div>
+				<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+
 			</div>
-
-			<div class="container">
-				<h1 id="textotopo">
-					<h:outputText value="Cadastrar Usuário" />
-				</h1>
-
-				<h:form class="form-cadastro-usuario">
-					<p:panelGrid columns="2" cellpadding="5">
-
-						<p:outputLabel value="Nome:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="nome" value="#{UsuarioBean.nome}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Email:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="email" value="#{UsuarioBean.email}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="CPF:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="cpf" value="#{UsuarioBean.cpf}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Sexo:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="sexo" value="#{UsuarioBean.sexo}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Tipo:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="tipo" value="#{UsuarioBean.tipo}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Telefone:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="telefone" value="#{UsuarioBean.telefone}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Login:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="login" value="#{UsuarioBean.login}" />
-						</p:panelGrid>
-
-						<p:outputLabel value="Senha:" />
-						<p:panelGrid columns="1">
-							<p:inputText id="senha" value="#{UsuarioBean.senha}" />
-						</p:panelGrid>
-
-						<p:commandButton id="insert-button" value="Limpar"
-							icon="ui-icon-trash" type="reset">
-						</p:commandButton>
-						<p:commandButton id="reset-button" value="Cadastrar"
-							icon="ui-icon-disk" action="#{UsuarioBean.cadastrar}">
-						</p:commandButton>
-					</p:panelGrid>
-				</h:form>
-			</div>
-			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
-
 		</div>
-	</div>
+	</h:form>
 </h:body>
 </html>

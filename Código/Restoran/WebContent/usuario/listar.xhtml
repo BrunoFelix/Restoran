@@ -9,6 +9,8 @@
 	<link rel="StyleSheet" type="text/css" href="../css/listar.css"
 		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
 	<title>Restoran | Gerenciar Usuários</title>
 </h:head>
 <h:body>
@@ -25,7 +27,8 @@
 				<h:outputText value="Gerenciar Usuários" />
 			</h1>
 
-			<p:dataTable id="tabela" var="usuario" value="#{UsuarioBean.listarUsuario}">
+			<p:dataTable id="tabela" var="usuario"
+				value="#{UsuarioBean.listarUsuario}">
 				<p:column headerText="ID">
 					<h:outputText value="#{usuario.id}" />
 				</p:column>
@@ -62,7 +65,7 @@
 					<p:commandButton id="alterar-button" value="Alterar"
 						action="#{UsuarioBean.chamadaAlterar(usuario.id)}" />
 					<p:commandButton id="excluir-button" value="Excluir"
-						action="#{UsuarioBean.excluir(usuario)}" update=":tabela"/>
+						action="#{UsuarioBean.excluir(usuario)}" update=":tabela" />
 				</p:column>
 			</p:dataTable>
 

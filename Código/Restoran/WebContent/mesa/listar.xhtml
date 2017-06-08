@@ -9,6 +9,8 @@
 	<link rel="StyleSheet" type="text/css" href="../css/listar.css"
 		media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
+		media="screen" />
 	<title>Restoran | Gerenciar Mesas</title>
 </h:head>
 <h:body>
@@ -26,7 +28,6 @@
 			</h1>
 
 			<div>
-
 				<p:dataTable id="tabela" var="mesa" value="#{MesaBean.listarMesa}">
 					<p:column headerText="ID">
 						<h:outputText value="#{mesa.id}" />
@@ -38,12 +39,12 @@
 						<h:outputText value="#{mesa.capacidadeMesa}" />
 					</p:column>
 					<p:column headerText="Ações">
-						
-							<p:commandButton id="alterar-button" value="Alterar"
-								action="#{MesaBean.chamadaAlterar(mesa.id)}" />
-							<p:commandButton id="excluir-button" value="Excluir"
-								action="#{MesaBean.excluir(mesa)}" update=":tabela"/>
-						
+
+						<p:commandButton id="alterar-button" value="Alterar"
+							action="#{MesaBean.chamadaAlterar(mesa.id)}" />
+						<p:commandButton id="excluir-button" value="Excluir"
+							action="#{MesaBean.excluir(mesa)}" update=":tabela" />
+
 					</p:column>
 				</p:dataTable>
 			</div>
