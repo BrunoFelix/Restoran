@@ -102,6 +102,30 @@ public class ProdutoDAO extends Dados.Geral.DAOGenerico<Produto> implements IPro
 		em.close();
 	}
 	
+	public void ProdutoAlterarQtd(Long id, int qtd){
+		try{
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+					
+			Produto p = em.find(Produto.class,(Long) id);
+			try{
+				em.getTransaction().begin();
+				p.setQuantidade(p.getQuantidade() - qtd);
+				if(p.getQuantidade() <= 0){
+					em.remove(p);
+				}
+				em.getTransaction().commit();
+			}catch(Exception e){
+				e.printStackTrace();
+				em.getTransaction().rollback();
+			}finally {
+				em.close();
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 
 }

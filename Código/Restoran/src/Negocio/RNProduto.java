@@ -36,6 +36,11 @@ public class RNProduto {
 		validarCampos(p);
 		produtoDAO.update(p);
 	}
+	
+	public void alterarQtd(Long idProduto, int qtdProduto) {
+		produtoDAO.ProdutoAlterarQtd(((long)idProduto), qtdProduto);
+			
+	}
 	public void excluir(Produto p ) throws ControladorException, NegocioException, DadosException {
 		//validaExistencia(p);
 		produtoDAO.remove(p);

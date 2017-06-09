@@ -273,6 +273,7 @@ public class PedidoBean {
 				for (int i = 0; i < listaProdutosJaAdicionados.size(); i++) {
 					if (listaProdutosJaAdicionados.get(i).getId() == idProduto){
 						listaProdutosJaAdicionados.get(i).setQuantidade(listaProdutosJaAdicionados.get(i).getQuantidade() + qtdProduto);
+						fachada.ProdutoAlterarQtd((long)idProduto, qtdProduto);
 						achou = true;
 					}
 				}
@@ -282,6 +283,7 @@ public class PedidoBean {
 					item.setQuantidade(qtdProduto);
 					item.setStatus("Aguardando Produção");
 					listaProdutosJaAdicionados.add(item);
+					fachada.ProdutoAlterarQtd((long)idProduto, qtdProduto);
 					
 					Iterator<Produto> ProdutoAsIterator = listaProdutosJaAdicionados.iterator();
 			        while (ProdutoAsIterator.hasNext()){

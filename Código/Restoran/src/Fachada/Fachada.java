@@ -178,6 +178,10 @@ public class Fachada {
 		  rnProduto.alterar(p);
 	  }
 	  
+	  public void ProdutoAlterarQtd(Long idProduto, int qtdProduto)throws NegocioException, DadosException, ControladorException{
+		  rnProduto.alterarQtd(idProduto, qtdProduto);
+	  }
+	  
 	  public void ProdutoExcluir(Produto p) throws NegocioException, DadosException, ControladorException{
 		  rnProduto.excluir(p);
 	  }
