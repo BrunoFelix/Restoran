@@ -14,8 +14,7 @@
 	<title>Restoran | Gerenciar Pedidos</title>
 </h:head>
 <h:body>
-<h:form class="wrapper">
-	<div>
+	<div class="wrapper">
 		<div>
 			<img src="../img/logorestoranicon.png" /> <img
 				src="../img/logorestoranNome.png" />
@@ -34,7 +33,7 @@
 				rowsPerPageTemplate="6,12,16">
 
 				<p:panel header="Mesa #{mesa.numeroMesa}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%" >
+					<h:panelGrid columns="1" style="width:100%">
 						<img src="../img/mesa.png" />
 
 						<h:outputText value="Capacidade: #{mesa.capacidadeMesa}" />
@@ -75,6 +74,5 @@
 
 		</div>
 	</div>
-	</h:form>
 </h:body>
 </html>
