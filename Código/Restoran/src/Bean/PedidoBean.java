@@ -181,6 +181,7 @@ public class PedidoBean {
 		pedido.setMesa(mesa);
 		Date data = new Date();
 		pedido.setData(data);
+		pedido.setStatus("Aberto");
 		this.Status = "Aguardando Produção";
 		
 		fachada.PedidoInserir(pedido);
@@ -207,9 +208,14 @@ public class PedidoBean {
 	    pedidoInserir.setTotalPedido(total);
 	    pedidoInserir.setQtdProdutos(listaProdutosJaAdicionados.size());
 	    pedidoInserir.setProdutos(null);
+	    pedidoInserir.setStatus("Aberto");
         fachada.PedidoAlterar(pedidoInserir);
         fachada.PedidoInserirVinculoProduto(pp);
         
+		totalPedido = 0;
+		qtdProdutosAdicionados = 0;
+		idProduto = 0;
+		qtdProduto = 0;
         listaProdutosJaAdicionados = new ArrayList<Produto>();
         
         return "mesas";
@@ -232,12 +238,6 @@ public class PedidoBean {
 	        }
 	        
 	        fachada.PedidoAlterarVinculoProduto(pp);
-	        
-	        /*pedidoAlterar.setTotalPedido(total);
-		    pedidoAlterar.setQtdProdutos(listaProdutosJaAdicionados.size());
-		    pedidoAlterar.setProdutos(null);*/
-	        /*fachada.PedidoAlterar(pedidoAlterar);
-	        fachada.PedidoAlterarVinculoProduto(pp);*/
 			
 			return "listar";
 		} catch (Exception e) {
@@ -268,6 +268,8 @@ public class PedidoBean {
 			if (qtdProduto > 0){
 			boolean achou = false;
 			
+			totalPedido = 0;
+			
 				for (int i = 0; i < listaProdutosJaAdicionados.size(); i++) {
 					if (listaProdutosJaAdicionados.get(i).getId() == idProduto){
 						listaProdutosJaAdicionados.get(i).setQuantidade(listaProdutosJaAdicionados.get(i).getQuantidade() + qtdProduto);
@@ -278,8 +280,15 @@ public class PedidoBean {
 				if(!achou){
 					Produto item = fachada.ProdutoBuscarPorId((long) idProduto);
 					item.setQuantidade(qtdProduto);
-					item.setStatus("Aberto");
+					item.setStatus("Aguardando Produção");
 					listaProdutosJaAdicionados.add(item);
+					
+					Iterator<Produto> ProdutoAsIterator = listaProdutosJaAdicionados.iterator();
+			        while (ProdutoAsIterator.hasNext()){
+			        	Produto it = ProdutoAsIterator.next();
+			        	totalPedido += (it.getPrecoVenda() * it.getQuantidade());
+			        }
+			        qtdProdutosAdicionados = listaProdutosJaAdicionados.size(); 
 					
 				}else{
 					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Como o produto já havia sido adicionado, foi aumentada a quantidade!"));
@@ -293,30 +302,49 @@ public class PedidoBean {
 	}
 	
 	
-	public void AlterarStatus(Integer idPedido, Integer idProduto, String status){
+	public void alterarStatus(Integer idPedido, Integer idProduto, String status){
 		try {
-		System.out.println("Entrou no alterar");
-		Pedido pedido = fachada.PedidoBuscarPorId((long) idPedido);
-		System.out.println("Pesquisou pedido");
-		Produto produto = fachada.ProdutoBuscarPorId((long) idProduto); 
-		System.out.println("Pesquisou produto");
-		
-		PedidoProduto pedidoProduto = fachada.PesquisarPedidoProduto(pedido, produto);
-		
-		System.out.println("Pesquisou pedido produto");
-	
-		pedidoProduto.setStatus(status);
-		
-		System.out.println("Antes do alterar");
-		fachada.AlterarVinculoPedidoProduto(pedidoProduto);
-		System.out.println("Alterou!");
+			Pedido pedido = fachada.PedidoBuscarPorId((long) idPedido);
+			Produto produto = fachada.ProdutoBuscarPorId((long) idProduto); 
+			
+			PedidoProduto pedidoProduto = fachada.PesquisarPedidoProduto(pedido, produto);
+			
+			pedidoProduto.setStatus(status);
+			
+			fachada.AlterarVinculoPedidoProduto(pedidoProduto);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
-		
-		
+
+	}
+	
+	public String finalizarPedido(Pedido pedido){
+		try{
+			boolean achou = false;
+			for (int i = 0; i < listaProdutosJaAdicionados.size(); i++) {
+				if (!listaProdutosJaAdicionados.get(i).getStatus().equals("Pronto")){
+					achou = true;
+				}
+			}
+			
+			if (achou){
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Para finalizar o pedido todos os itens devem estar com o status de pronto!"));
+				return null;
+			}
+			
+			pedido.setStatus("Finalizado");
+			fachada.PedidoAlterar(pedido);
+			
+			totalPedido = 0;
+			qtdProdutosAdicionados = 0;
+			idProduto = 0;
+			qtdProduto = 0;
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+		return "mesas";
 		
 	}
 

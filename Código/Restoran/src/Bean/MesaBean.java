@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import Basica.Mesa;
+import Basica.Pedido;
 import Basica.Produto;
 import Fachada.Fachada;
 
@@ -37,6 +38,22 @@ public class MesaBean {
 
 	public List<Mesa> getListarMesa() {
 		setListarMesa(fachada.MesaListar());
+		try{
+			for (int i = 0; i < listarMesa.size(); i++) {
+				listarMesa.get(i).setPedidos(null);
+				List<Pedido> listapedido = new ArrayList<Pedido>();
+				Pedido pedido = fachada.PedidoPesquisarPorMesa(listarMesa.get(i).getNumeroMesa());
+				if (pedido != null){
+					listapedido.add(pedido);
+				}
+					listarMesa.get(i).setPedidos(listapedido);
+				
+			};
+		}catch(Exception e){
+			
+			System.out.println(e.getMessage());
+			//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
 		return listarMesa;
 	}
 

@@ -1,5 +1,6 @@
 package Dados;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,22 +64,27 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 		}
 	}	
 	
-	public Pedido PesquisarPorMesa(long numeroMesa) throws DadosException{
-		try{
-			String queryString = "select object(p) from Pedido as p where p.mesa.id =(:numeroMesa)";
+	public Pedido PesquisarPorMesa(long numeroMesa) throws DadosException{	
+		String queryString = "select object(p) from Pedido as p where p.mesa.id =(:numeroMesa) and p.status = 'Aberto' ";
 
-			EntityManager em = getEntityManagerFactory().createEntityManager();
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		try{
+			
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("numeroMesa", numeroMesa);
 			
+			query.setMaxResults(1);
+			
 			if (query.getResultList().size() <= 0){
-				throw new DadosException("nenhum pedido!");
+				return null;
 			}
 			
 			return (Pedido) query.getSingleResult();
 		} catch (Exception e) {
 			throw new DadosException(e);
+		}finally {
+			em.close();
 		}
 	}	
 	

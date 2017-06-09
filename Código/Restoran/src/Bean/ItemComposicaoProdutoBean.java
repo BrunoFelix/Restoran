@@ -103,6 +103,12 @@ public class ItemComposicaoProdutoBean {
 
 		try {
 			fachada.ItemComposicaoProdutoInserir(itemComposicaoProdutoInserir);
+			
+			nome = "";
+			quantidade = 0;
+			unidadeMedida = "";
+			precoCusto = 0;
+			
 			return "listar";
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));

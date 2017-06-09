@@ -2,6 +2,7 @@ package Basica;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class Mesa implements Serializable{
 	
 	@OneToMany(mappedBy="mesa", fetch = FetchType.EAGER)
 	@Cascade(CascadeType.ALL)
-	private Collection<Pedido> pedidos;
+	private List<Pedido> pedidos;
 	
 	//Gets & Sets
 	public Long getId() {
@@ -56,11 +57,11 @@ public class Mesa implements Serializable{
 		this.capacidadeMesa = capacidadeMesa;
 	}
 
-	public Collection<Pedido> getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(Collection<Pedido> pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 

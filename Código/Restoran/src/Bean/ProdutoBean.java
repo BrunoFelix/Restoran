@@ -243,6 +243,8 @@ public class ProdutoBean{
 			precoVenda = 0;
 			categoria = null;
 			listaDeItensDeComposicaoJaAdicionados = new ArrayList<ItemComposicaoProduto>();
+			idItemComp = 0;
+			qtdItemComposicaoProduto = 0;
 			
 			return "listar";
 		} catch (Exception e) {
@@ -252,6 +254,8 @@ public class ProdutoBean{
 	}
 	
 	public String chamadaAlterar(Integer id) {
+		idItemComp = 0;
+		qtdItemComposicaoProduto = 0;
 		produtoAlterar = fachada.ProdutoBuscarPorId((long) id);
 		
 		for (ProdutoItem s : produtoAlterar.getItemComps()) {

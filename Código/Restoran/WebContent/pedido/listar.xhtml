@@ -9,6 +9,8 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/listar.css"
+		media="screen" />
 	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
 		media="screen" />
 	<title>Restoran | Gerenciar Pedidos</title>
@@ -55,10 +57,10 @@
 				
 				<p:column headerText="Ações">
 					<p:commandButton update=":tabela" rendered="#{pedidos.status == 'Aguardando Produção'}" id="producao-button" value="Em Produção"
-						action="#{PedidoBean.AlterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Em produção')}" />
+						action="#{PedidoBean.alterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Em Produção')}" />
 						
 					<p:commandButton update=":tabela" rendered="#{pedidos.status == 'Em Produção'}" id="entregue-button" value="Entregar"
-						action="#{PedidoBean.AlterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Pronto')}" />
+						action="#{PedidoBean.alterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Pronto')}" />
 				</p:column>
 			</p:dataTable>
 

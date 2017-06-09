@@ -15,39 +15,31 @@
 			<p:growl id="messages" />			
 			<p:menubar>
 			<p:menuitem value="Home" url="/index.xhtml"/>
-				<p:submenu label="Produto" rendered="#{UsuarioBean.temPermissao(['Gerente'])}">
+				<p:submenu label="Produtos" rendered="#{UsuarioBean.usuarioGerente}">
 					<p:menuitem value="Gerenciar Produtos" url="/produto/listar.xhtml" />
 					<p:menuitem value="Gerenciar Itens de composição" url="/itemcomposicaoproduto/listar.xhtml" />
 					<p:menuitem value="Cadastrar Produto" url="/produto/cadastrar.xhtml" />
 					<p:menuitem value="Cadastrar Itens de composição" url="/itemcomposicaoproduto/cadastrar.xhtml" />
 				</p:submenu>
-				<p:submenu label="Usuarios">
+				<p:submenu label="Usuarios" rendered="#{UsuarioBean.usuarioGerente}">
 					<p:menuitem value="Gerenciar Usuários" url="/usuario/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/usuario/cadastrar.xhtml" />
 				</p:submenu>
-				<p:submenu label="Mesas">
+				<p:submenu label="Mesas" rendered="#{UsuarioBean.usuarioGerente}">
 					<p:menuitem value="Visualizar Todos" url="/mesa/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/mesa/cadastrar.xhtml" />
 				</p:submenu>
-				<p:submenu label="Pedidos">
-					<p:menuitem value="Gerenciar Mesas" url="/pedido/mesas.xhtml" />
-					<p:menuitem value="Gerenciar Pedidos" url="/pedido/listar.xhtml" />
-					<p:menuitem value="Cadastrar" url="/pedido/cadastrar.xhtml" />
+				<p:submenu label="Pedidos" rendered="#{!UsuarioBean.usuarioGerente}">
+					<p:menuitem value="Gerenciar Mesas" rendered="#{UsuarioBean.usuarioGarcom}"  url="/pedido/mesas.xhtml" />
+					<p:menuitem value="Gerenciar Pedidos" rendered="#{UsuarioBean.usuarioCozinheiro}" url="/pedido/listar.xhtml" />
 				</p:submenu>
-				<p:submenu label="Categorias"> 
+				<p:submenu label="Categorias" rendered="#{UsuarioBean.usuarioGerente}"> 
 					<p:menuitem value="Gerenciar Categorias" url="/categoria/listar.xhtml" />
 					<p:menuitem value="Cadastrar" url="/categoria/cadastrar.xhtml" />
 				</p:submenu>
-				<p:submenu label="Histórico">
-					<p:menuitem value="Gerenciar Histórico" url="/historico/listar.xhtml" />
-					<p:menuitem value="Cadastrar" url="/historico/cadastrar.xhtml" />
+				<p:submenu label="Usuário: #{UsuarioBean.usuarioLogado}">
+					<p:menuitem value="Sair" url="/logout.xhtml" />
 				</p:submenu>
-				<p:submenu label="Usuário: #{UsuarioBean.usuarioNormal}">
-					<p:menuitem value="Alterar Usuário" url="/usuario/alterar.xhtml" />
-				</p:submenu>
-				<f:facet name="options">
-					<p:commandButton id="botaoLogout" type="button" value="Sair" action="#{UsuarioBean.logout}" />
-				</f:facet>
 			</p:menubar>
 		</h:form>
 		<p:separator />

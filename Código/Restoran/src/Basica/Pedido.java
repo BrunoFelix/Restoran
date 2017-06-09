@@ -39,6 +39,9 @@ public class Pedido{
 	@Column(nullable=false)
 	private Date data;
 	
+	@Column(length = 10, nullable=false)
+	private String status;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_usuario", insertable=true, updatable=true) //Chave Estrangeira
 	@Fetch(FetchMode.JOIN)
@@ -109,6 +112,14 @@ public class Pedido{
 
 	public void setProdutos(Set<PedidoProduto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

@@ -8,100 +8,105 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="StyleSheet" type="text/css" href="../css/cadastrar.css"
+		media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link rel="StyleSheet" type="text/css" href="../css/estilo.css"
 		media="screen" />
 	<title>Restoran | Cadastrar Pedido</title>
 </h:head>
 <h:body>
 
-	<div id="topo">
-		<ui:include src="../menu.xhtml" />
-	</div>
-
-	<h1 id="textotopo">
-		<h:outputText value="Pedido" />
-	</h1>
-
-
-	<div class="wrapper">
-		<div class="container">
-			<h:form class="form-inserir-pedido">
-				<p:panelGrid columns="2">
-
-					<p:outputLabel value="Mesa: #{PedidoBean.mesa.numeroMesa}" />
-					
-					<p:outputLabel value="Garçom: #{PedidoBean.usuario.nome}" />
-					
-					<p:outputLabel value="Total: #{PedidoBean.totalPedido}" />
-					
-					<p:outputLabel value="Qtd. produtos: #{PedidoBean.qtdProdutosAdicionados}" />
-					
-				</p:panelGrid>	
-				<p:panelGrid columns="2">	
-					<p:commandButton id="insert-button" value="Limpar"
-						icon="ui-icon-trash" type="reset">
-					</p:commandButton>
-					<p:commandButton id="reset-button" value="Salvar"
-						icon="ui-icon-disk" action="#{PedidoBean.cadastrar(PedidoBean.mesa.numeroMesa)}">
-					</p:commandButton>
-				</p:panelGrid>			
-			</h:form>
-								
-			<h:form class="form-inserir-produto-pedido">
-				<p:panelGrid columns="5">
-					<p:outputLabel value="Id:" />
-					<p:panelGrid columns="1">
-						<p:inputText id="id" value="#{PedidoBean.idProduto}" />
+	<div class="wrapper">	
+		<div>
+			<img src="../img/logorestoranicon.png" /> <img
+				src="../img/logorestoranNome.png" />
+				
+				
+			<div id="topo">
+				<ui:include src="../menu.xhtml" />
+			</div>
+		
+			<h1 id="textotopo">
+				<h:outputText value="Pedido" />
+			</h1>
+	
+			<div class="containerpro">
+				<h:form class="form-inserir-pedido" process="@this" update="@this" id="form-inserir-pedido" widgetVar="form-inserir-pedido">
+					<p:panelGrid columns="2">
+	
+						<p:outputLabel value="Mesa: #{PedidoBean.mesa.numeroMesa}" />
+						
+						<p:outputLabel value="Garçom: #{PedidoBean.usuario.nome}" />
+						
+						<p:outputLabel value="Total: #{PedidoBean.totalPedido}" />
+						
+						<p:outputLabel value="Qtd. produtos: #{PedidoBean.qtdProdutosAdicionados}" />
+						
+					</p:panelGrid>	
+					<p:panelGrid columns="1">	
+						<p:commandButton id="save-button" value="Salvar"
+							icon="ui-icon-disk" action="#{PedidoBean.cadastrar(PedidoBean.mesa.numeroMesa)}">
+						</p:commandButton>
+					</p:panelGrid>			
+				</h:form>
+									
+				<h:form class="form-inserir-produto-pedido">
+					<p:panelGrid columns="5">
+						<p:outputLabel value="Id:" />
+						<p:panelGrid columns="1">
+							<p:inputText id="id" value="#{PedidoBean.idProduto}" />
+						</p:panelGrid>
+						
+						<p:outputLabel value="Quantidade:" />						
+						<p:panelGrid columns="1">
+							<p:inputText id="quantidade"
+								value="#{PedidoBean.qtdProduto}" />
+						</p:panelGrid>
+						
+						<p:commandButton id="reset-button" value="Adicionar Produto"
+							icon="ui-icon-disk" action="#{PedidoBean.adicionarProduto}" update=":tabela :form-inserir-pedido">
+						</p:commandButton>
+	
 					</p:panelGrid>
-					
-					<p:outputLabel value="Quantidade:" />						
-					<p:panelGrid columns="1">
-						<p:inputText id="quantidade"
-							value="#{PedidoBean.qtdProduto}" />
-					</p:panelGrid>
-					
-					<p:commandButton id="reset-button" value="Adicionar Produto"
-						icon="ui-icon-disk" action="#{PedidoBean.adicionarProduto}" update=":tabela">
-					</p:commandButton>
-
-				</p:panelGrid>
-			</h:form>
-
-			<p:dataTable process="@this" update="@this" id="tabela"
-				widgetVar="Tabela" rowIndexVar="rowNumber" rows="10"
-				paginator="true"
-				value="#{PedidoBean.listaProdutosJaAdicionados}"
-				var="itemjaadiconados">
-				<p:column headerText="Id">
-					<h:outputText value="#{itemjaadiconados.id}" />
-				</p:column>
-				<p:column headerText="Nome">
-					<h:outputText value="#{itemjaadiconados.nome}" />
-				</p:column>
-				<p:column headerText="Quantidade">
-					<h:outputText value="#{itemjaadiconados.quantidade}" />
-				</p:column>
-				<p:column headerText="Valor unitário">
-					<h:outputText value="R$ #{itemjaadiconados.precoVenda}" />
-				</p:column>
-				<p:column headerText="Valor total">
-					<h:outputText value="R$ #{itemjaadiconados.precoVenda * itemjaadiconados.quantidade}" />
-				</p:column>
-				<p:column headerText="Status da cozinha">
-					<h:outputText value="#{itemjaadiconados.status}" />
-				</p:column>
-				<p:column headerText="Ação">
-					<h:form>
-						<p:commandButton id="alterar-button"
-							rendered="#{itemjaadiconados.quantidade > 1}"
-							value="Diminuir quantidade"
-							action="#{PedidoBean.diminuirItemComp(itemjaadiconados.id)}" update=":tabela" />
-						<p:commandButton id="excluir-button" value="Excluir"
-							action="#{PedidoBean.removerItemComp(itemjaadiconados.id)}" update=":tabela"/>
-					</h:form>
-				</p:column>
-			</p:dataTable>
-			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+				</h:form>
+	
+				<p:dataTable process="@this" update="@this" id="tabela"
+					widgetVar="Tabela" rowIndexVar="rowNumber" rows="10"
+					paginator="true"
+					value="#{PedidoBean.listaProdutosJaAdicionados}"
+					var="itemjaadiconados">
+					<p:column headerText="Id">
+						<h:outputText value="#{itemjaadiconados.id}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{itemjaadiconados.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{itemjaadiconados.quantidade}" />
+					</p:column>
+					<p:column headerText="Valor unitário">
+						<h:outputText value="R$ #{itemjaadiconados.precoVenda}" />
+					</p:column>
+					<p:column headerText="Valor total">
+						<h:outputText value="R$ #{itemjaadiconados.precoVenda * itemjaadiconados.quantidade}" />
+					</p:column>
+					<p:column headerText="Status da cozinha">
+						<h:outputText value="#{itemjaadiconados.status}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<h:form>
+							<p:commandButton id="alterar-button"
+								rendered="#{itemjaadiconados.quantidade > 1}"
+								value="Diminuir quantidade"
+								action="#{PedidoBean.diminuirItemComp(itemjaadiconados.id)}" update=":tabela" />
+							<p:commandButton id="excluir-button" value="Excluir"
+								action="#{PedidoBean.removerItemComp(itemjaadiconados.id)}" update=":tabela"/>
+						</h:form>
+					</p:column>
+				</p:dataTable>
+				<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
+			</div>
 		</div>
 	</div>
 </h:body>

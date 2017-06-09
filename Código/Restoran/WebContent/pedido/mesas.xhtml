@@ -19,7 +19,7 @@
 			<img src="../img/logorestoranicon.png" /> <img
 				src="../img/logorestoranNome.png" />
 
-			<div id="topo" rendered="#{UsuarioBean.usuarioPrivilegioGerente}">
+			<div id="topo">
 				<ui:include src="../menu.xhtml" />
 			</div>
 
@@ -47,7 +47,7 @@
 
 						<p:commandButton id="alterar-pedido-button"
 							style="background-color: red;"
-							rendered="#{mesa.pedidos.size() != 0}" value="Visualizar Pedido"
+							rendered="#{mesa.pedidos.size() > 0}" value="Visualizar Pedido"
 							icon="ui-icon-circle-zoomin"
 							action="#{PedidoBean.chamadaAlterar(mesa.id)}">
 						</p:commandButton>

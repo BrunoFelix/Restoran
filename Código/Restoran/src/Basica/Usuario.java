@@ -37,8 +37,8 @@ public class Usuario {
 	
 	@Column(length=1, nullable = false)
 	private String sexo;
-	
-	@Column(length=8, nullable = false)
+
+	@Column(length=10, nullable = false)
 	private String tipo;
 	
 	@Column(length=11, nullable = false)

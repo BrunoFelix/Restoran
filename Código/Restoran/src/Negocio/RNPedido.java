@@ -33,7 +33,7 @@ public class RNPedido {
 	public Pedido PesquisarPorMesa(long numeroMesa) throws DadosException{
 		return pedidoDAO.PesquisarPorMesa(numeroMesa);
 	}
-	
+		
 	public List<Pedido> PedidoListar() throws DadosException{
 		return pedidoDAO.ListaPedidos();
 	}

@@ -184,34 +184,39 @@ public class UsuarioBean {
 		return null;
 	}
 
-	public String logout() {
+	public String getLogout() throws IOException {
 		UsuarioBean.usuario = null;
-		return "login";
+		FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+		return null;
 	}
 
-
-	public String getUsuarioGerente() {
-		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
+	public String getUsuarioLogado() {
+		if ((usuario != null)) {
 			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
 		} else {
 			return "login";
 		}
 	}
 	
-	public String getUsuarioPrivilegioGerente() {
-		if ((usuario != null) && (usuario.getTipo().equals("Gerente"))) {
-			return "true";
-		} else {
-			return "login";
+	public boolean getUsuarioGerente(){
+		if (usuario != null && usuario.getTipo().equals("Gerente")){
+			return true;
 		}
+		return false;
 	}
 	
-	public String getUsuarioNormal() {
-		if (usuario != null) {
-			return usuario.getNome() + " (" + usuario.getLogin() + ")" + " - Tipo: " + usuario.getTipo();
-		} else {
-			return "login";
+	public boolean getUsuarioGarcom(){
+		if (usuario != null && usuario.getTipo().equals("Garçom")){
+			return true;
 		}
+		return false;
+	}
+	
+	public boolean getUsuarioCozinheiro(){
+		if (usuario != null && usuario.getTipo().equals("Cozinheiro")){
+			return true;
+		}
+		return false;
 	}
 	
 	public String chamadaAlterar(Integer id) {
@@ -220,7 +225,6 @@ public class UsuarioBean {
     }
 	
 	public String alterar() {
-		
 		try {
 			fachada.UsuarioAlterar(usuarioAlterar);
 			return "listar";
@@ -238,7 +242,7 @@ public class UsuarioBean {
 		}
 	}
 	
-	public boolean temPermissao (List<String> permissoes){
+	/*public boolean temPermissao (List<String> permissoes){
 		
 		for (String permissao :permissoes){
 			
@@ -249,5 +253,5 @@ public class UsuarioBean {
 		}
 		
 		return false;
-	}
+	}*/
 }
