@@ -93,7 +93,7 @@ public class RNUsuario{
 	}
 
 	public void validarCampos(Usuario u) throws NegocioException {
-		if (u.getNome().trim().length() < 10 || u.getNome().trim().length() > 50)
+		if (u.getNome().trim().length() < 8 || u.getNome().trim().length() > 50)
 			throw new NegocioException("Nome inválido!");
 		if (u.getCpf().trim().length() != 11)
 			throw new NegocioException("Cpf inválido!");
@@ -109,6 +109,8 @@ public class RNUsuario{
 			throw new NegocioException("Senha com limite máximo de 15 caracteres!");
 		if (u.getSexo().trim().length() > 1)
 			throw new NegocioException("Sexo deve ser preenchido somente com M = Masculino ou F = Feminino!");
+		if (!u.getTipo().equals("Gerente") && !u.getTipo().equals("Garçom") && !u.getTipo().equals("Cozinheiro"))
+			throw new NegocioException("Tipo deve ser preenchido com Gerente ou Garçom ou Cozinheiro!");
 	}
 
 	public void validarDuplicidadeLogin(Usuario u) throws NegocioException, DadosException {

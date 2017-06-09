@@ -219,6 +219,27 @@ public class UsuarioBean {
 		return false;
 	}
 	
+	public String getPrivilegioGerente() throws IOException{
+		if (getUsuarioGerente() != true) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+		}
+		return null;
+	}
+	
+	public String getPrivilegioGarcom() throws IOException{
+		if (getUsuarioGarcom() != true) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+		}
+		return null;
+	}
+	
+	public String getPrivilegioCozinheiro() throws IOException{
+		if (getUsuarioCozinheiro() != true) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+		}
+		return null;
+	}
+	
 	public String chamadaAlterar(Integer id) {
 		usuarioAlterar = fachada.UsuarioBuscarPorId(id);
         return "alterar";
