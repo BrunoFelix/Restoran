@@ -154,6 +154,7 @@ public class UsuarioBean {
 	}
 
 	public String cadastrar() {
+		System.out.println("Entrou alterar");
 		Usuario usuarioinserir = new Usuario();
 		usuarioinserir.setNome(nome);
 		usuarioinserir.setLogin(login);

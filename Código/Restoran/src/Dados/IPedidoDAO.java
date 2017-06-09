@@ -5,6 +5,7 @@ import java.util.List;
 
 import Basica.Pedido;
 import Basica.PedidoProduto;
+import Basica.Produto;
 import Basica.ProdutoItem;
 import Utils.DadosException;
 
@@ -18,5 +19,8 @@ public interface IPedidoDAO {
 	public List<Pedido> ListaPedidos() throws DadosException;
 	public void InserirVinculoProduto(List<PedidoProduto> pp) throws DadosException;
 	public void AlterarVinculoProduto(List<PedidoProduto> pp) throws DadosException;
+	public List<PedidoProduto> PedidoProdutoListar() throws DadosException;
+	public PedidoProduto PesquisarPedidoProduto(Pedido pedido, Produto produto) throws DadosException;
+	public void AlterarVinculoPedidoProduto(PedidoProduto pp) throws DadosException;
 
 }

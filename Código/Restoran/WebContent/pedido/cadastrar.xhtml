@@ -81,6 +81,12 @@
 				<p:column headerText="Quantidade">
 					<h:outputText value="#{itemjaadiconados.quantidade}" />
 				</p:column>
+				<p:column headerText="Valor unitário">
+					<h:outputText value="R$ #{itemjaadiconados.precoVenda}" />
+				</p:column>
+				<p:column headerText="Valor total">
+					<h:outputText value="R$ #{itemjaadiconados.precoVenda * itemjaadiconados.quantidade}" />
+				</p:column>
 				<p:column headerText="Status da cozinha">
 					<h:outputText value="#{itemjaadiconados.status}" />
 				</p:column>

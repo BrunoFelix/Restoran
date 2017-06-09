@@ -81,6 +81,12 @@
 				<p:column headerText="Quantidade">
 					<h:outputText value="#{itemjaadiconados.quantidade}" />
 				</p:column>
+				<p:column headerText="Valor unitário">
+					<h:outputText value="R$ #{itemjaadiconados.precoVenda}" />
+				</p:column>
+				<p:column headerText="Valor total">
+					<h:outputText value="R$ #{itemjaadiconados.precoVenda * itemjaadiconados.quantidade}" />
+				</p:column>
 				<p:column headerText="Status da cozinha">
 					<h:outputText value="#{itemjaadiconados.status}" />
 				</p:column>
@@ -95,6 +101,27 @@
 					</h:form>
 				</p:column>
 			</p:dataTable>
+			
+			<h:form class="form-finalizar-pedido">
+				<p:panelGrid columns="5">
+					<p:outputLabel value="Id:" />
+					<p:panelGrid columns="1">
+						<p:inputText id="id" value="#{PedidoBean.idProduto}" />
+					</p:panelGrid>
+					
+					<p:outputLabel value="Quantidade:" />						
+					<p:panelGrid columns="1">
+						<p:inputText id="quantidade"
+							value="#{PedidoBean.qtdProduto}" />
+					</p:panelGrid>
+					
+					<p:commandButton id="reset-button" value="Adicionar Produto"
+						icon="ui-icon-disk" action="#{PedidoBean.adicionarProduto}" update=":tabela">
+					</p:commandButton>
+
+				</p:panelGrid>
+			</h:form>
+			
 			<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
 		</div>
 	</div>

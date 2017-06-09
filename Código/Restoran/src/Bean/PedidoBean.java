@@ -29,13 +29,15 @@ public class PedidoBean {
 	
 	private static Pedido pedido;
 	
-	private Pedido pedidoAlterar;
+	private static Pedido pedidoAlterar;
 	
 	private List<Pedido> listarPedido = new ArrayList<Pedido>();
 	
 	private List<Mesa> listarMesa = new ArrayList<Mesa>();
 	
 	private List<Produto> listarProduto = new ArrayList<Produto>();
+	
+	private List<PedidoProduto> listarPedidoProduto = new ArrayList<PedidoProduto>();
 	
 	private String NumeroMesa;
 	private String nomeGarcom;
@@ -154,7 +156,23 @@ public class PedidoBean {
 		this.qtdProdutosAdicionados = qtdProdutosAdicionados;
 	}
 
+	public List<PedidoProduto> getListarPedidoProduto() {
+		try {
+			setListarPedidoProduto(fachada.PedidoProdutoListar());
+		} catch (DadosException e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+		return listarPedidoProduto;
+	}
+
+	public void setListarPedidoProduto(List<PedidoProduto> listarPedidoProduto) {
+		this.listarPedidoProduto = listarPedidoProduto;
+	}
+
 	public String chamadaCadastrar(Integer id) throws NegocioException, DadosException{
+		listaProdutosJaAdicionados = new ArrayList<Produto>();
+		
 		this.mesa = fachada.MesaBuscarPorId((long) id);
 		this.usuario = UsuarioBean.getUsuario();
 		
@@ -163,7 +181,7 @@ public class PedidoBean {
 		pedido.setMesa(mesa);
 		Date data = new Date();
 		pedido.setData(data);
-		this.Status = "Aberto";
+		this.Status = "Aguardando Produção";
 		
 		fachada.PedidoInserir(pedido);
 		
@@ -173,23 +191,56 @@ public class PedidoBean {
 	public String cadastrar(Integer id) {
 		
 		try{
-			System.out.println("vai pesquisar pedidos da mesa: " + id);
 			Pedido pedidoInserir = fachada.PedidoPesquisarPorMesa((long) id);
-			System.out.println("passou");
 			List<PedidoProduto> pp = new ArrayList<PedidoProduto>();
+			
+			double total = 0;
 			
 			Iterator<Produto> ProdutoAsIterator = listaProdutosJaAdicionados.iterator();
 	        while (ProdutoAsIterator.hasNext()){
 	        	Produto it = ProdutoAsIterator.next();
 	        	PedidoProduto produtoitem = new PedidoProduto(pedidoInserir,it,it.getQuantidade(), it.getStatus());
+	        	total += (it.getPrecoVenda() * it.getQuantidade());
 	        	pp.add(produtoitem);
 	        }
 	        
-        
+	    pedidoInserir.setTotalPedido(total);
+	    pedidoInserir.setQtdProdutos(listaProdutosJaAdicionados.size());
+	    pedidoInserir.setProdutos(null);
+        fachada.PedidoAlterar(pedidoInserir);
         fachada.PedidoInserirVinculoProduto(pp);
+        
+        listaProdutosJaAdicionados = new ArrayList<Produto>();
         
         return "mesas";
         } catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+		return null;
+        
+	}
+	
+	public String alterar(Integer id) {
+		try {
+			List<PedidoProduto> pp = new ArrayList<PedidoProduto>();
+			
+			Iterator<Produto> itemCompAsIterator = listaProdutosJaAdicionados.iterator();
+	        while (itemCompAsIterator.hasNext()){
+	        	Produto it = itemCompAsIterator.next();
+	        	PedidoProduto produtoitem = new PedidoProduto(pedidoAlterar,it,it.getQuantidade(), it.getStatus());
+	        	pp.add(produtoitem);
+	        }
+	        
+	        fachada.PedidoAlterarVinculoProduto(pp);
+	        
+	        /*pedidoAlterar.setTotalPedido(total);
+		    pedidoAlterar.setQtdProdutos(listaProdutosJaAdicionados.size());
+		    pedidoAlterar.setProdutos(null);*/
+	        /*fachada.PedidoAlterar(pedidoAlterar);
+	        fachada.PedidoAlterarVinculoProduto(pp);*/
+			
+			return "listar";
+		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
@@ -200,11 +251,13 @@ public class PedidoBean {
 	public String chamadaAlterar(Integer id) throws NegocioException, DadosException{
 		pedidoAlterar = fachada.PedidoPesquisarPorMesa((long) id);
 		
+		listaProdutosJaAdicionados = new ArrayList<Produto>();
+		
 		for (PedidoProduto s : pedidoAlterar.getProdutos()) {
 			s.getProduto().setQuantidade(s.getQuantidade());
 			s.getProduto().setStatus(s.getStatus());
 			listaProdutosJaAdicionados.add(s.getProduto());
-		}
+		}	
 		
 		return "alterar";
 	}
@@ -239,6 +292,33 @@ public class PedidoBean {
 		}
 	}
 	
+	
+	public void AlterarStatus(Integer idPedido, Integer idProduto, String status){
+		try {
+		System.out.println("Entrou no alterar");
+		Pedido pedido = fachada.PedidoBuscarPorId((long) idPedido);
+		System.out.println("Pesquisou pedido");
+		Produto produto = fachada.ProdutoBuscarPorId((long) idProduto); 
+		System.out.println("Pesquisou produto");
+		
+		PedidoProduto pedidoProduto = fachada.PesquisarPedidoProduto(pedido, produto);
+		
+		System.out.println("Pesquisou pedido produto");
+	
+		pedidoProduto.setStatus(status);
+		
+		System.out.println("Antes do alterar");
+		fachada.AlterarVinculoPedidoProduto(pedidoProduto);
+		System.out.println("Alterou!");
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
+		
+		
+		
+	}
 
 	
 }

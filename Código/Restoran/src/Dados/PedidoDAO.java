@@ -12,6 +12,7 @@ import Utils.DadosException;
 import Basica.ItemComposicaoProduto;
 import Basica.Pedido;
 import Basica.PedidoProduto;
+import Basica.Produto;
 import Basica.ProdutoItem;
 
 public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
@@ -70,6 +71,11 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 					
 			Query query = em.createQuery(queryString);
 			query.setParameter("numeroMesa", numeroMesa);
+			
+			if (query.getResultList().size() <= 0){
+				throw new DadosException("nenhum pedido!");
+			}
+			
 			return (Pedido) query.getSingleResult();
 		} catch (Exception e) {
 			throw new DadosException(e);
@@ -93,7 +99,7 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 	@Override
 	public List<Pedido> ListaPedidos() throws DadosException {
 		try{
-			String queryString = "select object(p) from Pedido as p where p.status = 'Produção' order by p.data asc, p.id asc";
+			String queryString = "select object(p) from Pedido as p where order by p.data asc, p.id asc";
 
 			EntityManager em = getEntityManagerFactory().createEntityManager();
 					
@@ -103,33 +109,81 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 			throw new DadosException(e);
 		}
 	}	
+
 	
 	@Override
 	public void InserirVinculoProduto(List<PedidoProduto> pp) throws DadosException {
 		// TODO Auto-generated method stub
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		em.getTransaction().begin();
-		PedidoProduto bp;
-		for (int i = 0; i < pp.size(); i++) {
-			bp = pp.get(i);
-			em.persist(bp);
+		try{
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
+			PedidoProduto bp;
+			for (int i = 0; i < pp.size(); i++) {
+				bp = pp.get(i);
+				em.persist(bp);
+			}
+			em.getTransaction().commit();
+			em.close();
+		}catch(Exception e){
+			throw new DadosException(e.getMessage());
 		}
-		em.getTransaction().commit();
-		em.close();
 	}
 
 	@Override
 	public void AlterarVinculoProduto(List<PedidoProduto> pp) throws DadosException {
 		// TODO Auto-generated method stub
-		EntityManager em = getEntityManagerFactory().createEntityManager();
-		em.getTransaction().begin();
-		PedidoProduto bp;
-		for (int i = 0; i < pp.size(); i++) {
-			bp = pp.get(i);
-			em.merge(bp);
+		try{
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+			for (int i = 0; i < pp.size(); i++) {
+				AlterarVinculoPedidoProduto(pp.get(i));
+			}
+		}catch(Exception e){
+			throw new DadosException(e.getMessage());
 		}
-		em.getTransaction().commit();
-		em.close();
+	}
+
+	@Override
+	public List<PedidoProduto> PedidoProdutoListar() throws DadosException {
+		try{
+			String queryString = "select object(pp) from PedidoProduto as pp where pp.status <> 'Pronto' order by status desc";
+
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+					
+			Query query = em.createQuery(queryString);
+			return query.getResultList();
+		} catch (Exception e) {
+			throw new DadosException(e);
+		}
+	}
+
+	@Override
+	public PedidoProduto PesquisarPedidoProduto(Pedido pedido, Produto produto) throws DadosException {
+		try{
+			String queryString = "select object(pp) from PedidoProduto as pp where pp.pedido =(:pedido) and pp.produto =(:produto)";
+
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+					
+			Query query = em.createQuery(queryString);
+			query.setParameter("pedido", pedido);
+			query.setParameter("produto", produto);
+			return (PedidoProduto) query.getSingleResult();
+		} catch (Exception e) {
+			throw new DadosException(e);
+		}
+	}
+
+	@Override
+	public void AlterarVinculoPedidoProduto(PedidoProduto pp) throws DadosException {
+		try{
+			EntityManager em = getEntityManagerFactory().createEntityManager();
+			em.getTransaction().begin();
+			em.merge(pp);
+			em.getTransaction().commit();
+			em.close();
+		}catch(Exception e){
+			throw new DadosException(e.getMessage());
+		}
+		
 	}
 
 }

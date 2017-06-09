@@ -114,7 +114,23 @@ public class Fachada {
 		 rnPedido.AlterarVinculoProduto(pp);
 	}
 	
+	public List<PedidoProduto> PedidoProdutoListar() throws DadosException{
+		return rnPedido.PedidoProdutoListar();
+	}
 	
+	public PedidoProduto PesquisarPedidoProduto(Pedido pedido, Produto produto) throws DadosException{
+		return rnPedido.PesquisarPedidoProduto(pedido, produto);
+		
+	}
+	
+	public Pedido PedidoBuscarPorId(long id){
+		return rnPedido.PedidoBuscarPorId(id);
+	}
+	
+	public void AlterarVinculoPedidoProduto(PedidoProduto pp) throws DadosException{
+		rnPedido.AlterarVinculoPedidoProduto(pp);
+	}
+	  
 	/*
 	 * ################################## 
 	 * 				USUARIO

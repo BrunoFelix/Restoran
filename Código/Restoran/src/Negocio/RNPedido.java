@@ -6,7 +6,9 @@ import javax.persistence.EntityManagerFactory;
 
 import Basica.Pedido;
 import Basica.PedidoProduto;
+import Basica.Produto;
 import Basica.ProdutoItem;
+import Basica.Usuario;
 import Dados.PedidoDAO;
 import Utils.DadosException;
 import Utils.NegocioException;
@@ -42,6 +44,23 @@ public class RNPedido {
 	
 	public void AlterarVinculoProduto(List<PedidoProduto> pp) throws DadosException{
 		pedidoDAO.AlterarVinculoProduto(pp);
+	}
+	
+	public List<PedidoProduto> PedidoProdutoListar() throws DadosException{
+		return pedidoDAO.PedidoProdutoListar();
+	}
+	
+	public PedidoProduto PesquisarPedidoProduto(Pedido pedido, Produto produto) throws DadosException{
+		return pedidoDAO.PesquisarPedidoProduto(pedido, produto);
+		
+	}
+	
+	public Pedido PedidoBuscarPorId(long id){
+		return pedidoDAO.searchByKey(id);
+	}
+	
+	public void AlterarVinculoPedidoProduto(PedidoProduto pp) throws DadosException{
+		pedidoDAO.AlterarVinculoPedidoProduto(pp);
 	}
 	
 	

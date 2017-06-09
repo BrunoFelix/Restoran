@@ -18,67 +18,51 @@
 		<div>
 			<img src="../img/logorestoranicon.png" /> <img
 				src="../img/logorestoranNome.png" />
-			
+
 			<div id="topo">
 				<ui:include src="../menu.xhtml" />
 			</div>
 
 			<h1 class="textotopo">
-				<h:outputText value="Gerenciar Pedidos" />
+				<h:outputText value="Cozinha - Pratos a serem feitos" />
 			</h1>
 
-			<div class="wrapper">
-				<div class="container">
-					<div class="panel_mesas">
-						<h:form id="form">
-							<p:dataGrid var="pedido" value="#{PedidoBean.listarPedido}"
-								columns="3" layout="grid" rows="12" paginator="true" id="mesas"
-								paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="6,12,16">
+			<p:dataTable id="tabela" var="pedidos"
+				value="#{PedidoBean.listarPedidoProduto}">
+				<p:column headerText="Número Pedido">
+					<h:outputText value="#{pedidos.pedido.id}" />
+				</p:column>
+				
+				<p:column headerText="Número Mesa">
+					<h:outputText value="#{pedidos.pedido.mesa.numeroMesa}" />
+				</p:column>
 
-								<f:facet name="header" id="textotopo" class="textotopo">
-				            Painel de pedidos
-				        </f:facet>
+				<p:column headerText="ID Produto">
+					<h:outputText value="#{pedidos.produto.id}" />
+				</p:column>
+				
+				<p:column headerText="Produto">
+					<h:outputText value="#{pedidos.produto.nome}" />
+				</p:column>
 
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{pedidos.quantidade}" />
+				</p:column>
 
-								<p:panel header="Pedido #{pedido.id}" style="text-align:center">
-									<h:panelGrid columns="1" style="width:100%">
+				<p:column headerText="Status">
+					<h:outputText value="#{pedidos.status}" />
+				</p:column>
+				
+				<p:column headerText="Ações">
+					<p:commandButton update=":tabela" rendered="#{pedidos.status == 'Aguardando Produção'}" id="producao-button" value="Em Produção"
+						action="#{PedidoBean.AlterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Em produção')}" />
+						
+					<p:commandButton update=":tabela" rendered="#{pedidos.status == 'Em Produção'}" id="entregue-button" value="Entregar"
+						action="#{PedidoBean.AlterarStatus(pedidos.pedido.id, pedidos.produto.id, 'Pronto')}" />
+				</p:column>
+			</p:dataTable>
 
-
-										<h:outputText
-											value="Número da mesa: #{pedido.mesa.numeroMesa}" />
-										<h:outputText value="Garçom: #{pedido.garcom.nome}" />
-
-										<p:commandLink update=":form:detalheMesa"
-											oncomplete="PF('detalheMesa').show()"
-											title="Visualizar Produtos">
-											<h:outputText styleClass="ui-icon ui-icon-search"
-												style="margin:0 auto;" />
-										</p:commandLink>
-									</h:panelGrid>
-								</p:panel>
-
-							</p:dataGrid>
-
-							<p:dialog header="Produtos Pedido" widgetVar="detalheMesa"
-								modal="true" showEffect="fade" hideEffect="fade"
-								resizable="false">
-								<p:outputPanel id="detalheMesa" style="text-align:center;">
-
-									<p:dataTable var="produto" value="#{PedidoBean.listarProduto}">
-										<p:column headerText="Nome">
-											<h:outputText value="#{produto.nome}" />
-										</p:column>
-
-									</p:dataTable>
-
-								</p:outputPanel>
-							</p:dialog>
-						</h:form>
-					</div>
-				</div>
-			</div>
-			</div>
-			</div>
+		</div>
+	</div>
 </h:body>
 </html>
