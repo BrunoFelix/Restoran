@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +17,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
+
+
 
 import Basica.Categoria;
 import Basica.ItemComposicaoProduto;
@@ -290,5 +295,13 @@ public class ProdutoBean{
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
+	}
+	
+	public void abrirDialogo(){
+		java.util.Map<String, Object> opcoes = new HashMap<>();
+		RequestContext.getCurrentInstance().openDialog("selecaoitemcomposicao", opcoes, null);
+		opcoes.put("modal", true);
+		opcoes.put("resizable",false);
+		opcoes.put("contentHeight",470);
 	}
 }
