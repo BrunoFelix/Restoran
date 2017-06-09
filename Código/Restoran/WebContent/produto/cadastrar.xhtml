@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -59,6 +59,13 @@
 									itemValue="#{categoria}" itemLabel="#{categoria.nome}" />
 							</h:selectOneMenu>
 						</p:panelGrid>
+						
+                        <p:outputLabel value="Itens Composicao: " />
+						<h:panelGroup>
+							<h:outputText />
+							<p:commandButton icon="ui-icon-search"
+								action="#{ProdutoBean.abrirDialogo()}" process="@this" />
+						</h:panelGroup>
 
 						<p:commandButton id="insert-button" value="Limpar"
 							icon="ui-icon-trash" type="reset">
@@ -68,8 +75,9 @@
 						</p:commandButton>
 					</p:panelGrid>
 				</h:form>
+
+				<!--  Itens de Composição  -->
 				
-				<!--  Itens de Composição -->
 
 				<h:form class="form-inserir-itemComp-produto">
 					<p:panelGrid columns="1">
@@ -77,7 +85,6 @@
 						<p:panelGrid columns="1">
 							<p:inputText id="id" value="#{ProdutoBean.idItemComp}" />
 						</p:panelGrid>
-						
 						<p:outputLabel value="Quantidade:" />
 						<p:panelGrid columns="1">
 							<p:inputText id="quantidade"
@@ -88,7 +95,7 @@
 							icon="ui-icon-disk" action="#{ProdutoBean.adicionarItemComp}"
 							update=":tabela">
 						</p:commandButton>
-					</p:panelGrid>
+					</p:panelGrid> 
 				</h:form>
 
 				<p:dataTable process="@this" update="@this" id="tabela"
@@ -118,7 +125,6 @@
 						</h:form>
 					</p:column>
 				</p:dataTable>
-
 			</div>
 		</div>
 		<p:messages id="msgErro" showDetail="false" autoUpdate="true" />
