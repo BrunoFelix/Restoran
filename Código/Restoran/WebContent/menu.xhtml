@@ -15,7 +15,7 @@
 			<p:growl id="messages" />			
 			<p:menubar>
 			<p:menuitem value="Home" url="/index.xhtml"/>
-				<p:submenu label="Produto">
+				<p:submenu label="Produto" rendered="#{UsuarioBean.temPermissao(['Gerente'])}">
 					<p:menuitem value="Gerenciar Produtos" url="/produto/listar.xhtml" />
 					<p:menuitem value="Gerenciar Itens de composição" url="/itemcomposicaoproduto/listar.xhtml" />
 					<p:menuitem value="Cadastrar Produto" url="/produto/cadastrar.xhtml" />

@@ -237,4 +237,17 @@ public class UsuarioBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 	}
+	
+	public boolean temPermissao (List<String> permissoes){
+		
+		for (String permissao :permissoes){
+			
+			if(usuario.getTipo() ==permissao){
+		return true;
+			
+			}
+		}
+		
+		return false;
+	}
 }
